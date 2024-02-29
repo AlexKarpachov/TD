@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerBuilder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject tower;
 
-    // Update is called once per frame
-    void Update()
+    // the method tells whether we succeed in building or not.
+    //This script knows nothing about our building points. That's why we give the point where we want to build (BuildPoint).
+    // we'll be able to know if we have enough money to build; if it's time to build
+    public bool Construct(BuildPoint point)
     {
-        
+        if (!point.CanBuild) return false;
+
+        Instantiate(tower, point.transform);
+        return true;
     }
 }
