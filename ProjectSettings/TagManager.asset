@@ -7,8 +7,6 @@ TagManager:
   - red enemy
   - blue enemy
   - BuildPoint
-  - Balista
-  - Path
   layers:
   - Default
   - TransparentFX
