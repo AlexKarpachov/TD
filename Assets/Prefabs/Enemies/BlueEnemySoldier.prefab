@@ -82,6 +82,7 @@ MonoBehaviour:
   navAgent: {fileID: 2871077905618988279}
   redEnemyHP: 100
   blueEnemyHP: 100
+  spawner: {fileID: 0}
 --- !u!195 &2871077905618988279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 400
