@@ -9,6 +9,7 @@ TagManager:
   - BuildPoint
   - Balista
   - Path
+  - Arrow
   layers:
   - Default
   - TransparentFX

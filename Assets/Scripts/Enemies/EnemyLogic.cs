@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyLogic : MonoBehaviour
 {
-    //GameObject spawnerObject;
     [SerializeField] NavMeshAgent navAgent;
+    [SerializeField] ParticleSystem shootingSparksParticles;
     //[SerializeField] int redEnemyHP = 100;
     //[SerializeField] int blueEnemyHP = 100;
     EnemySpawner spawner;
@@ -12,16 +13,6 @@ public class EnemyLogic : MonoBehaviour
     private void Start()
     {
         spawner = FindObjectOfType<EnemySpawner>();
-        /*
-        spawnerObject = GameObject.Find("EnemySpawner");
-        if (spawnerObject != null)
-        {
-            spawner = spawnerObject.GetComponent<EnemySpawner>();
-        }
-        else
-        {
-            Debug.LogError("EnemySpawnerObject not found!");
-        }*/
     }
 
     public void MoveTo(Transform destination)
@@ -31,6 +22,12 @@ public class EnemyLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            shootingSparksParticles.Play();
+            Destroy(other.gameObject, 1f);
+        }
+
         if (other.gameObject.tag == "Finish")
         {
             spawner.gameOver = true;
@@ -38,4 +35,6 @@ public class EnemyLogic : MonoBehaviour
             Debug.Log("Game over!");
         }
     }
+
+    //here should a method of HP reduction and enemy destroying
 }

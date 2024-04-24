@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674869319653469091}
+  - component: {fileID: 7569001488256350212}
   m_Layer: 0
   m_Name: ArcherTower
   m_TagString: Untagged
@@ -29,9 +30,93 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6850076820346114925}
+  - {fileID: 1155179711476540915}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7569001488256350212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318788278698533792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2223d86fe28b34c8b89044f452581b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 15
+  redEnemyTarget: {fileID: 0}
+  blueEnemyTarget: {fileID: 0}
+  archerAtTheTower: {fileID: 1155179711476540915}
+  arrowPrefab: {fileID: 3591548935351611462, guid: 21e03c36997bc324993503a42362afb5, type: 3}
+  firePoint: {fileID: 5332708537746210923}
+  archerRotationSpeed: 15
+--- !u!1 &720118992076393264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5332708537746210923}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5332708537746210923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720118992076393264}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 1, y: 1.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1155179711476540915}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2635192452323175082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155179711476540915}
+  m_Layer: 0
+  m_Name: Archer render
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155179711476540915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635192452323175082}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 5.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3269122198560756607}
+  - {fileID: 5332708537746210923}
+  m_Father: {fileID: 674869319653469091}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &7465579070066425536
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +149,72 @@ Transform:
   m_Father: {fileID: 674869319653469091}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3264607685202976431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1155179711476540915}
+    m_Modifications:
+    - target: {fileID: 1084322014742364, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_Name
+      value: TB_Soldier_Archer_Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+--- !u!4 &3269122198560756607 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4633570488765904, guid: cdf6e89f128bd174ca22352272f2876a, type: 3}
+  m_PrefabInstance: {fileID: 3264607685202976431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3725939463920787142
 PrefabInstance:
   m_ObjectHideFlags: 0
