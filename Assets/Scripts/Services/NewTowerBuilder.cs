@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NewTowerBuilder : MonoBehaviour
 {
-    [SerializeField] GameObject towerChoosingMenue;
-    [SerializeField] GameObject archerTowerPrefab;
-    GameObject towerToBuild;
+    public GameObject archerTowerPrefab;
+    public GameObject archer2TowerPrefab;
+    public GameObject mageTowerPrefab;
+    public GameObject mage2TowerPrefab;
 
+    GameObject towerToBuild;
+    BuildPoint buildPoint;
     public static NewTowerBuilder instance;
 
     private void Awake()
@@ -21,18 +22,29 @@ public class NewTowerBuilder : MonoBehaviour
 
     private void Start()
     {
-        towerToBuild = archerTowerPrefab;
     }
-
     public GameObject GetTowerToBuild()
     {
         return towerToBuild;
     }
 
-    private void OnMouseDown()
+    public void SetTowerToBuild(GameObject tower)
     {
-        towerChoosingMenue.SetActive(true);
-        Time.timeScale = 0f;
+        towerToBuild = tower;
     }
 
+    public void SetBuildPoint(BuildPoint point)
+    {
+        buildPoint = point;
+        if (buildPoint != null && buildPoint.IsPlaceable)
+        {
+            Vector3 buildPointPosition = buildPoint.BuildPointTransform.position;
+            Instantiate(towerToBuild, buildPointPosition, Quaternion.identity);
+            buildPoint.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("No build point assigned to NewTowerBuilder");
+        }
+    }
 }

@@ -8,15 +8,11 @@ public class PauseGame : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
-        if (towerChoosingMenu == isActiveAndEnabled)
-        {
-            towerChoosingMenu.SetActive(false);
-        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pause()
     {
-        
+        Time.timeScale = 0f;
+
     }
 }

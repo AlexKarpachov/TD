@@ -9,8 +9,6 @@ public class Raycast : MonoBehaviour
 
     //we need an access to the TowerBuilder to give him a command that we can or cannot build on the place chosen.
     [SerializeField] TowerBuilder towerBuilder;
-    
-    /*
 
     private void Update()
     {
@@ -25,20 +23,25 @@ public class Raycast : MonoBehaviour
 
         RaycastHit hit; // save info about objects that cought the ray
 
-        // our raycast comes from "ray". If the ray hits some object, the "out" command transfers an object info into "hit"
+        // our ray comes from "ray". If the ray hits some object, the "out" command transfers an object info into "hit"
         if (!Physics.Raycast(ray, out hit)) return;
 
         var hitCollider = hit.collider; //try to get a collider from the object our ray hit into
 
-        if (!hitCollider.CompareTag("BuildPoint")) return; //when the ray hit some collider, we need to know the object's tag
-        if (!hitCollider.TryGetComponent<BuildPoint>(out var buildPoint)) return; //try to get a BuildPoint script to know if we can build a tower or not 
-        if (!buildPoint.CanBuild) return; //to check whether it's allowed to build according to the BuildPoint info
-    */
-        /*now we should check whether the tower was build.
-        If the building was successful, we put "false". That means we cannot build in this point anymore*/
-       /* if (towerBuilder.Construct(buildPoint))
+        if (!hitCollider.CompareTag("BuildPoint")) return; //when the ray hits some collider, we need to check if this collider has a tag we need
+        Debug.Log("BuildPoint was found");
+
+        if (!hitCollider.TryGetComponent<TowerBuildPoint>(out var towerBuildPointScript)) return; //try to get a TowerBuildPoint script to know if we can build a tower or not 
+        if (!towerBuildPointScript.CanBuild) return; //to check whether it's allowed to build according to the TowerBuildPoint info
+
+        /*
+        now we should check whether the tower was build or not.
+        If the building was successful, we put "false". That means we cannot build in this point anymore
+        we send a point using towerBuildPointScript to the Construct
+        */
+        if (towerBuilder.Construct(towerBuildPointScript))
         {
-            buildPoint.BuildingPermission(false);
+            towerBuildPointScript.ChangeBuildingPermission(false);
         }
-    }*/
+    }
 }

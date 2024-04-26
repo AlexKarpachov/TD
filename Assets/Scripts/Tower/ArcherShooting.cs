@@ -7,8 +7,10 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform blueEnemyTarget;
     [SerializeField] Transform archerAtTheTower;
+    [SerializeField] Transform archer2AtTheTower;
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] Transform firePoint;
+    [SerializeField] Transform firePoint2Archer;
     [SerializeField] float archerRotationSpeed = 10f;
 
     float redEnemyEnterTime = 0f;
@@ -29,6 +31,7 @@ public class ArcherShooting : MonoBehaviour
         if (fireCountdown <= 0)
         {
             Invoke ("ShootArrow", 0.5f);
+            Invoke("ShootArrow2Archer", 0.5f);
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
@@ -97,6 +100,7 @@ public class ArcherShooting : MonoBehaviour
             if (redEnemyEnterTime < blueEnemyEnterTime)
             {
                 LookAtRedEnemies();
+                LookAtRedEnemies2Archer();
             }
             else
             {
@@ -106,6 +110,7 @@ public class ArcherShooting : MonoBehaviour
         else if (redEnemyTarget != null)
         {
             LookAtRedEnemies();
+            LookAtRedEnemies2Archer();
         }
         else if (blueEnemyTarget != null)
         {
@@ -115,11 +120,20 @@ public class ArcherShooting : MonoBehaviour
 
     void LookAtRedEnemies()
     {
-        float targetDistance = Vector3.Distance(transform.position, redEnemyTarget.position);
-        Vector3 archDirection = redEnemyTarget.position - archerAtTheTower.position;
+        //float targetDistance = Vector3.Distance(transform.position, redEnemyTarget.position);
+        Vector3 archDirection = redEnemyTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(archDirection);
         Vector3 rotation = Quaternion.Lerp(archerAtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
         archerAtTheTower.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
+    }
+
+    void LookAtRedEnemies2Archer()
+    {
+        //float targetDistance = Vector3.Distance(transform.position, redEnemyTarget.position);
+        Vector3 archDirection = redEnemyTarget.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(archDirection);
+        Vector3 rotation = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
+        archer2AtTheTower.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
     }
 
     void LookAtBlueEnemies()
@@ -130,11 +144,29 @@ public class ArcherShooting : MonoBehaviour
         archerAtTheTower.rotation = Quaternion.Euler(0f, rotationBlue.y, 0f);
     }
 
+    void LookAtBlueEnemies2Archer()
+    {
+        Vector3 archDirectionBlue = blueEnemyTarget.position - transform.position;
+        Quaternion lookRotationBlue = Quaternion.LookRotation(archDirectionBlue);
+        Vector3 rotationBlue = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotationBlue, Time.deltaTime * archerRotationSpeed).eulerAngles;
+        archer2AtTheTower.rotation = Quaternion.Euler(0f, rotationBlue.y, 0f);
+    }
+
     void ShootArrow()
     {
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
         Shooting shootingScript = arrow.GetComponent<Shooting>();
         if (shootingScript != null )
+        {
+            shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
+        }
+    }
+
+    void ShootArrow2Archer()
+    {
+        GameObject arrow = Instantiate(arrowPrefab, firePoint2Archer.position, firePoint2Archer.rotation);
+        Shooting shootingScript = arrow.GetComponent<Shooting>();
+        if (shootingScript != null)
         {
             shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
         }

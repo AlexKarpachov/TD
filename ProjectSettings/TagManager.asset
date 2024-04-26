@@ -10,6 +10,7 @@ TagManager:
   - Balista
   - Path
   - Arrow
+  - Store menu
   layers:
   - Default
   - TransparentFX

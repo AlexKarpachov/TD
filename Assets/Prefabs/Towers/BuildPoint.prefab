@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5687447275830307735}
   - component: {fileID: 4850525971723988397}
-  - component: {fileID: 1578691312360306646}
+  - component: {fileID: 2789039799768954356}
   m_Layer: 0
   m_Name: BuildPoint
   m_TagString: BuildPoint
@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 2287003633278893756}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4850525971723988397
 BoxCollider:
@@ -55,7 +55,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.9849224, y: 7.207684, z: 7.510872}
   m_Center: {x: 0.08839512, y: 3.103843, z: 0.36958694}
---- !u!114 &1578691312360306646
+--- !u!114 &2789039799768954356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,10 +64,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466517783362099338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df72b5797b770e84881ccd39989c40c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  render: {fileID: 6470526877277209019}
+  constructionMarker: {fileID: 6470526877277209019}
 --- !u!1 &6470526877277209019
 GameObject:
   m_ObjectHideFlags: 0
