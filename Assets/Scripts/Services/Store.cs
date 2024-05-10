@@ -1,34 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Store : MonoBehaviour
 {
-    NewTowerBuilder newTowerBuilder;
+    [SerializeField] TowerBuilder towerBuilder;
+    [SerializeField] GameObject storeUI;
+    [SerializeField] Raycast raycast;
 
-    void Start()
+    public void SelectTowerToBuild(GameObject towerPrefab)
     {
-        newTowerBuilder = NewTowerBuilder.instance;
+        storeUI.SetActive(false);
+        Time.timeScale = 1f;
+        towerBuilder.SetTowerToBuild(towerPrefab);
+        TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
+
+        if (towerBuilder.Construct(towerBuildPointScript))
+         {
+             towerBuildPointScript.ChangeBuildingPermission(false);
+         } 
     }
 
     public void Archer1TowerPurchase()
     {
         Debug.Log("Arhcer1 tower is chosen");
-        newTowerBuilder.SetTowerToBuild(newTowerBuilder.archerTowerPrefab);
+        SelectTowerToBuild(towerBuilder.archerTowerPrefab);
     }
     public void Archer2TowerPurchase()
     {
         Debug.Log("Arhcer2 tower is chosen");
-        newTowerBuilder.SetTowerToBuild(newTowerBuilder.archer2TowerPrefab);
+        SelectTowerToBuild(towerBuilder.archer2TowerPrefab);
     }
     public void Mage1TowerPurchase()
     {
         Debug.Log("Mage1 tower is chosen");
-        newTowerBuilder.SetTowerToBuild(newTowerBuilder.mageTowerPrefab);
+        SelectTowerToBuild(towerBuilder.mageTowerPrefab);
+
     }
     public void Mage2TowerPurchase()
     {
         Debug.Log("Mage2 tower is chosen");
-        newTowerBuilder.SetTowerToBuild(newTowerBuilder.mage2TowerPrefab);
+        SelectTowerToBuild(towerBuilder.mage2TowerPrefab);
+
     }
 }

@@ -10,6 +10,8 @@ public class Raycast : MonoBehaviour
     //we need an access to the TowerBuilder to give him a command that we can or cannot build on the place chosen.
     [SerializeField] TowerBuilder towerBuilder;
 
+    private TowerBuildPoint towerBuildPointScript;
+
     private void Update()
     {
         CheckToBuild();
@@ -29,19 +31,12 @@ public class Raycast : MonoBehaviour
         var hitCollider = hit.collider; //try to get a collider from the object our ray hit into
 
         if (!hitCollider.CompareTag("BuildPoint")) return; //when the ray hits some collider, we need to check if this collider has a tag we need
-        Debug.Log("BuildPoint was found");
-
-        if (!hitCollider.TryGetComponent<TowerBuildPoint>(out var towerBuildPointScript)) return; //try to get a TowerBuildPoint script to know if we can build a tower or not 
+        if (!hitCollider.TryGetComponent<TowerBuildPoint>(out towerBuildPointScript)) return; //try to get a TowerBuildPoint script to know if we can build a tower or not 
         if (!towerBuildPointScript.CanBuild) return; //to check whether it's allowed to build according to the TowerBuildPoint info
+    }
 
-        /*
-        now we should check whether the tower was build or not.
-        If the building was successful, we put "false". That means we cannot build in this point anymore
-        we send a point using towerBuildPointScript to the Construct
-        */
-        if (towerBuilder.Construct(towerBuildPointScript))
-        {
-            towerBuildPointScript.ChangeBuildingPermission(false);
-        }
+    public TowerBuildPoint GetTowerBuildPointScript()
+    {
+        return towerBuildPointScript;
     }
 }
