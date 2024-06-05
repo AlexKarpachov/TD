@@ -11,6 +11,8 @@ TagManager:
   - Path
   - Arrow
   - Store menu
+  - sphere1
+  - sphere2
   layers:
   - Default
   - TransparentFX

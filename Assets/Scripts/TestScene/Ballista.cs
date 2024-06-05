@@ -5,19 +5,19 @@ using UnityEngine;
 public class Ballista : MonoBehaviour
 {
     [SerializeField] int cost = 75;
-    public bool CreatePrefab(Ballista ballista, Vector3 position)
+    public bool CreatePrefabOld(Ballista ballista, Vector3 position)
     {
-        Bank bank = FindObjectOfType<Bank>();
+        BankOld bank = FindObjectOfType<BankOld>();
 
         if(bank == null)
         {
             return false;
         }
 
-        if(bank.CurrentBalance >= cost)
+        if(bank.CurrentBalanceOld >= cost)
         {
             Instantiate(ballista, position, Quaternion.identity);
-            bank.Withdrawal(cost);
+            bank.WithdrawalOld(cost);
             return true;
         }
         return false;

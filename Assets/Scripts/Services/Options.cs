@@ -5,13 +5,6 @@ using UnityEngine.Audio;
 
 public class Options : MonoBehaviour
 {
-    [SerializeField] AudioMixer audioMixer;
-
-    public void setVolume(float volume)
-    {
-        audioMixer.SetFloat("Volume", volume);
-    }
-
     public void SetQuality(int quality)
     {
         QualitySettings.SetQualityLevel(quality);

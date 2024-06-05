@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        enemy.PenaltyGold();
+        enemy.PenaltyGoldOld();
         gameObject.SetActive(false);
     }
 }

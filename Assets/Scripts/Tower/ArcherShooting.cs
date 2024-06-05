@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
 public class ArcherShooting : MonoBehaviour
@@ -12,6 +13,7 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] Transform firePoint2Archer;
     [SerializeField] float archerRotationSpeed = 10f;
+    [SerializeField] float archerTilt = -50;
 
     float redEnemyEnterTime = 0f;
     float blueEnemyEnterTime = 0f;
@@ -30,8 +32,8 @@ public class ArcherShooting : MonoBehaviour
 
         if (fireCountdown <= 0)
         {
-            Invoke ("ShootArrow", 0.5f);
-            Invoke("ShootArrow2Archer", 0.5f);
+            Invoke ("ShootArrow", 0.3f);
+            Invoke("ShootArrow2Archer", 0.3f);
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
@@ -115,47 +117,59 @@ public class ArcherShooting : MonoBehaviour
         else if (blueEnemyTarget != null)
         {
             LookAtBlueEnemies();
+            LookAtBlueEnemies2Archer();
         }
     }
 
     void LookAtRedEnemies()
     {
-        //float targetDistance = Vector3.Distance(transform.position, redEnemyTarget.position);
         Vector3 archDirection = redEnemyTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(archDirection);
+        float tiltAngle = CalculateTiltAngle(archDirection);
         Vector3 rotation = Quaternion.Lerp(archerAtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        archerAtTheTower.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
+        rotation.x += tiltAngle;
+        archerAtTheTower.rotation = Quaternion.Euler(rotation);
     }
 
     void LookAtRedEnemies2Archer()
     {
-        //float targetDistance = Vector3.Distance(transform.position, redEnemyTarget.position);
         Vector3 archDirection = redEnemyTarget.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(archDirection);
+        float tiltAngle = CalculateTiltAngle(archDirection);
         Vector3 rotation = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        archer2AtTheTower.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
+        rotation.x += tiltAngle;
+        archer2AtTheTower.rotation = Quaternion.Euler(rotation);
     }
 
     void LookAtBlueEnemies()
     {
         Vector3 archDirectionBlue = blueEnemyTarget.position - transform.position;
         Quaternion lookRotationBlue = Quaternion.LookRotation(archDirectionBlue);
+        float tiltAngle = CalculateTiltAngle(archDirectionBlue);
         Vector3 rotationBlue = Quaternion.Lerp(archerAtTheTower.rotation, lookRotationBlue, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        archerAtTheTower.rotation = Quaternion.Euler(0f, rotationBlue.y, 0f);
+        rotationBlue.x += tiltAngle;
+        archerAtTheTower.rotation = Quaternion.Euler(rotationBlue);
     }
 
     void LookAtBlueEnemies2Archer()
     {
         Vector3 archDirectionBlue = blueEnemyTarget.position - transform.position;
         Quaternion lookRotationBlue = Quaternion.LookRotation(archDirectionBlue);
+        float tiltAngle = CalculateTiltAngle(archDirectionBlue);
         Vector3 rotationBlue = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotationBlue, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        archer2AtTheTower.rotation = Quaternion.Euler(0f, rotationBlue.y, 0f);
+        rotationBlue.x += tiltAngle;
+        archer2AtTheTower.rotation = Quaternion.Euler(rotationBlue);
+    }
+
+    float CalculateTiltAngle(Vector3 direction)
+    {
+        return Mathf.Clamp(Vector3.Dot(Vector3.down, direction.normalized), -1f, 1f) * archerTilt;
     }
 
     void ShootArrow()
     {
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
-        Shooting shootingScript = arrow.GetComponent<Shooting>();
+        ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
         if (shootingScript != null )
         {
             shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
@@ -165,7 +179,7 @@ public class ArcherShooting : MonoBehaviour
     void ShootArrow2Archer()
     {
         GameObject arrow = Instantiate(arrowPrefab, firePoint2Archer.position, firePoint2Archer.rotation);
-        Shooting shootingScript = arrow.GetComponent<Shooting>();
+        ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
         if (shootingScript != null)
         {
             shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);

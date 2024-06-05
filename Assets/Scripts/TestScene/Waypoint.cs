@@ -11,7 +11,7 @@ public class Waypoint : MonoBehaviour
     {
         if (isPlaceable)
         {
-            bool isPlaced = ballistaPrefab.CreatePrefab(ballistaPrefab, transform.position);
+            bool isPlaced = ballistaPrefab.CreatePrefabOld(ballistaPrefab, transform.position);
             isPlaceable = !isPlaced;
         }
     }

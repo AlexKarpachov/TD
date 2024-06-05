@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int goldReward = 25;
-    [SerializeField] int goldPenalty = 25;
+    [SerializeField] int goldRewardOld = 25;
+    [SerializeField] int goldPenaltyOld = 25;
 
-    Bank bank;
+    BankOld bank;
 
     private void Start()
     {
-        bank = FindObjectOfType<Bank>();
+        bank = FindObjectOfType<BankOld>();
     }
 
-    public void RewardGold()
+    public void RewardGoldOld()
     {
         if (bank == null) { return; }
-        bank.Deposit(goldReward);
+        bank.DepositOld(goldRewardOld);
     }
 
-    public void PenaltyGold()
+    public void PenaltyGoldOld()
     {
         if (bank == null) { return; }
-        bank.Withdrawal(goldPenalty);
+        bank.WithdrawalOld(goldPenaltyOld);
     }
 }

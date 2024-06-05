@@ -29,7 +29,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3538162783242055627}
-  - {fileID: 1913383097995532389}
   m_Father: {fileID: 3773260548944044808}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,6 +45,8 @@ GameObject:
   - component: {fileID: 2871077905618988279}
   - component: {fileID: 6121806183440078216}
   - component: {fileID: 6892553127762087691}
+  - component: {fileID: -1116621053041558131}
+  - component: {fileID: -5208612603774785913}
   m_Layer: 0
   m_Name: BlueEnemySoldier
   m_TagString: blue enemy
@@ -82,7 +83,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navAgent: {fileID: 2871077905618988279}
-  shootingSparksParticles: {fileID: 468545540960296310}
 --- !u!195 &2871077905618988279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -153,77 +153,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &2883945009581993807
-PrefabInstance:
+--- !u!114 &-1116621053041558131
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5430057617473480854}
-    m_Modifications:
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8593992820525581188, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-      propertyPath: m_Name
-      value: Shooting Sparks
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
---- !u!198 &468545540960296310 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3352172475934650937, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-  m_PrefabInstance: {fileID: 2883945009581993807}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1913383097995532389 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3641274092086605610, guid: 2321a1b0c3812a84ab6245e157beeff6, type: 3}
-  m_PrefabInstance: {fileID: 2883945009581993807}
+  m_GameObject: {fileID: 1783484005719096065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0428e89983df0eb489d1d627dac42e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyReward: 25
+  moneyPenaly: 25
+--- !u!114 &-5208612603774785913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783484005719096065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6e7592b5eacfb41a60e621e4147a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueEnemyHhealth: 100
+  arrowDamage: 25
+  sphere1Damage: 50
+  sphere2Damage: 75
 --- !u!1001 &3533879020252808547
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealthOld : MonoBehaviour
 {
     
     [SerializeField] int hitPoints = 30;
@@ -30,7 +30,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentEnemyHealth <= 0)
         {
             gameObject.SetActive(false);
-            enemy.RewardGold();
+            enemy.RewardGoldOld();
         }
     }
 }

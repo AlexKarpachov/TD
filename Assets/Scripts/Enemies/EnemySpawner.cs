@@ -18,8 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenWaves = 5.9f;
     [SerializeField] float startDelayTime = 4f;
     [SerializeField] TextMeshProUGUI countdownText;
-
-    public bool gameOver = false;
+    [SerializeField] GameManager gameManager;
 
     void Start()
     {
@@ -46,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator RedEnemySpawner()
     {
-        if (gameOver)
+        if (gameManager.GameOver)
         {
             StopAllCoroutines();
             yield break;
@@ -56,10 +55,10 @@ public class EnemySpawner : MonoBehaviour
         {
             int needSpawn = redWaveNumber * redEnemiesInWave;
 
-            while (needSpawn > 0 && !gameOver)
+            while (needSpawn > 0 && !gameManager.GameOver)
             {
                 GameObject tempRedEnemy = Instantiate(redEnemyPrefab, redSpawnPoint.position, Quaternion.identity);
-                EnemyLogic tempLogic = tempRedEnemy.GetComponent<EnemyLogic>();
+                EnemyMover tempLogic = tempRedEnemy.GetComponent<EnemyMover>();
 
                 tempLogic.MoveTo(endPoint);
                 needSpawn--;
@@ -73,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator BlueEnemySpawner()
     {
-        if (gameOver)
+        if (gameManager.GameOver)
         {
             StopAllCoroutines();
             yield break;
@@ -83,10 +82,10 @@ public class EnemySpawner : MonoBehaviour
         {
             int needSpawn = blueWaveNumber * blueEnemiesInWave;
 
-            while (needSpawn > 0 && !gameOver)
+            while (needSpawn > 0 && !gameManager.GameOver)
             {
                 GameObject tempBlueEnemy = Instantiate(blueEnemyPrefab, blueSpawnPoint.position, Quaternion.identity);
-                EnemyLogic tempLogic = tempBlueEnemy.GetComponent<EnemyLogic>();
+                EnemyMover tempLogic = tempBlueEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
                 needSpawn--;
                 yield return new WaitForSeconds(1);
@@ -100,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator Countdown(float time)
     {
         countdownText.text = Mathf.Round(time).ToString();
-        while (time > 0)
+        while (time > 0 && !gameManager.GameOver)
         {
             time -= Time.deltaTime;
             countdownText.text = "Next wave in " + Mathf.Round(time).ToString() + " sec";

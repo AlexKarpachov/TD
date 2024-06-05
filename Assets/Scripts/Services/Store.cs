@@ -5,6 +5,11 @@ public class Store : MonoBehaviour
     [SerializeField] TowerBuilder towerBuilder;
     [SerializeField] GameObject storeUI;
     [SerializeField] Raycast raycast;
+    [SerializeField] Bank bank;
+    [SerializeField] int smallArcherTowerCost = 10;
+    [SerializeField] int largeTowerArcherCost = 20;
+    [SerializeField] int smallMageTowerCost = 40;
+    [SerializeField] int largeMageTowerCost = 70;
 
     public void SelectTowerToBuild(GameObject towerPrefab)
     {
@@ -14,31 +19,58 @@ public class Store : MonoBehaviour
         TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
 
         if (towerBuilder.Construct(towerBuildPointScript))
-         {
-             towerBuildPointScript.ChangeBuildingPermission(false);
-         } 
+        {
+            towerBuildPointScript.ChangeBuildingPermission(false);
+        }
     }
 
     public void Archer1TowerPurchase()
     {
-        Debug.Log("Arhcer1 tower is chosen");
-        SelectTowerToBuild(towerBuilder.archerTowerPrefab);
+        if (bank.CurrentBalance >= smallArcherTowerCost)
+        {
+            SelectTowerToBuild(towerBuilder.archerTowerPrefab);
+            bank.FundsWithdrawals(smallArcherTowerCost);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
+        
     }
     public void Archer2TowerPurchase()
     {
-        Debug.Log("Arhcer2 tower is chosen");
-        SelectTowerToBuild(towerBuilder.archer2TowerPrefab);
+        if (bank.CurrentBalance >= largeTowerArcherCost)
+        {
+            SelectTowerToBuild(towerBuilder.archer2TowerPrefab);
+            bank.FundsWithdrawals(largeTowerArcherCost);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
     public void Mage1TowerPurchase()
     {
-        Debug.Log("Mage1 tower is chosen");
-        SelectTowerToBuild(towerBuilder.mageTowerPrefab);
-
+        if (bank.CurrentBalance >= smallMageTowerCost)
+        {
+            SelectTowerToBuild(towerBuilder.mageTowerPrefab);
+            bank.FundsWithdrawals(smallMageTowerCost);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
     public void Mage2TowerPurchase()
     {
-        Debug.Log("Mage2 tower is chosen");
-        SelectTowerToBuild(towerBuilder.mage2TowerPrefab);
-
+        if (bank.CurrentBalance >= largeMageTowerCost)
+        {
+            SelectTowerToBuild(towerBuilder.mage2TowerPrefab);
+            bank.FundsWithdrawals(largeMageTowerCost);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
 }

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class TowerBuilder : MonoBehaviour
 {
-    [SerializeField] Raycast raycast;
+    //[SerializeField] Raycast raycast;
+    [SerializeField] Bank bank;
 
     public GameObject archerTowerPrefab;
     public GameObject archer2TowerPrefab;
@@ -29,7 +30,6 @@ public class TowerBuilder : MonoBehaviour
 
     public bool Construct(TowerBuildPoint buildPoint)
     {
-        Debug.Log("Construct was called");
         if (selectedTowerPrefab == null) return false;
         if (!buildPoint.CanBuild) return false;
         Instantiate(selectedTowerPrefab, buildPoint.transform.position, buildPoint.transform.rotation);
