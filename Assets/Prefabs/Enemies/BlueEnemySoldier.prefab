@@ -179,10 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6e7592b5eacfb41a60e621e4147a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueEnemyHhealth: 100
   arrowDamage: 25
   sphere1Damage: 50
-  sphere2Damage: 75
+  slowedSpeed: 4
+  slowingDuration: 2
+  currentBlueEnemyHealth: 0
 --- !u!1001 &3533879020252808547
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
 public class ArcherShooting : MonoBehaviour
 {
+    [SerializeField] float fireRate = 1f;
     [SerializeField] float range = 3f;
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform blueEnemyTarget;
@@ -17,7 +16,6 @@ public class ArcherShooting : MonoBehaviour
 
     float redEnemyEnterTime = 0f;
     float blueEnemyEnterTime = 0f;
-    float fireRate = 1f;
     float fireCountdown = 0f;
 
     void Start()
@@ -32,7 +30,7 @@ public class ArcherShooting : MonoBehaviour
 
         if (fireCountdown <= 0)
         {
-            Invoke ("ShootArrow", 0.3f);
+            Invoke("ShootArrow", 0.3f);
             Invoke("ShootArrow2Archer", 0.3f);
             fireCountdown = 1f / fireRate;
         }
@@ -170,7 +168,7 @@ public class ArcherShooting : MonoBehaviour
     {
         GameObject arrow = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
         ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
-        if (shootingScript != null )
+        if (shootingScript != null)
         {
             shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
         }

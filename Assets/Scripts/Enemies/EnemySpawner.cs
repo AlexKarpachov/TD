@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] int redWaveNumber;
+    public int redWaveNumber;
     [SerializeField] int redEnemiesInWave;
     [SerializeField] GameObject redEnemyPrefab;
     [SerializeField] Transform redSpawnPoint;
@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator StartupCountdown()
     {
-        countdownText.text = "The game will start in " + Mathf.Round(startDelayTime).ToString();
         while (startDelayTime > 0)
         {
             startDelayTime -= Time.deltaTime;
@@ -51,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
             yield break;
         }
 
-        while (true)
+        while (true && !gameManager.GameOver)
         {
             int needSpawn = redWaveNumber * redEnemiesInWave;
 
@@ -67,6 +66,7 @@ public class EnemySpawner : MonoBehaviour
 
             yield return StartCoroutine(Countdown(timeBetweenWaves));
             redWaveNumber++;
+            
         }
     }
 
@@ -78,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
             yield break;
         }
 
-        while (true)
+        while (true && !gameManager.GameOver)
         {
             int needSpawn = blueWaveNumber * blueEnemiesInWave;
 

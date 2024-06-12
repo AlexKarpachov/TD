@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MageShootingLVL1 : MonoBehaviour
 {
+    [SerializeField] float fireRate = 0.5f;
     [SerializeField] float range = 3f;
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform blueEnemyTarget;
@@ -10,7 +11,7 @@ public class MageShootingLVL1 : MonoBehaviour
 
     float redEnemyEnterTime = 0f;
     float blueEnemyEnterTime = 0f;
-    float fireRate = 0.5f;
+    
     float fireCountdown = 0f;
 
     void Start()

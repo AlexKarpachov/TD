@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SmallArcherTowerShooting : MonoBehaviour
 {
+    [SerializeField] float fireRate = 1f;
     [SerializeField] float range = 3f;
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform blueEnemyTarget;
@@ -13,7 +14,6 @@ public class SmallArcherTowerShooting : MonoBehaviour
 
     float redEnemyEnterTime = 0f;
     float blueEnemyEnterTime = 0f;
-    float fireRate = 1f;
     float fireCountdown = 0f;
 
     void Start()

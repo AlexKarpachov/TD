@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BlueEnemyHealth : MonoBehaviour
 {
-    [SerializeField] int blueEnemyHhealth = 100;
     [SerializeField] int arrowDamage = 25;
     [SerializeField] int sphere1Damage = 50;
+    [SerializeField] float slowedSpeed = 5f;
+    [SerializeField] float slowingDuration = 2f;
 
     [SerializeField] int currentBlueEnemyHealth;
     public int CurrentBlueEnemyHealth
@@ -24,6 +27,11 @@ public class BlueEnemyHealth : MonoBehaviour
     }
 
     EnemyMoneyCalculator moneyCalculator;
+    NavMeshAgent navMeshAgent;
+
+    int blueEnemyHhealth = 100;
+    float originalSpeed;
+
     private void OnEnable()
     {
         currentBlueEnemyHealth = blueEnemyHhealth;
@@ -32,6 +40,7 @@ public class BlueEnemyHealth : MonoBehaviour
     void Start()
     {
         moneyCalculator = GetComponent<EnemyMoneyCalculator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
@@ -55,6 +64,8 @@ public class BlueEnemyHealth : MonoBehaviour
     }
     void HitByArrow()
     {
+        originalSpeed = navMeshAgent.speed;
+        navMeshAgent.speed = slowedSpeed;
         currentBlueEnemyHealth -= arrowDamage;
         if (currentBlueEnemyHealth < 1)
         {
@@ -65,11 +76,19 @@ public class BlueEnemyHealth : MonoBehaviour
 
     void HitBySmallMage()
     {
+        originalSpeed = navMeshAgent.speed;
+        navMeshAgent.speed = slowedSpeed;
         currentBlueEnemyHealth -= sphere1Damage;
         if (currentBlueEnemyHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
         }
+        StartCoroutine(SlowDownBlueEnemy());
+    }
+    IEnumerator SlowDownBlueEnemy()
+    {
+        yield return new WaitForSeconds(slowingDuration);
+        navMeshAgent.speed = originalSpeed;
     }
 }

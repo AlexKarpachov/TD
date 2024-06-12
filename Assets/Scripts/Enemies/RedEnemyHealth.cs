@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class RedEnemyHealth : MonoBehaviour
 {
-    [SerializeField] int redEnemyHealth = 100;
     [SerializeField] int arrowDamage = 25;
     [SerializeField] int sphere1Damage = 50;
+    [SerializeField] float slowedSpeed = 5f;
+    [SerializeField] float slowingDuration = 2f;
 
     [SerializeField] int currentRedEnemyHealth;
     public int CurrentRedEnemyHealth
@@ -24,6 +28,11 @@ public class RedEnemyHealth : MonoBehaviour
     }
 
     EnemyMoneyCalculator moneyCalculator;
+    NavMeshAgent navMeshAgent;
+
+    int redEnemyHealth = 100;
+    float originalSpeed;
+
     private void OnEnable()
     {
         currentRedEnemyHealth = redEnemyHealth;
@@ -32,6 +41,7 @@ public class RedEnemyHealth : MonoBehaviour
     void Start()
     {
         moneyCalculator = GetComponent<EnemyMoneyCalculator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,11 +68,20 @@ public class RedEnemyHealth : MonoBehaviour
 
     void HitBySmallMage()
     {
+        originalSpeed = navMeshAgent.speed;
+        navMeshAgent.speed = slowedSpeed;
         currentRedEnemyHealth -= sphere1Damage;
         if (currentRedEnemyHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
         }
+        StartCoroutine(SlowDownEnemy());
+    }
+
+    IEnumerator SlowDownEnemy()
+    {
+        yield return new WaitForSeconds(slowingDuration);
+        navMeshAgent.speed = originalSpeed;
     }
 }
