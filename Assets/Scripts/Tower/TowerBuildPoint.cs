@@ -6,17 +6,15 @@ public class TowerBuildPoint : MonoBehaviour, IPointerClickHandler
     [SerializeField] GameObject constructionMarker;
     [SerializeField] GameObject storeUI;
 
-    bool canBuild = true;
+    TowerSell towerSell;
+
+    [SerializeField]  bool canBuild = true;
     public bool CanBuild { get { return canBuild; } }
 
-    /*private void OnMouseDown()
+    private void Start()
     {
-        if (canBuild)
-        {
-            Time.timeScale = 0f;
-            storeUI.SetActive(true);
-        }
-    }*/
+        towerSell = GetComponent<TowerSell>();
+    }
     public void ChangeBuildingPermission(bool userCanBuild)
     {
         canBuild = userCanBuild;
@@ -27,8 +25,12 @@ public class TowerBuildPoint : MonoBehaviour, IPointerClickHandler
     {
         if (canBuild)
         {
-            Time.timeScale = 0f;
             storeUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if (!canBuild)
+        {
+            towerSell.SellUIInitiation();
         }
     }
 }

@@ -6,10 +6,15 @@ public class Store : MonoBehaviour
     [SerializeField] GameObject storeUI;
     [SerializeField] Raycast raycast;
     [SerializeField] Bank bank;
+
     [SerializeField] int smallArcherTowerCost = 10;
+    public int SmallArcherTowerCost { get { return smallArcherTowerCost; } }
     [SerializeField] int largeTowerArcherCost = 20;
+    public int LargeArcherTowerCost { get { return largeTowerArcherCost; } }
     [SerializeField] int smallMageTowerCost = 40;
+    public int SmallMageTowerCost { get { return smallMageTowerCost; } }
     [SerializeField] int largeMageTowerCost = 70;
+    public int LargeMageTowerCost { get { return largeMageTowerCost; } }
 
     public void SelectTowerToBuild(GameObject towerPrefab)
     {

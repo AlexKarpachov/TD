@@ -10,7 +10,7 @@ public class Raycast : MonoBehaviour
     //we need an access to the TowerBuilder to give him a command that we can or cannot build on the place chosen.
     [SerializeField] TowerBuilder towerBuilder;
 
-    private TowerBuildPoint towerBuildPointScript;
+    TowerBuildPoint towerBuildPointScript;
 
     private void Update()
     {

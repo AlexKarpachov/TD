@@ -18,11 +18,6 @@ public class TowerBuilder : MonoBehaviour
      we'll be able to know if we have enough money to build; if it's time to build
     */
 
-    public GameObject GetTowerToBuild()
-    {
-        return selectedTowerPrefab;
-    }
-
     public void SetTowerToBuild(GameObject tower)
     {
         selectedTowerPrefab = tower;

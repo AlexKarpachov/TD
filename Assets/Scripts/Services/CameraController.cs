@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         localMoveDirection.y = 0f;
 
         // to move the camera in the local coordinates
-        transform.localPosition += moveSpeed * Time.deltaTime * localMoveDirection;
+        transform.localPosition += moveSpeed * Time.unscaledDeltaTime * localMoveDirection;
 
         // to save initial camera high after movement
         Vector3 newPosition = transform.position;

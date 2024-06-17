@@ -49,12 +49,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.9849224, y: 7.207684, z: 7.510872}
-  m_Center: {x: 0.08839512, y: 3.103843, z: 0.36958694}
+  m_Size: {x: 7.3257484, y: 7.207684, z: 7.510872}
+  m_Center: {x: 0.4179821, y: 3.103843, z: 0.36958694}
 --- !u!114 &2789039799768954356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constructionMarker: {fileID: 6470526877277209019}
+  storeUI: {fileID: 0}
+  canBuild: 1
 --- !u!1 &6470526877277209019
 GameObject:
   m_ObjectHideFlags: 0

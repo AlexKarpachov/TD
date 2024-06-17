@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject sellUI;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] TextMeshProUGUI wavesCounterText;
 
@@ -76,5 +77,11 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SellUIExit()
+    {
+        Time.timeScale = 1;
+        sellUI.SetActive(false);
     }
 }
