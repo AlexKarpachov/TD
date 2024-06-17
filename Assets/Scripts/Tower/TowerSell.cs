@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerSell : MonoBehaviour
 {
     [SerializeField] GameObject sellUI;
+    
     [SerializeField] Bank bank;
     [SerializeField] Store store;
-   // [SerializeField] Raycast raycast;
+    // [SerializeField] Raycast raycast;
     GameObject towerPrefabOnPoint;
     TowerBuildPoint towerBuildPoint;
+
+    int moneyToReturn;
 
     private void Start()
     {
@@ -28,12 +28,28 @@ public class TowerSell : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         towerPrefabOnPoint = other.gameObject;
+        if (other.gameObject.CompareTag("SmallArcherTower"))
+        {
+            moneyToReturn = store.SmallArcherTowerCost / 2;
+        }
+        else if (other.gameObject.CompareTag("LargeArcherTower"))
+        {
+            moneyToReturn = store.LargeArcherTowerCost / 2;
+        }
+        else if (other.gameObject.CompareTag("SmallMageTower"))
+        {
+            moneyToReturn = store.SmallMageTowerCost / 2;
+        }
+        else if (other.gameObject.CompareTag("LargeMageTower"))
+        {
+            moneyToReturn = store.LargeMageTowerCost / 2;
+        }
     }
 
     public void SellMethod()
     {
-        bank.Deposit(store.SmallArcherTowerCost);
-       // towerBuildPoint = raycast.GetTowerBuildPointScript();
+        bank.Deposit(moneyToReturn);
+        // towerBuildPoint = raycast.GetTowerBuildPointScript();
         towerBuildPoint.ChangeBuildingPermission(true);
         Destroy(towerPrefabOnPoint.gameObject);
     }
