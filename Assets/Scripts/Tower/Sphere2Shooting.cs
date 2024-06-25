@@ -61,6 +61,7 @@ public class Sphere2Shooting : MonoBehaviour
                 if (reHealth != null)
                 {
                     reHealth.CurrentRedEnemyHealth -= explosionDamage;
+                    reHealth.healthBar.fillAmount = (float)reHealth.CurrentRedEnemyHealth / reHealth.redEnemyHealth;
                     if (reHealth.CurrentRedEnemyHealth < 1)
                     {
                         Destroy(reHealth.gameObject);
@@ -74,6 +75,7 @@ public class Sphere2Shooting : MonoBehaviour
                 if (beHealth != null)
                 {
                     beHealth.CurrentBlueEnemyHealth -= explosionDamage;
+                    beHealth.healthBar.fillAmount = (float) beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHhealth;
                     if (beHealth.CurrentBlueEnemyHealth < 1)
                     {
                         Destroy(beHealth.gameObject);

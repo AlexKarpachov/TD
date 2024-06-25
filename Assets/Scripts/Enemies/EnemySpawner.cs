@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header ("Red enemies info")]
     public int redWaveNumber;
     [SerializeField] int redEnemiesInWave;
     [SerializeField] GameObject redEnemyPrefab;
     [SerializeField] Transform redSpawnPoint;
 
+    [Header("Blue enemies info")]
     [SerializeField] int blueWaveNumber;
     [SerializeField] int blueEnemiesInWave;
     [SerializeField] GameObject blueEnemyPrefab;
     [SerializeField] Transform blueSpawnPoint;
 
+    [Header("General info")]
     [SerializeField] Transform endPoint;
     [SerializeField] float timeBetweenWaves = 5.9f;
     [SerializeField] float startDelayTime = 4f;

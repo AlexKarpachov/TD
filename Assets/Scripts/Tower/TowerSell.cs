@@ -3,7 +3,6 @@ using UnityEngine;
 public class TowerSell : MonoBehaviour
 {
     [SerializeField] GameObject sellUI;
-    
     [SerializeField] Bank bank;
     [SerializeField] Store store;
     // [SerializeField] Raycast raycast;

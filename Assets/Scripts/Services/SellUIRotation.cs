@@ -5,12 +5,6 @@ public class SellUIRotation : MonoBehaviour
     [SerializeField] Transform mainCamera;
     [SerializeField] Transform sellUI;
     float rotationSpeed = 10f;
-    // Camera mainCamera;
-
-    void Start()
-    {
-        // mainCamera = Camera.main;
-    }
 
     void Update()
     {

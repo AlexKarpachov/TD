@@ -6,19 +6,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject sellUI;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] TextMeshProUGUI wavesCounterText;
+    [SerializeField] SceneFader sceneFader;
 
+    string mainMenuName = "MainMenu";
     public int Rounds;
-
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
 
-    private void OnEnable()
-    {
-        //wavesCounterText.text = enemySpawner.redWaveNumber.ToString();
-    }
+
 
     void Start()
     {
@@ -29,42 +26,39 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            EndGame();
+            PauseToggle();
         }
     }
 
-    public void Play()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
 
     public void MainMenu()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        PauseToggle();
+        sceneFader.FadeTo(mainMenuName);
     }
 
     public void ResumeGame()
     {
-        pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public void Pause()
+    public void PauseToggle()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void ReloadScene()
     {
-        Time.timeScale = 1;
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        Time.timeScale = 1f;
+        sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void EndGame()
@@ -72,16 +66,11 @@ public class GameManager : MonoBehaviour
         wavesCounterText.text = enemySpawner.redWaveNumber.ToString();
         gameOverUI.SetActive(true);
         gameOver = true;
-      //  Time.timeScale = 0f;
     }
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void SellUIExit()
-    {
-        Time.timeScale = 1;
-        sellUI.SetActive(false);
-    }
+
 }

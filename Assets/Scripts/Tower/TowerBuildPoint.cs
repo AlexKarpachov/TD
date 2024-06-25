@@ -4,12 +4,11 @@ using UnityEngine.EventSystems;
 public class TowerBuildPoint : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] GameObject constructionMarker;
-    [SerializeField] ParticleSystem puffVFX;
     [SerializeField] GameObject storeUI;
 
     TowerSell towerSell;
 
-    [SerializeField]  bool canBuild = true;
+    [SerializeField] bool canBuild = true;
     public bool CanBuild { get { return canBuild; } }
 
     private void Start()
@@ -31,7 +30,6 @@ public class TowerBuildPoint : MonoBehaviour, IPointerClickHandler
         }
         else if (!canBuild)
         {
-            puffVFX.Play();
             towerSell.SellUIInitiation();
         }
     }

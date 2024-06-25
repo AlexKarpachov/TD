@@ -9,7 +9,6 @@ public class RedEnemyHealth : MonoBehaviour
     [SerializeField] int sphere1Damage = 50;
     [SerializeField] float slowedSpeed = 5f;
     [SerializeField] float slowingDuration = 2f;
-
     [SerializeField] int currentRedEnemyHealth;
     public int CurrentRedEnemyHealth
     {
@@ -26,12 +25,13 @@ public class RedEnemyHealth : MonoBehaviour
             }
         }
     }
+    public Image healthBar;
+    public int redEnemyHealth = 100;
+    float originalSpeed;
 
     EnemyMoneyCalculator moneyCalculator;
     NavMeshAgent navMeshAgent;
 
-    int redEnemyHealth = 100;
-    float originalSpeed;
 
     private void OnEnable()
     {
@@ -59,6 +59,7 @@ public class RedEnemyHealth : MonoBehaviour
     void HitByArrow()
     {
         currentRedEnemyHealth -= arrowDamage;
+        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
         if (currentRedEnemyHealth < 1)
         {
             Destroy(gameObject);
@@ -71,6 +72,7 @@ public class RedEnemyHealth : MonoBehaviour
         originalSpeed = navMeshAgent.speed;
         navMeshAgent.speed = slowedSpeed;
         currentRedEnemyHealth -= sphere1Damage;
+        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
         if (currentRedEnemyHealth < 1)
         {
             Destroy(gameObject);
