@@ -1,20 +1,20 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header ("Red enemies info")]
-    public int redWaveNumber;
-    [SerializeField] int redEnemiesInWave;
-    [SerializeField] GameObject redEnemyPrefab;
+    public Wave[] waves;
+    [Header("Red enemies info")]
+    [SerializeField] int redWaveIndex = 0;
+    public int RedWaveIndex { get { return redWaveIndex; } }
     [SerializeField] Transform redSpawnPoint;
+    bool isRedWaveSpawning = false;
 
     [Header("Blue enemies info")]
-    [SerializeField] int blueWaveNumber;
-    [SerializeField] int blueEnemiesInWave;
-    [SerializeField] GameObject blueEnemyPrefab;
+    [SerializeField] int blueWaveIndex;
     [SerializeField] Transform blueSpawnPoint;
+    bool isBlueWaveSpawning = false;
 
     [Header("General info")]
     [SerializeField] Transform endPoint;
@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float startDelayTime = 4f;
     [SerializeField] TextMeshProUGUI countdownText;
     [SerializeField] GameManager gameManager;
+
+    private int enemiesAlive = 0;
 
     void Start()
     {
@@ -42,71 +44,96 @@ public class EnemySpawner : MonoBehaviour
     void StartGame()
     {
         StartCoroutine(RedEnemySpawner());
-        StartCoroutine(BlueEnemySpawner());
     }
 
     IEnumerator RedEnemySpawner()
     {
-        if (gameManager.GameOver)
+        while (redWaveIndex < waves.Length && !gameManager.GameOver)
         {
-            StopAllCoroutines();
-            yield break;
-        }
-
-        while (true && !gameManager.GameOver)
-        {
-            int needSpawn = redWaveNumber * redEnemiesInWave;
-
-            while (needSpawn > 0 && !gameManager.GameOver)
+            if (redWaveIndex == 2)
             {
-                GameObject tempRedEnemy = Instantiate(redEnemyPrefab, redSpawnPoint.position, Quaternion.identity);
-                EnemyMover tempLogic = tempRedEnemy.GetComponent<EnemyMover>();
-
-                tempLogic.MoveTo(endPoint);
-                needSpawn--;
-                yield return new WaitForSeconds(1);
+                StartCoroutine(BlueEnemySpawner());
             }
-
+            Wave wave = waves[redWaveIndex];
+            isRedWaveSpawning = true;
+            for (int i = 0; i < wave.redEnemiesAmountInWave; i++)
+            {
+                if (gameManager.GameOver)
+                {
+                    yield break;
+                }
+                GameObject tempRedEnemy = Instantiate(wave.redEnemyPrefab, redSpawnPoint.position, Quaternion.identity);
+                EnemyMover tempLogic = tempRedEnemy.GetComponent<EnemyMover>();
+                tempLogic.MoveTo(endPoint);
+                enemiesAlive++;
+                Debug.Log(enemiesAlive);
+                yield return new WaitForSeconds(1 / wave.timeBetweenRedEnemies);
+            }
+            isRedWaveSpawning = false;
+            while (isBlueWaveSpawning)
+            {
+                yield return null;
+            }
             yield return StartCoroutine(Countdown(timeBetweenWaves));
-            redWaveNumber++;
-            
+            redWaveIndex++;
         }
     }
-
+    // створити додаткових ворогів та налаштувати хвилі
     IEnumerator BlueEnemySpawner()
     {
-        if (gameManager.GameOver)
+        while (blueWaveIndex < waves.Length && !gameManager.GameOver)
         {
-            StopAllCoroutines();
-            yield break;
-        }
-
-        while (true && !gameManager.GameOver)
-        {
-            int needSpawn = blueWaveNumber * blueEnemiesInWave;
-
-            while (needSpawn > 0 && !gameManager.GameOver)
+            Wave wave = waves[blueWaveIndex];
+            isBlueWaveSpawning = true;
+            for (int i = 0; i < wave.blueEnemiesAmountInWave; i++)
             {
-                GameObject tempBlueEnemy = Instantiate(blueEnemyPrefab, blueSpawnPoint.position, Quaternion.identity);
+                if (gameManager.GameOver)
+                {
+                    yield break;
+                }
+
+                GameObject tempBlueEnemy = Instantiate(wave.blueEnemyPrefab, blueSpawnPoint.position, Quaternion.identity);
                 EnemyMover tempLogic = tempBlueEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
-                needSpawn--;
-                yield return new WaitForSeconds(1);
+                enemiesAlive++;
+                Debug.Log(enemiesAlive);
+                yield return new WaitForSeconds(1 / wave.timeBetweenBlueEnemies);
             }
-
+            isBlueWaveSpawning = false;
+            while (isRedWaveSpawning)
+            {
+                yield return null;
+            }
             yield return StartCoroutine(Countdown(timeBetweenWaves));
-            blueWaveNumber++;
+            blueWaveIndex++;
         }
     }
 
     IEnumerator Countdown(float time)
     {
-        countdownText.text = Mathf.Round(time).ToString();
-        while (time > 0 && !gameManager.GameOver)
+        if (redWaveIndex < waves.Length - 1)
         {
-            time -= Time.deltaTime;
-            countdownText.text = "Next wave in " + Mathf.Round(time).ToString() + " sec";
-            yield return null;
+            countdownText.text = Mathf.Round(time).ToString();
+            while (time > 0 && !gameManager.GameOver)
+            {
+                time -= Time.deltaTime;
+                countdownText.text = "Next wave in " + Mathf.Round(time).ToString() + " sec";
+                yield return null;
+            }
+        }
+        else if (redWaveIndex == waves.Length - 1)
+        {
+            countdownText.text = "This is the last wave";
+        }
+    }
+    public void OnEnemyDestroyed()
+    {
+        enemiesAlive--;
+        Debug.Log(enemiesAlive);
+        if (redWaveIndex == waves.Length && enemiesAlive == 0)
+        {
+            gameManager.YouWin();
+            this.enabled = false;
         }
     }
 }

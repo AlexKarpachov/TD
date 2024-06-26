@@ -5,7 +5,9 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] float fireRate = 1f;
     [SerializeField] float range = 3f;
     [SerializeField] Transform redEnemyTarget;
+    [SerializeField] Transform redSwordmanTarget;
     [SerializeField] Transform blueEnemyTarget;
+    [SerializeField] Transform blueSwordmanTarget;
     [SerializeField] Transform archerAtTheTower;
     [SerializeField] Transform archer2AtTheTower;
     [SerializeField] GameObject arrowPrefab;
@@ -14,18 +16,18 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] float archerRotationSpeed = 10f;
     [SerializeField] float archerTilt = -50;
 
-    float redEnemyEnterTime = 0f;
-    float blueEnemyEnterTime = 0f;
     float fireCountdown = 0f;
 
     void Start()
     {
         InvokeRepeating("FindClosestRedEnemy", 0f, 0.5f);
         InvokeRepeating("FindClosestBlueEnemy", 0f, 0.5f);
+        InvokeRepeating("FindClosestRedSwordman", 0f, 0.5f);
+        InvokeRepeating("FindClosestBlueSwordman", 0f, 0.5f);
     }
     private void Update()
     {
-        if (redEnemyTarget == null && blueEnemyTarget == null) { return; }
+        if (redEnemyTarget == null && blueEnemyTarget == null && redSwordmanTarget == null && blueSwordmanTarget == null) { return; }
         ArcherRotation();
 
         if (fireCountdown <= 0)
@@ -40,7 +42,7 @@ public class ArcherShooting : MonoBehaviour
     void FindClosestRedEnemy()
     {
         GameObject[] redEnemies = GameObject.FindGameObjectsWithTag("red enemy");
-        Transform closestTarget = null; // GameObject closestTarget = null; ???
+        Transform closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (GameObject enemy in redEnemies)
@@ -56,8 +58,8 @@ public class ArcherShooting : MonoBehaviour
 
         if (closestTarget != null && closestDistance <= range)
         {
-            redEnemyTarget = closestTarget.transform;
-            redEnemyEnterTime = Time.time;
+            redEnemyTarget = closestTarget;
+            redEnemyTarget.GetComponent<Enemy>().EnterTime = Time.time;
         }
         else
         {
@@ -65,10 +67,38 @@ public class ArcherShooting : MonoBehaviour
         }
     }
 
+    void FindClosestRedSwordman()
+    {
+        GameObject[] redSwordmen = GameObject.FindGameObjectsWithTag("RedSwordman");
+        Transform closestTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in redSwordmen)
+        {
+            float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (targetDistance < closestDistance)
+            {
+                closestTarget = enemy.transform;
+                closestDistance = targetDistance;
+            }
+        }
+
+        if (closestTarget != null && closestDistance <= range)
+        {
+            redSwordmanTarget = closestTarget;
+            redSwordmanTarget.GetComponent<Enemy>().EnterTime = Time.time;
+        }
+        else
+        {
+            redSwordmanTarget = null;
+        }
+    }
+
     void FindClosestBlueEnemy()
     {
         GameObject[] blueEnemies = GameObject.FindGameObjectsWithTag("blue enemy");
-        Transform closestBlueTarget = null; // GameObject closestTarget = null; ???
+        Transform closestBlueTarget = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (GameObject blueEnemy in blueEnemies)
@@ -84,79 +114,91 @@ public class ArcherShooting : MonoBehaviour
 
         if (closestBlueTarget != null && closestDistance <= range)
         {
-            blueEnemyTarget = closestBlueTarget.transform;
-            blueEnemyEnterTime = Time.time;
+            blueEnemyTarget = closestBlueTarget;
+            blueEnemyTarget.GetComponent<Enemy>().EnterTime = Time.time;
         }
         else
         {
             blueEnemyTarget = null;
         }
     }
-
-    private void ArcherRotation()
+    void FindClosestBlueSwordman()
     {
-        if (redEnemyTarget != null && blueEnemyTarget != null)
+        GameObject[] blueSwordmen = GameObject.FindGameObjectsWithTag("BlueSwordman");
+        Transform closestBlueTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject blueSwordman in blueSwordmen)
         {
-            if (redEnemyEnterTime < blueEnemyEnterTime)
+            float targetDistance = Vector3.Distance(transform.position, blueSwordman.transform.position);
+
+            if (targetDistance < closestDistance)
             {
-                LookAtRedEnemies();
-                LookAtRedEnemies2Archer();
-            }
-            else
-            {
-                LookAtBlueEnemies();
+                closestBlueTarget = blueSwordman.transform;
+                closestDistance = targetDistance;
             }
         }
-        else if (redEnemyTarget != null)
+
+        if (closestBlueTarget != null && closestDistance <= range)
         {
-            LookAtRedEnemies();
-            LookAtRedEnemies2Archer();
+            blueSwordmanTarget = closestBlueTarget;
+            blueSwordmanTarget.GetComponent<Enemy>().EnterTime = Time.time;
         }
-        else if (blueEnemyTarget != null)
+        else
         {
-            LookAtBlueEnemies();
-            LookAtBlueEnemies2Archer();
+            blueSwordmanTarget = null;
         }
     }
 
-    void LookAtRedEnemies()
+    private void ArcherRotation()
     {
-        Vector3 archDirection = redEnemyTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(archDirection);
-        float tiltAngle = CalculateTiltAngle(archDirection);
+        Transform primaryTarget = null;
+
+        if (redEnemyTarget != null)
+        {
+            primaryTarget = redEnemyTarget;
+        }
+
+        if (blueEnemyTarget != null && (primaryTarget == null || blueEnemyTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        {
+            primaryTarget = blueEnemyTarget;
+        }
+
+        if (redSwordmanTarget != null && (primaryTarget == null || redSwordmanTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        {
+            primaryTarget = redSwordmanTarget;
+        }
+
+        if (blueSwordmanTarget != null && (primaryTarget == null || blueSwordmanTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        {
+            primaryTarget = blueSwordmanTarget;
+        }
+
+        if (primaryTarget != null)
+        {
+            LookAtTarget(primaryTarget);
+            LookAtTarget2Archer(primaryTarget);
+        }
+    }
+
+    void LookAtTarget(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        float tiltAngle = CalculateTiltAngle(direction);
         Vector3 rotation = Quaternion.Lerp(archerAtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
         rotation.x += tiltAngle;
         archerAtTheTower.rotation = Quaternion.Euler(rotation);
     }
 
-    void LookAtRedEnemies2Archer()
+    void LookAtTarget2Archer(Transform target)
     {
-        Vector3 archDirection = redEnemyTarget.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(archDirection);
-        float tiltAngle = CalculateTiltAngle(archDirection);
+        Vector3 direction = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        float tiltAngle = CalculateTiltAngle(direction);
         Vector3 rotation = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
         rotation.x += tiltAngle;
         archer2AtTheTower.rotation = Quaternion.Euler(rotation);
-    }
-
-    void LookAtBlueEnemies()
-    {
-        Vector3 archDirectionBlue = blueEnemyTarget.position - transform.position;
-        Quaternion lookRotationBlue = Quaternion.LookRotation(archDirectionBlue);
-        float tiltAngle = CalculateTiltAngle(archDirectionBlue);
-        Vector3 rotationBlue = Quaternion.Lerp(archerAtTheTower.rotation, lookRotationBlue, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        rotationBlue.x += tiltAngle;
-        archerAtTheTower.rotation = Quaternion.Euler(rotationBlue);
-    }
-
-    void LookAtBlueEnemies2Archer()
-    {
-        Vector3 archDirectionBlue = blueEnemyTarget.position - transform.position;
-        Quaternion lookRotationBlue = Quaternion.LookRotation(archDirectionBlue);
-        float tiltAngle = CalculateTiltAngle(archDirectionBlue);
-        Vector3 rotationBlue = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotationBlue, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        rotationBlue.x += tiltAngle;
-        archer2AtTheTower.rotation = Quaternion.Euler(rotationBlue);
     }
 
     float CalculateTiltAngle(Vector3 direction)
@@ -170,7 +212,8 @@ public class ArcherShooting : MonoBehaviour
         ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
         if (shootingScript != null)
         {
-            shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
+            Transform target = redEnemyTarget ?? redSwordmanTarget ?? blueEnemyTarget ?? blueSwordmanTarget;
+            shootingScript.SeekEnemy(target);
         }
     }
 
@@ -180,7 +223,8 @@ public class ArcherShooting : MonoBehaviour
         ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
         if (shootingScript != null)
         {
-            shootingScript.SeekEnemy(redEnemyTarget != null ? redEnemyTarget : blueEnemyTarget);
+            Transform target = redEnemyTarget ?? redSwordmanTarget ?? blueEnemyTarget ?? blueSwordmanTarget;
+            shootingScript.SeekEnemy(target);
         }
     }
 

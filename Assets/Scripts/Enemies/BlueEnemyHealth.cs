@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -26,21 +27,23 @@ public class BlueEnemyHealth : MonoBehaviour
         }
     }
     public Image healthBar;
-    public int blueEnemyHhealth = 100;
+    public int blueEnemyHealth = 100;
     float originalSpeed;
+    private EnemySpawner enemySpawner;
 
     EnemyMoneyCalculator moneyCalculator;
     NavMeshAgent navMeshAgent;
 
     private void OnEnable()
     {
-        currentBlueEnemyHealth = blueEnemyHhealth;
+        currentBlueEnemyHealth = blueEnemyHealth;
     }
 
     void Start()
     {
         moneyCalculator = GetComponent<EnemyMoneyCalculator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
     private void Update()
     {
@@ -64,14 +67,13 @@ public class BlueEnemyHealth : MonoBehaviour
     }
     void HitByArrow()
     {
-        originalSpeed = navMeshAgent.speed;
-        navMeshAgent.speed = slowedSpeed;
         currentBlueEnemyHealth -= arrowDamage;
-        healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHhealth;
+        healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
         if (currentBlueEnemyHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
+            enemySpawner.OnEnemyDestroyed();
         }
     }
 
@@ -80,11 +82,12 @@ public class BlueEnemyHealth : MonoBehaviour
         originalSpeed = navMeshAgent.speed;
         navMeshAgent.speed = slowedSpeed;
         currentBlueEnemyHealth -= sphere1Damage;
-        healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHhealth;
+        healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
         if (currentBlueEnemyHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
+            enemySpawner.OnEnemyDestroyed();
         }
         StartCoroutine(SlowDownBlueEnemy());
     }

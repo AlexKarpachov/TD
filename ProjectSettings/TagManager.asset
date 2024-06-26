@@ -17,6 +17,8 @@ TagManager:
   - LargeArcherTower
   - SmallMageTower
   - LargeMageTower
+  - BlueSwordman
+  - RedSwordman
   layers:
   - Default
   - TransparentFX

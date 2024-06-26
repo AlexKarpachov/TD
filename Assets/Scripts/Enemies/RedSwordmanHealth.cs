@@ -3,30 +3,30 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class RedEnemyHealth : MonoBehaviour
+public class RedSwordmanHealth : MonoBehaviour
 {
     [SerializeField] int arrowDamage = 25;
     [SerializeField] int sphere1Damage = 50;
-    [SerializeField] float slowedSpeed = 5f;
+    [SerializeField] float slowedSpeed = 3f;
     [SerializeField] float slowingDuration = 2f;
-    [SerializeField] int currentRedEnemyHealth;
-    public int CurrentRedEnemyHealth
+    [SerializeField] int currentRedSwordmanHealth;
+    public int CurrentRedSwordmanHealth
     {
-        get { return currentRedEnemyHealth; }
+        get { return currentRedSwordmanHealth; }
         set
         {
             if (value < 0)
             {
-                currentRedEnemyHealth = 0;
+                currentRedSwordmanHealth = 0;
             }
             else
             {
-                currentRedEnemyHealth = value;
+                currentRedSwordmanHealth = value;
             }
         }
     }
     public Image healthBar;
-    public int redEnemyHealth = 100;
+    public int redSwordmanHealth = 100;
     float originalSpeed;
     private EnemySpawner enemySpawner;
 
@@ -36,7 +36,7 @@ public class RedEnemyHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        currentRedEnemyHealth = redEnemyHealth;
+        currentRedSwordmanHealth = redSwordmanHealth;
     }
 
     void Start()
@@ -60,9 +60,9 @@ public class RedEnemyHealth : MonoBehaviour
 
     void HitByArrow()
     {
-        currentRedEnemyHealth -= arrowDamage;
-        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
-        if (currentRedEnemyHealth < 1)
+        currentRedSwordmanHealth -= arrowDamage;
+        healthBar.fillAmount = (float)currentRedSwordmanHealth / redSwordmanHealth;
+        if (currentRedSwordmanHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
@@ -74,9 +74,9 @@ public class RedEnemyHealth : MonoBehaviour
     {
         originalSpeed = navMeshAgent.speed;
         navMeshAgent.speed = slowedSpeed;
-        currentRedEnemyHealth -= sphere1Damage;
-        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
-        if (currentRedEnemyHealth < 1)
+        currentRedSwordmanHealth -= sphere1Damage;
+        healthBar.fillAmount = (float)currentRedSwordmanHealth / redSwordmanHealth;
+        if (currentRedSwordmanHealth < 1)
         {
             Destroy(gameObject);
             moneyCalculator.MoneyDeposit();

@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject youWinMenu;
     [SerializeField] EnemySpawner enemySpawner;
-    [SerializeField] TextMeshProUGUI wavesCounterText;
+    [SerializeField] TextMeshProUGUI wavesCounterTextGO;
+    [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
 
     string mainMenuName = "MainMenu";
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        PauseToggle();
+        Time.timeScale = 1f;
         sceneFader.FadeTo(mainMenuName);
     }
 
@@ -63,10 +65,17 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        wavesCounterText.text = enemySpawner.redWaveNumber.ToString();
+        wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
         gameOver = true;
     }
+    public void YouWin()
+    {
+        youWinMenu.SetActive(true);
+        wavesCounterTextWin.text = enemySpawner.RedWaveIndex.ToString();
+        gameOver = true;
+    }
+
     public void QuitGame()
     {
         Application.Quit();

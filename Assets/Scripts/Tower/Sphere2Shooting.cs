@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class Sphere2Shooting : MonoBehaviour
@@ -8,13 +9,15 @@ public class Sphere2Shooting : MonoBehaviour
     [SerializeField] GameObject explosionParticlesPrrefab;
     [SerializeField] RedEnemyHealth reHealth;
     [SerializeField] BlueEnemyHealth beHealth;
+    [SerializeField] BlueSwordmanHealth bsHealth;
+    [SerializeField] RedSwordmanHealth rsHealth;
 
-    EnemyMoneyCalculator moneyCalculator;
     public Transform target;
+    private EnemySpawner enemySpawner;
 
     private void Start()
     {
-        moneyCalculator = FindObjectOfType<EnemyMoneyCalculator>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     public void SeekEnemy(Transform _target)
@@ -58,6 +61,7 @@ public class Sphere2Shooting : MonoBehaviour
             if (collider.tag == "red enemy")
             {
                 RedEnemyHealth reHealth = collider.GetComponent<RedEnemyHealth>();
+                EnemyMoneyCalculator redEnemyMC = collider.GetComponent<EnemyMoneyCalculator>();
                 if (reHealth != null)
                 {
                     reHealth.CurrentRedEnemyHealth -= explosionDamage;
@@ -65,21 +69,56 @@ public class Sphere2Shooting : MonoBehaviour
                     if (reHealth.CurrentRedEnemyHealth < 1)
                     {
                         Destroy(reHealth.gameObject);
-                        moneyCalculator.MoneyDeposit();
+                        enemySpawner.OnEnemyDestroyed();
+                        redEnemyMC.MoneyDeposit();
                     }
                 }
             }
             else if (collider.tag == "blue enemy")
             {
                 BlueEnemyHealth beHealth = collider.GetComponent<BlueEnemyHealth>();
+                EnemyMoneyCalculator blueEnemyMC = collider.GetComponent<EnemyMoneyCalculator>();
                 if (beHealth != null)
                 {
                     beHealth.CurrentBlueEnemyHealth -= explosionDamage;
-                    beHealth.healthBar.fillAmount = (float) beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHhealth;
+                    beHealth.healthBar.fillAmount = (float) beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHealth;
                     if (beHealth.CurrentBlueEnemyHealth < 1)
                     {
                         Destroy(beHealth.gameObject);
-                        moneyCalculator.MoneyDeposit();
+                        enemySpawner.OnEnemyDestroyed();
+                        blueEnemyMC.MoneyDeposit();
+                    }
+                }
+            }
+            else if (collider.tag == "RedSwordman")
+            {
+                RedSwordmanHealth rsHealth = collider.GetComponent<RedSwordmanHealth>();
+                EnemyMoneyCalculator rsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();
+                if (rsHealth != null)
+                {
+                    rsHealth.CurrentRedSwordmanHealth -= explosionDamage;
+                    rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentRedSwordmanHealth / rsHealth.redSwordmanHealth;
+                    if (rsHealth.CurrentRedSwordmanHealth < 1)
+                    {
+                        Destroy(rsHealth.gameObject);
+                        enemySpawner.OnEnemyDestroyed();
+                        rsMoneyCalculator.MoneyDeposit();
+                    }
+                }
+            }
+            else if (collider.tag == "BlueSwordman")
+            {
+                BlueSwordmanHealth rsHealth = collider.GetComponent<BlueSwordmanHealth>();
+                EnemyMoneyCalculator bsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();
+                if (rsHealth != null)
+                {
+                    rsHealth.CurrentBlueSwordmanHealth -= explosionDamage;
+                    rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentBlueSwordmanHealth / rsHealth.blueSwordmanHealth;
+                    if (rsHealth.CurrentBlueSwordmanHealth < 1)
+                    {
+                        Destroy(rsHealth.gameObject);
+                        enemySpawner.OnEnemyDestroyed();
+                        bsMoneyCalculator.MoneyDeposit();
                     }
                 }
             }
