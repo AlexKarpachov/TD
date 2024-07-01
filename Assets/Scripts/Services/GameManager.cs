@@ -1,7 +1,6 @@
 using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -14,11 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
     [SerializeField] AudioSource cameraAudioSource;
+    [SerializeField] AudioSource endPoinAudioSource;
     [SerializeField] AudioClip gameOverSound;
     [SerializeField] AudioClip winSound;
     [SerializeField] GameObject navigationRoute;
 
     string mainMenuName = "MainMenu";
+   // string seconLevelName = "Level_02";
     public int Rounds;
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
@@ -36,6 +37,17 @@ public class GameManager : MonoBehaviour
         {
             PauseToggle();
         }
+
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            YouWin();
+        }
+        
+    }
+
+    public void ActivateSpawner()
+    {
+        enemySpawner.GetComponent<EnemySpawner>().enabled = true;
     }
 
 
@@ -71,20 +83,29 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        gameOver = true;
         enemySpawner.enabled = false;
         navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
         cameraAudioSource.Stop();
-        cameraAudioSource.PlayOneShot(gameOverSound);
+        endPoinAudioSource.PlayOneShot(gameOverSound);
         wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
-        gameOver = true;
     }
+
+   /* public void NextLevel()
+    {
+        sceneFader.FadeTo(mainMenuName);
+        SceneManager.LoadScene(seconLevelName);
+        gameOver = false;
+    }*/
     public void YouWin()
     {
-        cameraAudioSource.PlayOneShot(winSound);
+        gameOver = true;
+        navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
+        cameraAudioSource.Stop();
+        endPoinAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);
         wavesCounterTextWin.text = enemySpawner.RedWaveIndex.ToString();
-        gameOver = true;
     }
 
     public void QuitGame()
