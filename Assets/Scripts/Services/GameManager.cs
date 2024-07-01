@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject youWinMenu;
+    [SerializeField] GameObject manualMenu;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] TextMeshProUGUI wavesCounterTextGO;
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
     [SerializeField] AudioSource cameraAudioSource;
+    [SerializeField] AudioSource endPoinAudioSource;
     [SerializeField] AudioClip gameOverSound;
     [SerializeField] AudioClip winSound;
     [SerializeField] GameObject navigationRoute;
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
         {
             PauseToggle();
         }
+    }
+
+    public void ActivateSpawner()
+    {
+        enemySpawner.GetComponent<EnemySpawner>().enabled = true;
     }
 
 
@@ -71,17 +78,17 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        gameOver = true;
         enemySpawner.enabled = false;
         navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
         cameraAudioSource.Stop();
-        cameraAudioSource.PlayOneShot(gameOverSound);
+        endPoinAudioSource.PlayOneShot(gameOverSound);
         wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
-        gameOver = true;
     }
     public void YouWin()
     {
-        cameraAudioSource.PlayOneShot(winSound);
+        endPoinAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);
         wavesCounterTextWin.text = enemySpawner.RedWaveIndex.ToString();
         gameOver = true;
