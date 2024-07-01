@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] NavMeshAgent navAgent;
-    
+
     PlayerLives playerLivesScript;
     EnemyMoneyCalculator moneyCalculator;
 

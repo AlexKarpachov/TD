@@ -33,7 +33,6 @@ public class RedEnemyHealth : MonoBehaviour
     EnemyMoneyCalculator moneyCalculator;
     NavMeshAgent navMeshAgent;
 
-
     private void OnEnable()
     {
         currentRedEnemyHealth = redEnemyHealth;

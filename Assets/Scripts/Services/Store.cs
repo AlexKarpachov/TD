@@ -1,9 +1,12 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Store : MonoBehaviour
 {
     [SerializeField] TowerBuilder towerBuilder;
     [SerializeField] GameObject storeUI;
+    [SerializeField] GameObject noMoneyText;
     [SerializeField] Raycast raycast;
     [SerializeField] Bank bank;
 
@@ -38,7 +41,7 @@ public class Store : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough money");
+            StartCoroutine(NoMoney());
         }
         
     }
@@ -51,7 +54,7 @@ public class Store : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough money");
+            StartCoroutine(NoMoney());
         }
     }
     public void Mage1TowerPurchase()
@@ -63,7 +66,7 @@ public class Store : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough money");
+            StartCoroutine(NoMoney());
         }
     }
     public void Mage2TowerPurchase()
@@ -75,7 +78,13 @@ public class Store : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough money");
+            StartCoroutine(NoMoney());
         }
+    }
+    IEnumerator NoMoney()
+    {
+        noMoneyText.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        noMoneyText.SetActive(false);
     }
 }

@@ -1,5 +1,7 @@
 using TMPro;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI wavesCounterTextGO;
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
+    [SerializeField] AudioSource cameraAudioSource;
+    [SerializeField] AudioClip gameOverSound;
+    [SerializeField] AudioClip winSound;
+    [SerializeField] GameObject navigationRoute;
 
     string mainMenuName = "MainMenu";
     public int Rounds;
@@ -65,12 +71,17 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        enemySpawner.enabled = false;
+        navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
+        cameraAudioSource.Stop();
+        cameraAudioSource.PlayOneShot(gameOverSound);
         wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
         gameOver = true;
     }
     public void YouWin()
     {
+        cameraAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);
         wavesCounterTextWin.text = enemySpawner.RedWaveIndex.ToString();
         gameOver = true;

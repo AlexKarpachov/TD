@@ -21,9 +21,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenWaves = 5.9f;
     [SerializeField] float startDelayTime = 4f;
     [SerializeField] TextMeshProUGUI countdownText;
+    [SerializeField] TextMeshProUGUI wavesAmount;
     [SerializeField] GameManager gameManager;
+    [SerializeField] GameObject blueEnemySpawner;
 
     private int enemiesAlive = 0;
+    private float currentCountdownTime;
 
     void Start()
     {
@@ -45,14 +48,20 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(RedEnemySpawner());
     }
+        
 
     IEnumerator RedEnemySpawner()
     {
         while (redWaveIndex < waves.Length && !gameManager.GameOver)
         {
+            wavesAmount.text = $"Wave {redWaveIndex+1}/10";
             if (redWaveIndex == 2)
             {
                 StartCoroutine(BlueEnemySpawner());
+            }
+            else if (redWaveIndex == 1)
+            {
+                blueEnemySpawner.SetActive(true);
             }
             Wave wave = waves[redWaveIndex];
             isRedWaveSpawning = true;
@@ -76,9 +85,9 @@ public class EnemySpawner : MonoBehaviour
             }
             yield return StartCoroutine(Countdown(timeBetweenWaves));
             redWaveIndex++;
+            wavesAmount.text = $"Wave {redWaveIndex}/10";
         }
     }
-    // створити додаткових ворогів та налаштувати хвилі
     IEnumerator BlueEnemySpawner()
     {
         while (blueWaveIndex < waves.Length && !gameManager.GameOver)
@@ -117,6 +126,7 @@ public class EnemySpawner : MonoBehaviour
             while (time > 0 && !gameManager.GameOver)
             {
                 time -= Time.deltaTime;
+                currentCountdownTime = time;
                 countdownText.text = "Next wave in " + Mathf.Round(time).ToString() + " sec";
                 yield return null;
             }
@@ -126,10 +136,20 @@ public class EnemySpawner : MonoBehaviour
             countdownText.text = "This is the last wave";
         }
     }
+    public float RemainingCountdownTime()
+    {
+        return currentCountdownTime;
+    }
+    public float InitialCountdownTime()
+    {
+        return timeBetweenWaves;
+    }
+
     public void OnEnemyDestroyed()
     {
         enemiesAlive--;
         Debug.Log(enemiesAlive);
+        enemiesAlive = Mathf.Max(enemiesAlive, 0);
         if (redWaveIndex == waves.Length && enemiesAlive == 0)
         {
             gameManager.YouWin();

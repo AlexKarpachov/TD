@@ -1,11 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class TowerSell : MonoBehaviour
 {
     [SerializeField] GameObject sellUI;
+    [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Bank bank;
     [SerializeField] Store store;
-    // [SerializeField] Raycast raycast;
     GameObject towerPrefabOnPoint;
     TowerBuildPoint towerBuildPoint;
 
@@ -20,6 +21,7 @@ public class TowerSell : MonoBehaviour
     {
         if (sellUI != null)
         {
+            priceText.text = "Sell\n+$" + moneyToReturn;
             sellUI.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -48,7 +50,6 @@ public class TowerSell : MonoBehaviour
     public void SellMethod()
     {
         bank.Deposit(moneyToReturn);
-        // towerBuildPoint = raycast.GetTowerBuildPointScript();
         towerBuildPoint.ChangeBuildingPermission(true);
         Destroy(towerPrefabOnPoint.gameObject);
     }

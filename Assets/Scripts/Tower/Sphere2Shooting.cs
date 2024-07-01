@@ -5,7 +5,8 @@ public class Sphere2Shooting : MonoBehaviour
 {
     [SerializeField] float sphere2Speed = 10f;
     [SerializeField] float explosionRadius = 4f;
-    [SerializeField] int explosionDamage = 75;
+    [SerializeField] int explosionDamage = 60;
+    [SerializeField] int swordamnExplosionDamage = 45;
     [SerializeField] GameObject explosionParticlesPrrefab;
     [SerializeField] RedEnemyHealth reHealth;
     [SerializeField] BlueEnemyHealth beHealth;
@@ -96,7 +97,7 @@ public class Sphere2Shooting : MonoBehaviour
                 EnemyMoneyCalculator rsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();
                 if (rsHealth != null)
                 {
-                    rsHealth.CurrentRedSwordmanHealth -= explosionDamage;
+                    rsHealth.CurrentRedSwordmanHealth -= swordamnExplosionDamage;
                     rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentRedSwordmanHealth / rsHealth.redSwordmanHealth;
                     if (rsHealth.CurrentRedSwordmanHealth < 1)
                     {
@@ -112,7 +113,7 @@ public class Sphere2Shooting : MonoBehaviour
                 EnemyMoneyCalculator bsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();
                 if (rsHealth != null)
                 {
-                    rsHealth.CurrentBlueSwordmanHealth -= explosionDamage;
+                    rsHealth.CurrentBlueSwordmanHealth -= swordamnExplosionDamage;
                     rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentBlueSwordmanHealth / rsHealth.blueSwordmanHealth;
                     if (rsHealth.CurrentBlueSwordmanHealth < 1)
                     {
