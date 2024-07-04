@@ -25,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] GameObject blueEnemySpawner;
 
+    private string[] enemyTags = { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
     private int enemiesAlive = 0;
     private float currentCountdownTime;
 
@@ -75,7 +76,6 @@ public class EnemySpawner : MonoBehaviour
                 EnemyMover tempLogic = tempRedEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
                 enemiesAlive++;
-                Debug.Log(enemiesAlive);
                 yield return new WaitForSeconds(1 / wave.timeBetweenRedEnemies);
             }
             isRedWaveSpawning = false;
@@ -105,7 +105,6 @@ public class EnemySpawner : MonoBehaviour
                 EnemyMover tempLogic = tempBlueEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
                 enemiesAlive++;
-                Debug.Log(enemiesAlive);
                 yield return new WaitForSeconds(1 / wave.timeBetweenBlueEnemies);
             }
             isBlueWaveSpawning = false;
@@ -148,12 +147,11 @@ public class EnemySpawner : MonoBehaviour
     public void OnEnemyDestroyed()
     {
         enemiesAlive--;
-        Debug.Log(enemiesAlive);
-        enemiesAlive = Mathf.Max(enemiesAlive, 0);
-        if (redWaveIndex == waves.Length && enemiesAlive == 0)
+        //Debug.Log(enemiesAlive);
+        if (redWaveIndex == waves.Length && enemiesAlive <= 2)
         {
-            gameManager.YouWin();
-            this.enabled = false;
+           gameManager.GetComponent<EnemyChecker>().CheckForRemainingEnemies();
         }
     }
+
 }

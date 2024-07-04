@@ -19,16 +19,17 @@ public class Store : MonoBehaviour
     [SerializeField] int largeMageTowerCost = 70;
     public int LargeMageTowerCost { get { return largeMageTowerCost; } }
 
-    public void SelectTowerToBuild(GameObject towerPrefab)
+    public void SelectTowerToBuild(GameObject towerPrefab, int cost)
     {
+        TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
         storeUI.SetActive(false);
         Time.timeScale = 1f;
         towerBuilder.SetTowerToBuild(towerPrefab);
-        TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
 
         if (towerBuilder.Construct(towerBuildPointScript))
         {
             towerBuildPointScript.ChangeBuildingPermission(false);
+            bank.FundsWithdrawals(cost);
         }
     }
 
@@ -36,8 +37,7 @@ public class Store : MonoBehaviour
     {
         if (bank.CurrentBalance >= smallArcherTowerCost)
         {
-            SelectTowerToBuild(towerBuilder.archerTowerPrefab);
-            bank.FundsWithdrawals(smallArcherTowerCost);
+            SelectTowerToBuild(towerBuilder.archerTowerPrefab, smallArcherTowerCost);
         }
         else
         {
@@ -49,8 +49,7 @@ public class Store : MonoBehaviour
     {
         if (bank.CurrentBalance >= largeTowerArcherCost)
         {
-            SelectTowerToBuild(towerBuilder.archer2TowerPrefab);
-            bank.FundsWithdrawals(largeTowerArcherCost);
+            SelectTowerToBuild(towerBuilder.archer2TowerPrefab, largeTowerArcherCost);
         }
         else
         {
@@ -61,8 +60,7 @@ public class Store : MonoBehaviour
     {
         if (bank.CurrentBalance >= smallMageTowerCost)
         {
-            SelectTowerToBuild(towerBuilder.mageTowerPrefab);
-            bank.FundsWithdrawals(smallMageTowerCost);
+            SelectTowerToBuild(towerBuilder.mageTowerPrefab, smallMageTowerCost);
         }
         else
         {
@@ -73,8 +71,7 @@ public class Store : MonoBehaviour
     {
         if (bank.CurrentBalance >= largeMageTowerCost)
         {
-            SelectTowerToBuild(towerBuilder.mage2TowerPrefab);
-            bank.FundsWithdrawals(largeMageTowerCost);
+            SelectTowerToBuild(towerBuilder.mage2TowerPrefab, largeMageTowerCost);
         }
         else
         {

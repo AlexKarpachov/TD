@@ -37,12 +37,6 @@ public class GameManager : MonoBehaviour
         {
             PauseToggle();
         }
-
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            YouWin();
-        }
-        
     }
 
     public void ActivateSpawner()
