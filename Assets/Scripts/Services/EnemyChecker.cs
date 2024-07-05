@@ -1,18 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyChecker : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     private string[] enemyTags = { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
-
-    GameManager gameManager;
-
-    private void Start()
-    {
-        gameManager = GetComponent<GameManager>();
-    }
 
     public void CheckForRemainingEnemies()
     {
@@ -20,7 +13,7 @@ public class EnemyChecker : MonoBehaviour
     }
     IEnumerator CheckForRemainingEnemiesCoroutine()
     {
-        yield return null; 
+        yield return null;
 
         bool enemiesRemaining = false;
 
@@ -28,7 +21,6 @@ public class EnemyChecker : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(tag);
             enemies = enemies.Where(e => e.activeInHierarchy).ToArray();
-            Debug.Log(tag + ": " + enemies.Length);
             if (enemies.Length > 0)
             {
                 enemiesRemaining = true;
@@ -38,7 +30,6 @@ public class EnemyChecker : MonoBehaviour
 
         if (!enemiesRemaining)
         {
-            Debug.Log("All enemies were destroyed");
             gameManager.YouWin();
         }
     }

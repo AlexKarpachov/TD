@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navAgent: {fileID: 2871077905618988279}
+  moneyCalculator: {fileID: -1116621053041558131}
 --- !u!195 &2871077905618988279
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -263,6 +264,8 @@ MonoBehaviour:
   slowedSpeed: 5
   slowingDuration: 3
   currentBlueEnemyHealth: 0
+  moneyCalculator: {fileID: -1116621053041558131}
+  navMeshAgent: {fileID: 2871077905618988279}
   healthBar: {fileID: 6373039516095262226}
   blueEnemyHealth: 150
 --- !u!114 &825651713687430080

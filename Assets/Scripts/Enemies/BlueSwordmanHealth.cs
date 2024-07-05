@@ -10,6 +10,8 @@ public class BlueSwordmanHealth : MonoBehaviour
     [SerializeField] float slowedSpeed = 3f;
     [SerializeField] float slowingDuration = 2f;
     [SerializeField] int currentBlueSwordmanHealth;
+    [SerializeField] EnemyMoneyCalculator moneyCalculator;
+    [SerializeField] NavMeshAgent navMeshAgent;
     public int CurrentBlueSwordmanHealth
     {
         get { return currentBlueSwordmanHealth; }
@@ -30,10 +32,6 @@ public class BlueSwordmanHealth : MonoBehaviour
     float originalSpeed;
     private EnemySpawner enemySpawner;
 
-    EnemyMoneyCalculator moneyCalculator;
-    NavMeshAgent navMeshAgent;
-
-
     private void OnEnable()
     {
         currentBlueSwordmanHealth = blueSwordmanHealth;
@@ -41,8 +39,6 @@ public class BlueSwordmanHealth : MonoBehaviour
 
     void Start()
     {
-        moneyCalculator = GetComponent<EnemyMoneyCalculator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 

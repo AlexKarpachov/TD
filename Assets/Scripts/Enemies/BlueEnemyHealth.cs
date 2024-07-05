@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -11,6 +10,8 @@ public class BlueEnemyHealth : MonoBehaviour
     [SerializeField] float slowedSpeed = 5f;
     [SerializeField] float slowingDuration = 2f;
     [SerializeField] int currentBlueEnemyHealth;
+    [SerializeField] EnemyMoneyCalculator moneyCalculator;
+    [SerializeField] NavMeshAgent navMeshAgent;
     public int CurrentBlueEnemyHealth
     {
         get { return currentBlueEnemyHealth; }
@@ -31,9 +32,6 @@ public class BlueEnemyHealth : MonoBehaviour
     float originalSpeed;
     private EnemySpawner enemySpawner;
 
-    EnemyMoneyCalculator moneyCalculator;
-    NavMeshAgent navMeshAgent;
-
     private void OnEnable()
     {
         currentBlueEnemyHealth = blueEnemyHealth;
@@ -41,8 +39,6 @@ public class BlueEnemyHealth : MonoBehaviour
 
     void Start()
     {
-        moneyCalculator = GetComponent<EnemyMoneyCalculator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }
     private void Update()

@@ -6,6 +6,12 @@ public class Sphere1Shooting : MonoBehaviour
     [SerializeField] GameObject blueExplosionPrefab;
 
     public Transform target;
+    float destroyVFXTime;
+
+    private void Awake()
+    {
+        destroyVFXTime = 0.5f;
+    }
 
     public void SeekEnemy(Transform _target)
     {
@@ -36,7 +42,7 @@ public class Sphere1Shooting : MonoBehaviour
     void HitTarget()
     {
         GameObject exposionVFX = Instantiate(blueExplosionPrefab, transform.position, transform.rotation);
-        Destroy(exposionVFX, 0.5f);
+        Destroy(exposionVFX, destroyVFXTime);
         Destroy(gameObject);
     }
 }

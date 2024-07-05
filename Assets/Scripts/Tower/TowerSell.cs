@@ -7,14 +7,16 @@ public class TowerSell : MonoBehaviour
     [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Bank bank;
     [SerializeField] Store store;
+    [SerializeField] TowerBuildPoint towerBuildPoint;
+
     GameObject towerPrefabOnPoint;
-    TowerBuildPoint towerBuildPoint;
 
     int moneyToReturn;
+    int dividingTime;
 
-    private void Start()
+    private void Awake()
     {
-        towerBuildPoint = GetComponent<TowerBuildPoint>();
+        dividingTime = 2;
     }
 
     public void SellUIInitiation()
@@ -31,19 +33,19 @@ public class TowerSell : MonoBehaviour
         towerPrefabOnPoint = other.gameObject;
         if (other.gameObject.CompareTag("SmallArcherTower"))
         {
-            moneyToReturn = store.SmallArcherTowerCost / 2;
+            moneyToReturn = store.SmallArcherTowerCost / dividingTime;
         }
         else if (other.gameObject.CompareTag("LargeArcherTower"))
         {
-            moneyToReturn = store.LargeArcherTowerCost / 2;
+            moneyToReturn = store.LargeArcherTowerCost / dividingTime;
         }
         else if (other.gameObject.CompareTag("SmallMageTower"))
         {
-            moneyToReturn = store.SmallMageTowerCost / 2;
+            moneyToReturn = store.SmallMageTowerCost / dividingTime;
         }
         else if (other.gameObject.CompareTag("LargeMageTower"))
         {
-            moneyToReturn = store.LargeMageTowerCost / 2;
+            moneyToReturn = store.LargeMageTowerCost / dividingTime;
         }
     }
 

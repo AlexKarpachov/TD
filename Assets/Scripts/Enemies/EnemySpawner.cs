@@ -23,12 +23,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] TextMeshProUGUI countdownText;
     [SerializeField] TextMeshProUGUI wavesAmount;
     [SerializeField] GameManager gameManager;
+    [SerializeField] EnemyChecker enemyChecker;
     [SerializeField] GameObject blueEnemySpawner;
 
     private string[] enemyTags = { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
     private int enemiesAlive = 0;
     private float currentCountdownTime;
 
+    WaitForSeconds redWFS;
+    WaitForSeconds blueWFS;
+
+    private void Awake()
+    {
+        redWFS = new WaitForSeconds(1);
+        blueWFS = new WaitForSeconds(1);
+    }
     void Start()
     {
         StartCoroutine(StartupCountdown());
@@ -49,13 +58,13 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(RedEnemySpawner());
     }
-        
+
 
     IEnumerator RedEnemySpawner()
     {
         while (redWaveIndex < waves.Length && !gameManager.GameOver)
         {
-            wavesAmount.text = $"Wave {redWaveIndex+1}/10";
+            wavesAmount.text = $"Wave {redWaveIndex + 1}/10";
             if (redWaveIndex == 2)
             {
                 StartCoroutine(BlueEnemySpawner());
@@ -76,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
                 EnemyMover tempLogic = tempRedEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
                 enemiesAlive++;
-                yield return new WaitForSeconds(1 / wave.timeBetweenRedEnemies);
+                yield return redWFS;
             }
             isRedWaveSpawning = false;
             while (isBlueWaveSpawning)
@@ -105,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
                 EnemyMover tempLogic = tempBlueEnemy.GetComponent<EnemyMover>();
                 tempLogic.MoveTo(endPoint);
                 enemiesAlive++;
-                yield return new WaitForSeconds(1 / wave.timeBetweenBlueEnemies);
+                yield return blueWFS;
             }
             isBlueWaveSpawning = false;
             while (isRedWaveSpawning)
@@ -148,9 +157,9 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesAlive--;
         //Debug.Log(enemiesAlive);
-        if (redWaveIndex == waves.Length && enemiesAlive <= 2)
+        if (redWaveIndex == waves.Length-10 && enemiesAlive <= 2)
         {
-           gameManager.GetComponent<EnemyChecker>().CheckForRemainingEnemies();
+            enemyChecker.CheckForRemainingEnemies();
         }
     }
 

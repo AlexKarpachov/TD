@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class Sphere2Shooting : MonoBehaviour
@@ -15,6 +14,12 @@ public class Sphere2Shooting : MonoBehaviour
 
     public Transform target;
     private EnemySpawner enemySpawner;
+    float destroyVFXTime;
+
+    private void Awake()
+    {
+        destroyVFXTime = 0.5f;
+    }
 
     private void Start()
     {
@@ -49,7 +54,7 @@ public class Sphere2Shooting : MonoBehaviour
     void HitTarget()
     {
         GameObject exposionVFX = Instantiate(explosionParticlesPrrefab, transform.position, transform.rotation);
-        Destroy(exposionVFX, 0.5f);
+        Destroy(exposionVFX, destroyVFXTime);
         HitSeveralEnemies();
         Destroy(gameObject);
     }
@@ -59,7 +64,7 @@ public class Sphere2Shooting : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider collider in colliders)
         {
-            if (collider.tag == "red enemy")
+            if (collider.CompareTag("red enemy"))
             {
                 RedEnemyHealth reHealth = collider.GetComponent<RedEnemyHealth>();
                 EnemyMoneyCalculator redEnemyMC = collider.GetComponent<EnemyMoneyCalculator>();
@@ -75,14 +80,14 @@ public class Sphere2Shooting : MonoBehaviour
                     }
                 }
             }
-            else if (collider.tag == "blue enemy")
+            else if (collider.CompareTag("blue enemy"))
             {
                 BlueEnemyHealth beHealth = collider.GetComponent<BlueEnemyHealth>();
                 EnemyMoneyCalculator blueEnemyMC = collider.GetComponent<EnemyMoneyCalculator>();
                 if (beHealth != null)
                 {
                     beHealth.CurrentBlueEnemyHealth -= explosionDamage;
-                    beHealth.healthBar.fillAmount = (float) beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHealth;
+                    beHealth.healthBar.fillAmount = (float)beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHealth;
                     if (beHealth.CurrentBlueEnemyHealth < 1)
                     {
                         Destroy(beHealth.gameObject);
@@ -91,7 +96,7 @@ public class Sphere2Shooting : MonoBehaviour
                     }
                 }
             }
-            else if (collider.tag == "RedSwordman")
+            else if (collider.CompareTag("RedSwordman"))
             {
                 RedSwordmanHealth rsHealth = collider.GetComponent<RedSwordmanHealth>();
                 EnemyMoneyCalculator rsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();
@@ -107,7 +112,7 @@ public class Sphere2Shooting : MonoBehaviour
                     }
                 }
             }
-            else if (collider.tag == "BlueSwordman")
+            else if (collider.CompareTag("BlueSwordman"))
             {
                 BlueSwordmanHealth rsHealth = collider.GetComponent<BlueSwordmanHealth>();
                 EnemyMoneyCalculator bsMoneyCalculator = collider.GetComponent<EnemyMoneyCalculator>();

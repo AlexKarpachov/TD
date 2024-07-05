@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class Store : MonoBehaviour
@@ -18,6 +17,13 @@ public class Store : MonoBehaviour
     public int SmallMageTowerCost { get { return smallMageTowerCost; } }
     [SerializeField] int largeMageTowerCost = 70;
     public int LargeMageTowerCost { get { return largeMageTowerCost; } }
+
+    WaitForSeconds noMoneyMethod;
+
+    private void Awake()
+    {
+        noMoneyMethod = new WaitForSeconds(2);
+    }
 
     public void SelectTowerToBuild(GameObject towerPrefab, int cost)
     {
@@ -43,7 +49,7 @@ public class Store : MonoBehaviour
         {
             StartCoroutine(NoMoney());
         }
-        
+
     }
     public void Archer2TowerPurchase()
     {
@@ -81,7 +87,7 @@ public class Store : MonoBehaviour
     IEnumerator NoMoney()
     {
         noMoneyText.SetActive(true);
-        yield return new WaitForSecondsRealtime(2);
+        yield return noMoneyMethod;
         noMoneyText.SetActive(false);
     }
 }

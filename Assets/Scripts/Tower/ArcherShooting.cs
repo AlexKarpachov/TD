@@ -17,13 +17,22 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] float archerTilt = -50;
 
     float fireCountdown = 0f;
+    float time;
+    float repeating;
+    float Dot;
+
+    private void Awake()
+    {
+        time = 0f; repeating = 0.5f;
+        Dot = 1f;
+    }
 
     void Start()
     {
-        InvokeRepeating("FindClosestRedEnemy", 0f, 0.5f);
-        InvokeRepeating("FindClosestBlueEnemy", 0f, 0.5f);
-        InvokeRepeating("FindClosestRedSwordman", 0f, 0.5f);
-        InvokeRepeating("FindClosestBlueSwordman", 0f, 0.5f);
+        InvokeRepeating("FindClosestRedEnemy", time, repeating);
+        InvokeRepeating("FindClosestBlueEnemy", time, repeating);
+        InvokeRepeating("FindClosestRedSwordman", time, repeating);
+        InvokeRepeating("FindClosestBlueSwordman", time, repeating);
     }
     private void Update()
     {
@@ -203,7 +212,7 @@ public class ArcherShooting : MonoBehaviour
 
     float CalculateTiltAngle(Vector3 direction)
     {
-        return Mathf.Clamp(Vector3.Dot(Vector3.down, direction.normalized), -1f, 1f) * archerTilt;
+        return Mathf.Clamp(Vector3.Dot(Vector3.down, direction.normalized), -Dot, Dot) * archerTilt;
     }
 
     void ShootArrow()
@@ -228,9 +237,9 @@ public class ArcherShooting : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, range);
-    }
+    /* private void OnDrawGizmosSelected()
+     {
+         Gizmos.color = Color.yellow;
+         Gizmos.DrawWireSphere(transform.position, range);
+     }*/
 }

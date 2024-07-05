@@ -5,16 +5,10 @@ public class TowerBuildPoint : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] GameObject constructionMarker;
     [SerializeField] GameObject storeUI;
-
-    TowerSell towerSell;
-
+    [SerializeField] TowerSell towerSell;
     [SerializeField] bool canBuild = true;
     public bool CanBuild { get { return canBuild; } }
 
-    private void Start()
-    {
-        towerSell = GetComponent<TowerSell>();
-    }
     public void ChangeBuildingPermission(bool userCanBuild)
     {
         canBuild = userCanBuild;

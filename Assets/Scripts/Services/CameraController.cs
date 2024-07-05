@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        // To save initial camera high
         initialHeight = transform.position.y;
     }
 

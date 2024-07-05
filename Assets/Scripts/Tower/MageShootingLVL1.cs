@@ -12,13 +12,19 @@ public class MageShootingLVL1 : MonoBehaviour
     [SerializeField] Transform firePoint;
 
     float fireCountdown = 0f;
+    float time;
+    float repeating;
 
+    private void Awake()
+    {
+        time = 0f; repeating = 0.5f;
+    }
     void Start()
     {
-        InvokeRepeating("FindClosestRedEnemy", 0f, 0.5f);
-        InvokeRepeating("FindClosestBlueEnemy", 0f, 0.5f);
-        InvokeRepeating("FindClosestRedSwordman", 0f, 0.5f);
-        InvokeRepeating("FindClosestBlueSwordman", 0f, 0.5f);
+        InvokeRepeating("FindClosestRedEnemy", time, repeating);
+        InvokeRepeating("FindClosestBlueEnemy", time, repeating);
+        InvokeRepeating("FindClosestRedSwordman", time, repeating);
+        InvokeRepeating("FindClosestBlueSwordman", time, repeating);
     }
     private void Update()
     {
@@ -35,7 +41,7 @@ public class MageShootingLVL1 : MonoBehaviour
     void FindClosestRedEnemy()
     {
         GameObject[] redEnemies = GameObject.FindGameObjectsWithTag("red enemy");
-        Transform closestTarget = null; 
+        Transform closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
         foreach (GameObject enemy in redEnemies)
@@ -153,9 +159,9 @@ public class MageShootingLVL1 : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
-    }
+    }*/
 }

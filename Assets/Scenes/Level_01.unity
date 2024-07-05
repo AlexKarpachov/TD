@@ -794,6 +794,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 1823241827}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_Size.x
       value: 8.600224
@@ -1557,6 +1561,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 237022244}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1973,7 +1981,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
   m_PrefabInstance: {fileID: 2145020746594276987}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956292057}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67b40b53d88861d4c896cadeb13d43b7, type: 3}
@@ -3647,6 +3655,7 @@ MonoBehaviour:
   priceText: {fileID: 578568846}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 237022246}
 --- !u!54 &237022245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3674,6 +3683,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &237022246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 102001656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237022241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &237295027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14465,6 +14485,7 @@ MonoBehaviour:
   countdownText: {fileID: 600108994}
   wavesAmount: {fileID: 2079989856}
   gameManager: {fileID: 143208917}
+  enemyChecker: {fileID: 1956292058}
   blueEnemySpawner: {fileID: 1584815136}
 --- !u!1001 &826601897
 PrefabInstance:
@@ -15243,7 +15264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0df776e365afb47a3bca71326e4305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCamera: {fileID: 963194227}
   towerBuilder: {fileID: 663432963}
 --- !u!1001 &868787042
 PrefabInstance:
@@ -16157,6 +16177,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 911707885}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -16243,6 +16267,7 @@ MonoBehaviour:
   priceText: {fileID: 134545765}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 911707887}
 --- !u!54 &911707886
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16270,6 +16295,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &911707887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 911707881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23087561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &913868099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29203,6 +29239,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 2058819406}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -31650,6 +31690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyInsideVFX: {fileID: 3100360017739997593}
   enemyInsideSFX: {fileID: 8300000, guid: ce70e234b8dc1b44981be95b477335a6, type: 3}
+  audioSource: {fileID: 1642863557}
 --- !u!1001 &1644900618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34237,6 +34278,7 @@ MonoBehaviour:
   priceText: {fileID: 1805481869}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 1823241829}
 --- !u!54 &1823241828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34264,6 +34306,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1823241829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 40226590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823241824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1823540972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36658,18 +36711,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4495672499575750, guid: fc0e85a1478e4314baa490f67446a1ed, type: 3}
   m_PrefabInstance: {fileID: 1953098312}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1956292057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1203453369888149169, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
+--- !u!114 &1956292058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2513377584456731540, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
   m_PrefabInstance: {fileID: 2145020746594276987}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1956292058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956292057}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ada596c3f84cd2647a3f2b57a64bbe81, type: 3}
@@ -38048,6 +38095,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 2030678512}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -38134,6 +38185,7 @@ MonoBehaviour:
   priceText: {fileID: 485799421}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 2030678514}
 --- !u!54 &2030678513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38161,6 +38213,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2030678514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 2030678508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829517060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2034774917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38314,6 +38377,7 @@ MonoBehaviour:
   priceText: {fileID: 1559625578}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 2058819408}
 --- !u!54 &2058819407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38341,6 +38405,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2058819408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 1533660965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2059358970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40248,29 +40323,13 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: sellUI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: winSound
-      value: 
-      objectReference: {fileID: 8300000, guid: d1a4065af16cc4048b4cf68bf3498fca, type: 3}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 979102443}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: cameraMain
-      value: 
-      objectReference: {fileID: 963194231}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 921007234}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: manualMenu
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: sceneFader
       value: 
@@ -40284,21 +40343,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 818651336}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: navMeshAgent
-      value: 
-      objectReference: {fileID: 1627298482}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: gameOverSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 78fd6cd4a18161b4bbddf9325203b54e, type: 3}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: navigationRoute
       value: 
-      objectReference: {fileID: 1627298482}
-    - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      propertyPath: wavesCounterText
-      value: 
-      objectReference: {fileID: 1423541182}
+      objectReference: {fileID: 0}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: cameraAudioSource
       value: 
@@ -40362,10 +40409,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1203453369888149169, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1956292058}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
 --- !u!224 &2308485501241083308
 RectTransform:
@@ -40513,6 +40557,10 @@ PrefabInstance:
       propertyPath: storeUI
       value: 
       objectReference: {fileID: 148382616}
+    - target: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+      propertyPath: towerSell
+      value: 
+      objectReference: {fileID: 3091210434969714822}
     - target: {fileID: 4850525971723988397, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -40599,6 +40647,7 @@ MonoBehaviour:
   priceText: {fileID: 19578185}
   bank: {fileID: 953026399}
   store: {fileID: 564359221}
+  towerBuildPoint: {fileID: 3091210434969714824}
 --- !u!54 &3091210434969714823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40626,6 +40675,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3091210434969714824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789039799768954356, guid: faa9b5adb31f7ec4cbc93f8d8b82ce0a, type: 3}
+  m_PrefabInstance: {fileID: 3091210434969714818}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214654640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce2f210afd86a44e9cd740fce64d942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &3100360017739997593 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5015276213862764095, guid: ad0e12f9de97ec6448b74dcfd23fa746, type: 3}

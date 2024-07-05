@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject navigationRoute;
 
     string mainMenuName = "MainMenu";
-   // string seconLevelName = "Level_02";
     public int Rounds;
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
@@ -38,12 +37,6 @@ public class GameManager : MonoBehaviour
             PauseToggle();
         }
     }
-
-    public void ActivateSpawner()
-    {
-        enemySpawner.GetComponent<EnemySpawner>().enabled = true;
-    }
-
 
     public void MainMenu()
     {
@@ -86,12 +79,6 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
-   /* public void NextLevel()
-    {
-        sceneFader.FadeTo(mainMenuName);
-        SceneManager.LoadScene(seconLevelName);
-        gameOver = false;
-    }*/
     public void YouWin()
     {
         gameOver = true;
@@ -106,6 +93,4 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }

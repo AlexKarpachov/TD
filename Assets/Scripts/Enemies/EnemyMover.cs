@@ -1,19 +1,16 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] NavMeshAgent navAgent;
+    [SerializeField] EnemyMoneyCalculator moneyCalculator;
 
     PlayerLives playerLivesScript;
-    EnemyMoneyCalculator moneyCalculator;
-
-    private EnemySpawner enemySpawner;
+    EnemySpawner enemySpawner;
 
     private void Start()
     {
-        moneyCalculator = GetComponent<EnemyMoneyCalculator>();
         playerLivesScript = FindObjectOfType<PlayerLives>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }
@@ -25,7 +22,7 @@ public class EnemyMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Finish")
+        if (other.gameObject.CompareTag("Finish"))
         {
             playerLivesScript.OutOfLives();
             enemySpawner.OnEnemyDestroyed();

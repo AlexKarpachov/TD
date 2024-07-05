@@ -10,6 +10,8 @@ public class RedEnemyHealth : MonoBehaviour
     [SerializeField] float slowedSpeed = 5f;
     [SerializeField] float slowingDuration = 2f;
     [SerializeField] int currentRedEnemyHealth;
+    [SerializeField] EnemyMoneyCalculator moneyCalculator;
+    [SerializeField] NavMeshAgent navMeshAgent;
     public int CurrentRedEnemyHealth
     {
         get { return currentRedEnemyHealth; }
@@ -30,9 +32,6 @@ public class RedEnemyHealth : MonoBehaviour
     float originalSpeed;
     private EnemySpawner enemySpawner;
 
-    EnemyMoneyCalculator moneyCalculator;
-    NavMeshAgent navMeshAgent;
-
     private void OnEnable()
     {
         currentRedEnemyHealth = redEnemyHealth;
@@ -40,8 +39,6 @@ public class RedEnemyHealth : MonoBehaviour
 
     void Start()
     {
-        moneyCalculator = GetComponent<EnemyMoneyCalculator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 

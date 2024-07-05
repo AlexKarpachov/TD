@@ -430,6 +430,8 @@ MonoBehaviour:
   slowedSpeed: 3
   slowingDuration: 3
   currentBlueSwordmanHealth: 0
+  moneyCalculator: {fileID: -6537223424306668163}
+  navMeshAgent: {fileID: 3378907815529436229}
   healthBar: {fileID: 4984500092359061837}
   blueSwordmanHealth: 200
 --- !u!114 &3625104971062645088
@@ -457,6 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navAgent: {fileID: 3378907815529436229}
+  moneyCalculator: {fileID: -6537223424306668163}
 --- !u!114 &-6537223424306668163
 MonoBehaviour:
   m_ObjectHideFlags: 0

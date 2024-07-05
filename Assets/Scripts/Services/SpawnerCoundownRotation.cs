@@ -10,7 +10,6 @@ public class SpawnerCoundownRotation : MonoBehaviour
 
     float rotationSpeed = 10f;
 
-
     void Update()
     {
         Rotation();

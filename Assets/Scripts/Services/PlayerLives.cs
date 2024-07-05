@@ -10,8 +10,6 @@ public class PlayerLives : MonoBehaviour
 
     public static int Lives;
 
-    
-
     private void Start()
     {
         Lives = startLives;
@@ -20,7 +18,6 @@ public class PlayerLives : MonoBehaviour
     private void Update()
     {
         playerHPText.text = "Lives: " + Lives;
-        //  OutOfLives();
     }
 
     public void OutOfLives()
