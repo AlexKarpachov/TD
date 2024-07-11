@@ -5,7 +5,7 @@ public class SpawnerCoundownRotation : MonoBehaviour
 {
     [SerializeField] Camera mainCamera;
     [SerializeField] Transform spawnerCD;
-    [SerializeField] EnemySpawner spawner;
+    [SerializeField] WavesCountdown wavesCountdown;
     [SerializeField] Image countDownIMG;
 
     float rotationSpeed = 10f;
@@ -24,8 +24,8 @@ public class SpawnerCoundownRotation : MonoBehaviour
     }
     void UpdateCountdownUI()
     {
-        float time = spawner.RemainingCountdownTime();
-        float initialCountdownTime = spawner.InitialCountdownTime();
+        float time = wavesCountdown.RemainingCountdownTime();
+        float initialCountdownTime = wavesCountdown.InitialCountdownTime();
 
         if (initialCountdownTime > 0)
         {

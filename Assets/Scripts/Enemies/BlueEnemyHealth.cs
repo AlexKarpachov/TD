@@ -11,7 +11,8 @@ public class BlueEnemyHealth : MonoBehaviour
     [SerializeField] float slowingDuration = 2f;
     [SerializeField] int currentBlueEnemyHealth;
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
-    [SerializeField] NavMeshAgent navMeshAgent;
+    [SerializeField] BlueEnemyMover mover;
+    [SerializeField] RedSpearmanPool enemyPool;
     public int CurrentBlueEnemyHealth
     {
         get { return currentBlueEnemyHealth; }
@@ -67,29 +68,35 @@ public class BlueEnemyHealth : MonoBehaviour
         healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
         if (currentBlueEnemyHealth < 1)
         {
-            Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed();
+            enemySpawner.OnEnemyDestroyed(gameObject);
         }
     }
 
     void HitBySmallMage()
     {
-        originalSpeed = navMeshAgent.speed;
-        navMeshAgent.speed = slowedSpeed;
+        originalSpeed = mover.speed;
+        mover.speed = slowedSpeed;
         currentBlueEnemyHealth -= sphere1Damage;
         healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
         if (currentBlueEnemyHealth < 1)
         {
-            Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed();
+            enemySpawner.OnEnemyDestroyed(gameObject);
         }
-        StartCoroutine(SlowDownBlueEnemy());
+        else
+        {
+            StartCoroutine(SlowDownEnemy());
+        }
     }
-    IEnumerator SlowDownBlueEnemy()
+    IEnumerator SlowDownEnemy()
     {
         yield return new WaitForSeconds(slowingDuration);
-        navMeshAgent.speed = originalSpeed;
+        mover.speed = originalSpeed;
+    }
+    public void ResetScale()
+    {
+        healthBar.fillAmount = 1;
+
     }
 }

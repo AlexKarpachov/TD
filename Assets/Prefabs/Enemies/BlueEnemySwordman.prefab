@@ -311,14 +311,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3662712568906935680}
-  - component: {fileID: 3378907815529436229}
   - component: {fileID: 1356397511129516145}
   - component: {fileID: 1110244135084418263}
-  - component: {fileID: 3301314118063350285}
-  - component: {fileID: 3625104971062645088}
-  - component: {fileID: 8890010126610258959}
-  - component: {fileID: -6537223424306668163}
   - component: {fileID: 8348072729242996081}
+  - component: {fileID: 3301314118063350285}
+  - component: {fileID: -6537223424306668163}
+  - component: {fileID: -6619192242356499099}
+  - component: {fileID: -8374987704235840987}
   m_Layer: 0
   m_Name: BlueEnemySwordman
   m_TagString: BlueSwordman
@@ -343,28 +342,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &3378907815529436229
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599696571640543152}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 1000
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!65 &1356397511129516145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -413,67 +390,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3301314118063350285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599696571640543152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 815673b67d7dabd479e12d525e73fa59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowDamage: 20
-  sphere1Damage: 30
-  slowedSpeed: 3
-  slowingDuration: 3
-  currentBlueSwordmanHealth: 0
-  moneyCalculator: {fileID: -6537223424306668163}
-  navMeshAgent: {fileID: 3378907815529436229}
-  healthBar: {fileID: 4984500092359061837}
-  blueSwordmanHealth: 200
---- !u!114 &3625104971062645088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599696571640543152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a16e9e826b537438bb1dc13e11b807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8890010126610258959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599696571640543152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f97130039c0284c948abdbc8d062bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navAgent: {fileID: 3378907815529436229}
-  moneyCalculator: {fileID: -6537223424306668163}
---- !u!114 &-6537223424306668163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599696571640543152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0428e89983df0eb489d1d627dac42e62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyReward: 15
-  moneyPenaly: 75
 --- !u!82 &8348072729242996081
 AudioSource:
   m_ObjectHideFlags: 0
@@ -570,6 +486,67 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3301314118063350285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599696571640543152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815673b67d7dabd479e12d525e73fa59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowDamage: 20
+  sphere1Damage: 30
+  slowedSpeed: 3
+  slowingDuration: 3
+  currentBlueSwordmanHealth: 0
+  moneyCalculator: {fileID: -6537223424306668163}
+  mover: {fileID: -6619192242356499099}
+  healthBar: {fileID: 4984500092359061837}
+  blueSwordmanHealth: 200
+--- !u!114 &-6537223424306668163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599696571640543152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0428e89983df0eb489d1d627dac42e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyReward: 15
+  moneyPenaly: 75
+--- !u!114 &-6619192242356499099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599696571640543152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a88994c79ed652438a62d1742b47ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyCalculator: {fileID: -6537223424306668163}
+  speed: 5
+--- !u!114 &-8374987704235840987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599696571640543152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014f74c90ce27474299fb9eca2fb17b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &131549381071472668
 PrefabInstance:
   m_ObjectHideFlags: 0

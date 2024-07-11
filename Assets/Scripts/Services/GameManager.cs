@@ -16,13 +16,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource endPoinAudioSource;
     [SerializeField] AudioClip gameOverSound;
     [SerializeField] AudioClip winSound;
-    [SerializeField] GameObject navigationRoute;
 
     string mainMenuName = "MainMenu";
     public int Rounds;
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
-
 
 
     void Start()
@@ -72,7 +70,6 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
         enemySpawner.enabled = false;
-        navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
         cameraAudioSource.Stop();
         endPoinAudioSource.PlayOneShot(gameOverSound);
         wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
@@ -82,7 +79,6 @@ public class GameManager : MonoBehaviour
     public void YouWin()
     {
         gameOver = true;
-        navigationRoute.GetComponent<NavMeshSurface>().enabled = false;
         cameraAudioSource.Stop();
         endPoinAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);

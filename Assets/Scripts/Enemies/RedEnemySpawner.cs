@@ -1,21 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class RedEnemySpawner : MonoBehaviour
 {
-    public WaveRed[] waves; 
+    public WaveRed[] waves;
     [Header("Red enemies info")]
     [SerializeField] Transform redSpawnPoint;
     [SerializeField] int redWaveIndex = 0;
     public int RedWaveIndex { get { return redWaveIndex; } }
     bool isRedWaveSpawning = false;
-    public bool IsRedWaveSpawning { get {return isRedWaveSpawning; } }
+    public bool IsRedWaveSpawning { get { return isRedWaveSpawning; } }
 
-   /* [Header("Blue enemies info")]
-    [SerializeField] int blueWaveIndex;
-    [SerializeField] Transform blueSpawnPoint;
-    bool isBlueWaveSpawning = false;*/
+    /* [Header("Blue enemies info")]
+     [SerializeField] int blueWaveIndex;
+     [SerializeField] Transform blueSpawnPoint;
+     bool isBlueWaveSpawning = false;*/
 
     [Header("General info")]
     [SerializeField] TextMeshProUGUI wavesAmount;
@@ -29,12 +30,12 @@ public class EnemySpawner : MonoBehaviour
     private float currentCountdownTime;
 
     WaitForSeconds redWFS;
-   // WaitForSeconds blueWFS;
+    // WaitForSeconds blueWFS;
 
     private void Awake()
     {
         redWFS = new WaitForSeconds(1);
-      //  blueWFS = new WaitForSeconds(1);
+        //  blueWFS = new WaitForSeconds(1);
     }
 
     public void StartRedWaves()

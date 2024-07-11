@@ -68,7 +68,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redEnemyTarget = closestTarget;
-            redEnemyTarget.GetComponent<Enemy>().EnterTime = Time.time;
+            redEnemyTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
         }
         else
         {
@@ -96,7 +96,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redSwordmanTarget = closestTarget;
-            redSwordmanTarget.GetComponent<Enemy>().EnterTime = Time.time;
+            redSwordmanTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
         }
         else
         {
@@ -124,7 +124,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestBlueTarget != null && closestDistance <= range)
         {
             blueEnemyTarget = closestBlueTarget;
-            blueEnemyTarget.GetComponent<Enemy>().EnterTime = Time.time;
+            blueEnemyTarget.GetComponent<BlueEnemy>().EnterTime = Time.time;
         }
         else
         {
@@ -151,7 +151,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestBlueTarget != null && closestDistance <= range)
         {
             blueSwordmanTarget = closestBlueTarget;
-            blueSwordmanTarget.GetComponent<Enemy>().EnterTime = Time.time;
+            blueSwordmanTarget.GetComponent<BlueEnemy>().EnterTime = Time.time;
         }
         else
         {
@@ -168,17 +168,17 @@ public class ArcherShooting : MonoBehaviour
             primaryTarget = redEnemyTarget;
         }
 
-        if (blueEnemyTarget != null && (primaryTarget == null || blueEnemyTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        if (blueEnemyTarget != null && (primaryTarget == null || blueEnemyTarget.GetComponent<BlueEnemy>().EnterTime < primaryTarget.GetComponent<BlueEnemy>().EnterTime))
         {
             primaryTarget = blueEnemyTarget;
         }
 
-        if (redSwordmanTarget != null && (primaryTarget == null || redSwordmanTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        if (redSwordmanTarget != null && (primaryTarget == null || redSwordmanTarget.GetComponent<RedEnemy>().EnterTime < primaryTarget.GetComponent<RedEnemy>().EnterTime))
         {
             primaryTarget = redSwordmanTarget;
         }
 
-        if (blueSwordmanTarget != null && (primaryTarget == null || blueSwordmanTarget.GetComponent<Enemy>().EnterTime < primaryTarget.GetComponent<Enemy>().EnterTime))
+        if (blueSwordmanTarget != null && (primaryTarget == null || blueSwordmanTarget.GetComponent<BlueEnemy>().EnterTime < primaryTarget.GetComponent<BlueEnemy>().EnterTime))
         {
             primaryTarget = blueSwordmanTarget;
         }

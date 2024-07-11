@@ -11,7 +11,7 @@ public class RedSwordmanHealth : MonoBehaviour
     [SerializeField] float slowingDuration = 2f;
     [SerializeField] int currentRedSwordmanHealth;
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
-    [SerializeField] NavMeshAgent navMeshAgent;
+    [SerializeField] RedEnemyMover mover;
     public int CurrentRedSwordmanHealth
     {
         get { return currentRedSwordmanHealth; }
@@ -60,30 +60,31 @@ public class RedSwordmanHealth : MonoBehaviour
         healthBar.fillAmount = (float)currentRedSwordmanHealth / redSwordmanHealth;
         if (currentRedSwordmanHealth < 1)
         {
-            Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed();
+            enemySpawner.OnEnemyDestroyed(gameObject);
         }
     }
 
     void HitBySmallMage()
     {
-        originalSpeed = navMeshAgent.speed;
-        navMeshAgent.speed = slowedSpeed;
+        originalSpeed = mover.speed;
+        mover.speed = slowedSpeed;
         currentRedSwordmanHealth -= sphere1Damage;
         healthBar.fillAmount = (float)currentRedSwordmanHealth / redSwordmanHealth;
         if (currentRedSwordmanHealth < 1)
         {
-            Destroy(gameObject);
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed();
+            enemySpawner.OnEnemyDestroyed(gameObject);
         }
-        StartCoroutine(SlowDownEnemy());
+        else
+        {
+            StartCoroutine(SlowDownEnemy());
+        }
     }
 
     IEnumerator SlowDownEnemy()
     {
         yield return new WaitForSeconds(slowingDuration);
-        navMeshAgent.speed = originalSpeed;
+        mover.speed = originalSpeed;
     }
 }

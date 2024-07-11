@@ -117,7 +117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3351102850262186132}
-  - component: {fileID: 7076430059732457114}
   - component: {fileID: 8768118038526788340}
   - component: {fileID: 148735768621198146}
   - component: {fileID: 5232322941193476287}
@@ -149,28 +148,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &7076430059732457114
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269163781473836878}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 1000
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!54 &8768118038526788340
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,7 +214,7 @@ MonoBehaviour:
   slowingDuration: 3
   currentRedSwordmanHealth: 0
   moneyCalculator: {fileID: -5248857137281039667}
-  navMeshAgent: {fileID: 7076430059732457114}
+  mover: {fileID: 7822076601034369566}
   healthBar: {fileID: 6798005811620329145}
   redSwordmanHealth: 200
 --- !u!114 &8194404066074026006
@@ -252,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a16e9e826b537438bb1dc13e11b807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMover: {fileID: 7822076601034369566}
 --- !u!114 &7822076601034369566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,8 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f97130039c0284c948abdbc8d062bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navAgent: {fileID: 7076430059732457114}
   moneyCalculator: {fileID: -5248857137281039667}
+  speed: 5
 --- !u!114 &-5248857137281039667
 MonoBehaviour:
   m_ObjectHideFlags: 0
