@@ -7,13 +7,16 @@ public class Sphere2Shooting : MonoBehaviour
     [SerializeField] int explosionDamage = 60;
     [SerializeField] int swordamnExplosionDamage = 45;
     [SerializeField] GameObject explosionParticlesPrrefab;
-    [SerializeField] RedEnemyHealth reHealth;
+    [SerializeField] RedSpearmanHealth reHealth;
     [SerializeField] BlueEnemyHealth beHealth;
     [SerializeField] BlueSwordmanHealth bsHealth;
     [SerializeField] RedSwordmanHealth rsHealth;
 
+    RedEnemySpawner redEnemySpawner;
+    BlueEnemySpawner blueEnemySpawner;
+    EnemyChecker enemyChecker;
+
     public Transform target;
-    private EnemySpawner enemySpawner;
     float destroyVFXTime;
 
     private void Awake()
@@ -23,7 +26,9 @@ public class Sphere2Shooting : MonoBehaviour
 
     private void Start()
     {
-        enemySpawner = FindObjectOfType<EnemySpawner>();
+      //  redEnemySpawner = FindObjectOfType<RedEnemySpawner>();
+      //  blueEnemySpawner = FindObjectOfType<BlueEnemySpawner>();
+        enemyChecker = FindObjectOfType<EnemyChecker>();
     }
 
     public void SeekEnemy(Transform _target)
@@ -66,7 +71,7 @@ public class Sphere2Shooting : MonoBehaviour
         {
             if (collider.CompareTag("red enemy"))
             {
-                RedEnemyHealth reHealth = collider.GetComponent<RedEnemyHealth>();
+                RedSpearmanHealth reHealth = collider.GetComponent<RedSpearmanHealth>();
                 EnemyMoneyCalculator redEnemyMC = collider.GetComponent<EnemyMoneyCalculator>();
                 if (reHealth != null)
                 {
@@ -74,7 +79,8 @@ public class Sphere2Shooting : MonoBehaviour
                     reHealth.healthBar.fillAmount = (float)reHealth.CurrentRedEnemyHealth / reHealth.redEnemyHealth;
                     if (reHealth.CurrentRedEnemyHealth < 1)
                     {
-                        enemySpawner.OnEnemyDestroyed(reHealth.gameObject);
+                        reHealth.GetComponent<RedSpearman>().Die();
+                        enemyChecker.CheckForRemainingEnemies();
                         redEnemyMC.MoneyDeposit();
                     }
                 }
@@ -89,7 +95,8 @@ public class Sphere2Shooting : MonoBehaviour
                     beHealth.healthBar.fillAmount = (float)beHealth.CurrentBlueEnemyHealth / beHealth.blueEnemyHealth;
                     if (beHealth.CurrentBlueEnemyHealth < 1)
                     {
-                        enemySpawner.OnEnemyDestroyed(beHealth.gameObject);
+                        beHealth.GetComponent<BlueEnemy>().Die();
+                        enemyChecker.CheckForRemainingEnemies();
                         blueEnemyMC.MoneyDeposit();
                     }
                 }
@@ -104,7 +111,8 @@ public class Sphere2Shooting : MonoBehaviour
                     rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentRedSwordmanHealth / rsHealth.redSwordmanHealth;
                     if (rsHealth.CurrentRedSwordmanHealth < 1)
                     {
-                        enemySpawner.OnEnemyDestroyed(rsHealth.gameObject);
+                        rsHealth.GetComponent<RedSwordman>().Die();
+                        enemyChecker.CheckForRemainingEnemies();
                         rsMoneyCalculator.MoneyDeposit();
                     }
                 }
@@ -119,7 +127,8 @@ public class Sphere2Shooting : MonoBehaviour
                     rsHealth.healthBar.fillAmount = (float)rsHealth.CurrentBlueSwordmanHealth / rsHealth.blueSwordmanHealth;
                     if (rsHealth.CurrentBlueSwordmanHealth < 1)
                     {
-                        enemySpawner.OnEnemyDestroyed(rsHealth.gameObject);
+                        rsHealth.GetComponent<BlueSwordman>().Die();
+                        enemyChecker.CheckForRemainingEnemies();
                         bsMoneyCalculator.MoneyDeposit();
                     }
                 }

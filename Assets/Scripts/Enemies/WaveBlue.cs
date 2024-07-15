@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class WaveBlue : MonoBehaviour
+public class WaveBlue
 {
-   /* public GameObject redEnemyPrefab;
-    public int redEnemiesAmountInWave;
-    public float timeBetweenRedEnemies;*/
-
-    public GameObject blueEnemyPrefab;
-    public int blueEnemiesAmountInWave;
+    public GameObject blueSpearmanPrefab;
+    public int blueSpearmanInWave;
+    public GameObject blueSwordmanPrefab;
+    public int blueSwordmanInWave;
     public float timeBetweenBlueEnemies;
 
-   // public RedSpearmanPool redEnemyPool;
-    public RedSpearmanPool blueEnemyPool;
+    public BlueSpearmanPool blueSpearmanPool;
+    public BlueSwordmanPool blueSwordmanPool;
 }

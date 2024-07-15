@@ -325,7 +325,6 @@ MonoBehaviour:
   currentBlueEnemyHealth: 0
   moneyCalculator: {fileID: -1116621053041558131}
   mover: {fileID: 2991414905854804460}
-  enemyPool: {fileID: 0}
   healthBar: {fileID: 6373039516095262226}
   blueEnemyHealth: 150
 --- !u!114 &2991414905854804460
@@ -341,6 +340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyCalculator: {fileID: -1116621053041558131}
+  blueEnemy: {fileID: 394756614252343415}
+  target: {fileID: 0}
   speed: 8
 --- !u!114 &394756614252343415
 MonoBehaviour:

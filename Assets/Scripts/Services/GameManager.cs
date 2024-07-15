@@ -1,5 +1,5 @@
+using System.Collections;
 using TMPro;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject youWinMenu;
-    [SerializeField] EnemySpawner enemySpawner;
+    [SerializeField] RedEnemySpawner enemySpawner;
     [SerializeField] TextMeshProUGUI wavesCounterTextGO;
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseToggle();
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            EndGame();
         }
     }
 
@@ -63,6 +67,10 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         Time.timeScale = 1f;
+        Invoke(nameof(ReloadSceneDelayed), 0.1f);
+    }
+    private void ReloadSceneDelayed()
+    {
         sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
@@ -74,6 +82,12 @@ public class GameManager : MonoBehaviour
         endPoinAudioSource.PlayOneShot(gameOverSound);
         wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
+        StartCoroutine(PauseGame());
+    }
+    private IEnumerator PauseGame()
+    {
+        yield return new WaitForSeconds(.5f);
+        Time.timeScale = 0f;
     }
 
     public void YouWin()

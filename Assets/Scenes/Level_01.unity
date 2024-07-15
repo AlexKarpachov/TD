@@ -684,7 +684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -128}
+  m_AnchoredPosition: {x: 0, y: -145}
   m_SizeDelta: {x: 522.7535, y: 123.6382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37037292
@@ -2174,11 +2174,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 156894849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9610cfd601febde41b925a6b7fcb33dc, type: 3}
+  m_Script: {fileID: 11500000, guid: ddc45d5bc658b5244ad671d86804a097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
-  poolSize: 5
+  spearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+  poolSize: 10
 --- !u!1 &161092946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,6 +2210,7 @@ Transform:
   - {fileID: 1846817116}
   - {fileID: 2121820197}
   - {fileID: 1854452279}
+  - {fileID: 1391485257}
   - {fileID: 156894850}
   - {fileID: 1325290207}
   - {fileID: 967475926}
@@ -2814,7 +2815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 224.9, y: -128}
+  m_AnchoredPosition: {x: 224.9, y: -142.5}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198427008
@@ -3612,7 +3613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -128}
+  m_AnchoredPosition: {x: 0, y: -226}
   m_SizeDelta: {x: 0, y: 449.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233540597
@@ -12724,8 +12725,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 225884902}
   - {fileID: 183538487}
+  - {fileID: 225884902}
   m_Father: {fileID: 1245836593}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14495,6 +14496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea8d2320c17cb4da89081fa09e84b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+  poolSize: 8
 --- !u!1001 &782523106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15973,7 +15976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -112, y: 109}
+  m_AnchoredPosition: {x: -112, y: 97.9}
   m_SizeDelta: {x: 131.10205, y: 116.69409}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888725893
@@ -16718,7 +16721,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7b6d18679913b9044a948ce40a3a21cd, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -17221,7 +17224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c86c4397de7684a98c86b0c4631772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLives: {fileID: 0}
+  playerLives: {fileID: 1941917651}
   startingBalance: 200
   currentBalance: 0
   balanceText: {fileID: 595877142}
@@ -19943,7 +19946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -64}
+  m_AnchoredPosition: {x: 0, y: -92.6}
   m_SizeDelta: {x: 550, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109258637
@@ -20805,7 +20808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 224.9, y: -64}
+  m_AnchoredPosition: {x: 224.90002, y: -92.599976}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134087529
@@ -22853,7 +22856,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7b6d18679913b9044a948ce40a3a21cd, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -24814,6 +24817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79cb9735cd03e794e84deca0acdfdcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+  poolSize: 8
 --- !u!1001 &1329771859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26078,7 +26083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 256}
+  m_AnchoredPosition: {x: 0, y: 223}
   m_SizeDelta: {x: 0, y: 449.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1371604920
@@ -26700,6 +26705,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4495672499575750, guid: fc0e85a1478e4314baa490f67446a1ed, type: 3}
   m_PrefabInstance: {fileID: 1385648659}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391485256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391485257}
+  - component: {fileID: 1391485258}
+  m_Layer: 0
+  m_Name: ArrowsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1391485257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391485256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 161092947}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391485258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391485256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0701538d89aa9b4580ba90ab215b888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3591548935351611462, guid: 21e03c36997bc324993503a42362afb5, type: 3}
+  poolSize: 15
 --- !u!1001 &1395321340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26802,7 +26853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 224.90002, y: -195}
+  m_AnchoredPosition: {x: 224.90002, y: -192.9}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400058815
@@ -30311,7 +30362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -172, y: -64}
+  m_AnchoredPosition: {x: -172, y: -92.599976}
   m_SizeDelta: {x: 130, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571151457
@@ -30800,7 +30851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
   spawnerCD: {fileID: 1584815137}
-  wavesCountdown: {fileID: 1846817117}
+  redSpawner: {fileID: 2121820198}
   countDownIMG: {fileID: 221774862}
 --- !u!1001 &1588771895
 PrefabInstance:
@@ -33951,7 +34002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 256}
+  m_AnchoredPosition: {x: 0, y: 226}
   m_SizeDelta: {x: 0, y: 449.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1750498462
@@ -35307,13 +35358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9629642247a31924a8bc9c2219590559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 10
-  startDelayTime: 10
+  startDelayTime: 5
   countdownText: {fileID: 600108994}
-  wavesAmount: {fileID: 2079989856}
-  blueSpawnerCountdown: {fileID: 1584815136}
-  redSpawner: {fileID: 0}
-  gameManager: {fileID: 143208917}
+  redSpawner: {fileID: 2121820198}
 --- !u!1001 &1848037709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35522,13 +35569,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1f921aff07ed14ebaac58b930f2d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves: []
+  waves:
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 2
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 0
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 0
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 3
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 4
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 0
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 0
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 4
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 5
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 0
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 0
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 6
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 8
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 0
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
+  - blueSpearmanPrefab: {fileID: 1783484005719096065, guid: dc545e42079587e4c9f1b9cb2c7f784e, type: 3}
+    blueSpearmanInWave: 0
+    blueSwordmanPrefab: {fileID: 8599696571640543152, guid: 1337514c6f4e3e545b7c356442e4395c, type: 3}
+    blueSwordmanInWave: 8
+    timeBetweenBlueEnemies: 1
+    blueSpearmanPool: {fileID: 967475927}
+    blueSwordmanPool: {fileID: 766502886}
   blueWaveIndex: 0
   blueSpawnPoint: {fileID: 1353670939}
   gameManager: {fileID: 143208917}
   enemyChecker: {fileID: 1956292058}
   redSpawner: {fileID: 2121820198}
-  wavesCountdown: {fileID: 1846817117}
+  wavesCountdown: {fileID: 2121820198}
 --- !u!1001 &1867209424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37243,7 +37346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHPText: {fileID: 701135828}
   startLives: 4
-  enemySpawner: {fileID: 0}
+  enemySpawner: {fileID: 2121820198}
   gameManager: {fileID: 143208917}
 --- !u!1001 &1942196497
 PrefabInstance:
@@ -38086,9 +38189,9 @@ RectTransform:
   m_Father: {fileID: 148382617}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: 448}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 341, y: -95.3}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1984533913
@@ -39794,7 +39897,7 @@ GameObject:
   - component: {fileID: 2092932497}
   - component: {fileID: 2092932496}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: YouWinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39817,7 +39920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -128}
+  m_AnchoredPosition: {x: 0, y: -219}
   m_SizeDelta: {x: 0, y: 449.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092932496
@@ -40601,7 +40704,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c59ef992b02444872459537bfe0a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves: []
+  waves:
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 3
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 0
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 0
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 2
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 4
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 0
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 0
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 3
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 6
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 0
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 0
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 5
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 8
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 0
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 0
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 7
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 10
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 0
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
+  - redSpearmanPrefab: {fileID: 8318631939242837006, guid: 960da3ca948d7984e8daec4a37dd68c9, type: 3}
+    redSpearmenAmountInWave: 0
+    redSwordmanPrefab: {fileID: 6269163781473836878, guid: 3fae7f5b2a1395245a5e589685909dd6, type: 3}
+    redSwordmenAmountInWave: 8
+    timeBetweenRedEnemies: 1
+    redSpearmanPool: {fileID: 156894851}
+    redSwordmanPool: {fileID: 1325290208}
   redSpawnPoint: {fileID: 1032062530}
   redWaveIndex: 0
   wavesAmount: {fileID: 2079989856}
@@ -40610,6 +40783,8 @@ MonoBehaviour:
   blueSpawnerCountdown: {fileID: 1584815136}
   wavesCountdown: {fileID: 1846817117}
   blueSpawner: {fileID: 1854452280}
+  timeBetweenWaves: 5
+  countdownText: {fileID: 600108994}
 --- !u!1001 &2128005066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41068,6 +41243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2513377584456731540, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
+      propertyPath: redSpawner
+      value: 
+      objectReference: {fileID: 2121820198}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: pauseMenu
       value: 
@@ -41087,7 +41266,7 @@ PrefabInstance:
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: enemySpawner
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2121820198}
     - target: {fileID: 4996282925792124362, guid: b0f39bf91096f6743a70df9e98b5114e, type: 3}
       propertyPath: navigationRoute
       value: 
@@ -41687,9 +41866,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 2744012236939501957, guid: 86ded81dd4bbeee4198b2650c75fc418, type: 3}
+      propertyPath: redSpawner
+      value: 
+      objectReference: {fileID: 2121820198}
+    - target: {fileID: 2744012236939501957, guid: 86ded81dd4bbeee4198b2650c75fc418, type: 3}
       propertyPath: wavesCountdown
       value: 
-      objectReference: {fileID: 1846817117}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448471091330804291, guid: 86ded81dd4bbeee4198b2650c75fc418, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448471091330804291, guid: 86ded81dd4bbeee4198b2650c75fc418, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5602857578951951519, guid: 86ded81dd4bbeee4198b2650c75fc418, type: 3}
       propertyPath: m_Name
       value: SpawnPlace_Left

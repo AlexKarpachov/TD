@@ -1,19 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class RedEnemyMover : MonoBehaviour
+public class RedSwordmanMover : MonoBehaviour
 {
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
+    [SerializeField] RedSwordman redSwordman;
+
     PlayerLives playerLivesScript;
-    EnemySpawner enemySpawner;
+    EnemyChecker enemyChecker;
+
     public Transform target;
 
-    public float speed = 8f;
+    public float speed = 5f;
     int wavePointIndex = 0;
 
     private void Start()
     {
         playerLivesScript = FindObjectOfType<PlayerLives>();
-        enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemyChecker = FindObjectOfType<EnemyChecker>();
         target = WaypointRed.routeRed[0];
     }
     private void Update()
@@ -37,7 +42,8 @@ public class RedEnemyMover : MonoBehaviour
         {
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
-            enemySpawner.OnEnemyDestroyed(gameObject);
+            enemyChecker.CheckForRemainingEnemies();
+            redSwordman.Die();
             return;
         }
         wavePointIndex++;

@@ -14,17 +14,14 @@ public class ArcherShooting : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] Transform firePoint2Archer;
     [SerializeField] float archerRotationSpeed = 10f;
-    [SerializeField] float archerTilt = -50;
 
     float fireCountdown = 0f;
     float time;
     float repeating;
-    float Dot;
 
     private void Awake()
     {
         time = 0f; repeating = 0.5f;
-        Dot = 1f;
     }
 
     void Start()
@@ -68,7 +65,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redEnemyTarget = closestTarget;
-            redEnemyTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
+            redEnemyTarget.GetComponent<RedSpearman>().EnterTime = Time.time;
         }
         else
         {
@@ -96,7 +93,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redSwordmanTarget = closestTarget;
-            redSwordmanTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
+            redSwordmanTarget.GetComponent<RedSwordman>().EnterTime = Time.time;
         }
         else
         {
@@ -151,7 +148,7 @@ public class ArcherShooting : MonoBehaviour
         if (closestBlueTarget != null && closestDistance <= range)
         {
             blueSwordmanTarget = closestBlueTarget;
-            blueSwordmanTarget.GetComponent<BlueEnemy>().EnterTime = Time.time;
+            blueSwordmanTarget.GetComponent<BlueSwordman>().EnterTime = Time.time;
         }
         else
         {
@@ -161,79 +158,120 @@ public class ArcherShooting : MonoBehaviour
 
     private void ArcherRotation()
     {
-        Transform primaryTarget = null;
+        Transform closestTarget = FindClosestTarget();
+
+        if (closestTarget != null)
+        {
+            LookAtTarget(closestTarget);
+            LookAtTarget2Archer(closestTarget);
+        }
+    }
+
+    private Transform FindClosestTarget()
+    {
+        float closestDistance = Mathf.Infinity;
+        Transform closestTarget = null;
 
         if (redEnemyTarget != null)
         {
-            primaryTarget = redEnemyTarget;
+            float distance = Vector3.Distance(transform.position, redEnemyTarget.position);
+            if (distance < closestDistance)
+            {
+                closestTarget = redEnemyTarget;
+                closestDistance = distance;
+            }
         }
 
-        if (blueEnemyTarget != null && (primaryTarget == null || blueEnemyTarget.GetComponent<BlueEnemy>().EnterTime < primaryTarget.GetComponent<BlueEnemy>().EnterTime))
+        if (blueEnemyTarget != null)
         {
-            primaryTarget = blueEnemyTarget;
+            float distance = Vector3.Distance(transform.position, blueEnemyTarget.position);
+            if (distance < closestDistance)
+            {
+                closestTarget = blueEnemyTarget;
+                closestDistance = distance;
+            }
         }
 
-        if (redSwordmanTarget != null && (primaryTarget == null || redSwordmanTarget.GetComponent<RedEnemy>().EnterTime < primaryTarget.GetComponent<RedEnemy>().EnterTime))
+        if (redSwordmanTarget != null)
         {
-            primaryTarget = redSwordmanTarget;
+            float distance = Vector3.Distance(transform.position, redSwordmanTarget.position);
+            if (distance < closestDistance)
+            {
+                closestTarget = redSwordmanTarget;
+                closestDistance = distance;
+            }
         }
 
-        if (blueSwordmanTarget != null && (primaryTarget == null || blueSwordmanTarget.GetComponent<BlueEnemy>().EnterTime < primaryTarget.GetComponent<BlueEnemy>().EnterTime))
+        if (blueSwordmanTarget != null)
         {
-            primaryTarget = blueSwordmanTarget;
+            float distance = Vector3.Distance(transform.position, blueSwordmanTarget.position);
+            if (distance < closestDistance)
+            {
+                closestTarget = blueSwordmanTarget;
+                closestDistance = distance;
+            }
         }
 
-        if (primaryTarget != null)
-        {
-            LookAtTarget(primaryTarget);
-            LookAtTarget2Archer(primaryTarget);
-        }
+        return closestTarget;
     }
 
     void LookAtTarget(Transform target)
     {
+        if (target == null)
+        {
+            return;
+        }
+
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
-        float tiltAngle = CalculateTiltAngle(direction);
         Vector3 rotation = Quaternion.Lerp(archerAtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        rotation.x += tiltAngle;
         archerAtTheTower.rotation = Quaternion.Euler(rotation);
     }
 
     void LookAtTarget2Archer(Transform target)
     {
+        if (target == null)
+        {
+            return;
+        }
+
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
-        float tiltAngle = CalculateTiltAngle(direction);
         Vector3 rotation = Quaternion.Lerp(archer2AtTheTower.rotation, lookRotation, Time.deltaTime * archerRotationSpeed).eulerAngles;
-        rotation.x += tiltAngle;
         archer2AtTheTower.rotation = Quaternion.Euler(rotation);
-    }
-
-    float CalculateTiltAngle(Vector3 direction)
-    {
-        return Mathf.Clamp(Vector3.Dot(Vector3.down, direction.normalized), -Dot, Dot) * archerTilt;
     }
 
     void ShootArrow()
     {
-        GameObject arrow = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
-        ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
-        if (shootingScript != null)
+        ArrowsPool arrowsPool = FindObjectOfType<ArrowsPool>();
+        GameObject tempArrow = arrowsPool.GetObject();
+        Arrow arrowScript = tempArrow.GetComponent<Arrow>();
+        ArrowShooting shootingScript = tempArrow.GetComponent<ArrowShooting>();
+        if (arrowScript != null && shootingScript != null)
         {
-            Transform target = redEnemyTarget ?? redSwordmanTarget ?? blueEnemyTarget ?? blueSwordmanTarget;
-            shootingScript.SeekEnemy(target);
+            arrowScript.Initialize(arrowsPool);
+            shootingScript.Initialize(arrowsPool);
+            shootingScript.SeekEnemy(FindClosestTarget());
+            tempArrow.transform.position = firePoint.position;
+            tempArrow.transform.rotation = firePoint.rotation;
+            tempArrow.SetActive(true);
         }
     }
 
     void ShootArrow2Archer()
     {
-        GameObject arrow = Instantiate(arrowPrefab, firePoint2Archer.position, firePoint2Archer.rotation);
-        ArrowShooting shootingScript = arrow.GetComponent<ArrowShooting>();
-        if (shootingScript != null)
+        ArrowsPool arrowsPool = FindObjectOfType<ArrowsPool>();
+        GameObject tempArrow = arrowsPool.GetObject();
+        Arrow arrowScript = tempArrow.GetComponent<Arrow>();
+        ArrowShooting shootingScript = tempArrow.GetComponent<ArrowShooting>();
+        if (arrowScript != null && shootingScript != null)
         {
-            Transform target = redEnemyTarget ?? redSwordmanTarget ?? blueEnemyTarget ?? blueSwordmanTarget;
-            shootingScript.SeekEnemy(target);
+            arrowScript.Initialize(arrowsPool);
+            shootingScript.Initialize(arrowsPool);
+            shootingScript.SeekEnemy(FindClosestTarget());
+            tempArrow.transform.position = firePoint2Archer.position;
+            tempArrow.transform.rotation = firePoint2Archer.rotation;
+            tempArrow.SetActive(true);
         }
     }
 

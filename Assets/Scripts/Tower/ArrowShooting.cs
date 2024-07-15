@@ -5,12 +5,18 @@ public class ArrowShooting : MonoBehaviour
     [SerializeField] float arrowSpeed = 10f;
     [SerializeField] GameObject sparksVFX;
 
+    ArrowsPool arrowsPool;
+
     public Transform target;
     float destroyVFXTime;
 
     private void Awake()
     {
         destroyVFXTime = 0.5f;
+    }
+    public void Initialize(ArrowsPool _arrowsPool)
+    {
+        arrowsPool = _arrowsPool;
     }
 
     public void SeekEnemy(Transform _target)
@@ -44,6 +50,6 @@ public class ArrowShooting : MonoBehaviour
     {
         GameObject sparksEffect = Instantiate(sparksVFX, transform.position, transform.rotation);
         Destroy(sparksEffect, destroyVFXTime);
-        Destroy(gameObject);
+        arrowsPool.ReturnObject(gameObject);
     }
 }

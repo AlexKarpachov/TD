@@ -3,43 +3,46 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class RedEnemyHealth : MonoBehaviour
+public class BlueSwordmanHealth : MonoBehaviour
 {
     [SerializeField] int arrowDamage = 25;
     [SerializeField] int sphere1Damage = 50;
-    [SerializeField] float slowedSpeed = 4f;
+    [SerializeField] float slowedSpeed = 3f;
     [SerializeField] float slowingDuration = 2f;
-    [SerializeField] int currentRedEnemyHealth;
+    [SerializeField] int currentBlueSwordmanHealth;
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
-    [SerializeField] RedEnemyMover mover;
-    public int CurrentRedEnemyHealth
+    [SerializeField] BlueSwordmanMover mover;
+
+    EnemyChecker enemyChecker;
+    public int CurrentBlueSwordmanHealth
     {
-        get { return currentRedEnemyHealth; }
+        get { return currentBlueSwordmanHealth; }
         set
         {
             if (value < 0)
             {
-                currentRedEnemyHealth = 0;
+                currentBlueSwordmanHealth = 0;
             }
             else
             {
-                currentRedEnemyHealth = value;
+                currentBlueSwordmanHealth = value;
             }
         }
     }
     public Image healthBar;
-    public int redEnemyHealth = 100;
+    public int blueSwordmanHealth = 100;
     float originalSpeed;
-    private EnemySpawner enemySpawner;
+    private BlueEnemySpawner enemySpawner;
 
     private void OnEnable()
     {
-        currentRedEnemyHealth = redEnemyHealth;
+        currentBlueSwordmanHealth = blueSwordmanHealth;
     }
 
     void Start()
     {
-        enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemySpawner = FindObjectOfType<BlueEnemySpawner>();
+        enemyChecker = FindObjectOfType<EnemyChecker>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,12 +59,13 @@ public class RedEnemyHealth : MonoBehaviour
 
     void HitByArrow()
     {
-        currentRedEnemyHealth -= arrowDamage;
-        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
-        if (currentRedEnemyHealth < 1)
+        currentBlueSwordmanHealth -= arrowDamage;
+        healthBar.fillAmount = (float)currentBlueSwordmanHealth / blueSwordmanHealth;
+        if (currentBlueSwordmanHealth < 1)
         {
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed(gameObject);
+            gameObject.GetComponent<BlueSwordman>().Die();
+            enemyChecker.CheckForRemainingEnemies();
         }
     }
 
@@ -69,14 +73,15 @@ public class RedEnemyHealth : MonoBehaviour
     {
         originalSpeed = mover.speed;
         mover.speed = slowedSpeed;
-        currentRedEnemyHealth -= sphere1Damage;
-        healthBar.fillAmount = (float)currentRedEnemyHealth / redEnemyHealth;
-        if (currentRedEnemyHealth < 1)
+        currentBlueSwordmanHealth -= sphere1Damage;
+        healthBar.fillAmount = (float)currentBlueSwordmanHealth / blueSwordmanHealth;
+        if (currentBlueSwordmanHealth < 1)
         {
             moneyCalculator.MoneyDeposit();
-            enemySpawner.OnEnemyDestroyed(gameObject);
+            gameObject.GetComponent<BlueSwordman>().Die();
+            enemyChecker.CheckForRemainingEnemies();
         }
-        else 
+        else
         {
             StartCoroutine(SlowDownEnemy());
         }
@@ -87,10 +92,9 @@ public class RedEnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(slowingDuration);
         mover.speed = originalSpeed;
     }
-
     public void ResetScale()
     {
         healthBar.fillAmount = 1;
-       
+
     }
 }

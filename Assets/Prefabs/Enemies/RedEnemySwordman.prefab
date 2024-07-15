@@ -120,10 +120,10 @@ GameObject:
   - component: {fileID: 8768118038526788340}
   - component: {fileID: 148735768621198146}
   - component: {fileID: 5232322941193476287}
-  - component: {fileID: 8194404066074026006}
-  - component: {fileID: 7822076601034369566}
   - component: {fileID: -5248857137281039667}
   - component: {fileID: 4172414781538918085}
+  - component: {fileID: 5167920047646286654}
+  - component: {fileID: 5026880161083544580}
   m_Layer: 0
   m_Name: RedEnemySwordman
   m_TagString: RedSwordman
@@ -214,36 +214,9 @@ MonoBehaviour:
   slowingDuration: 3
   currentRedSwordmanHealth: 0
   moneyCalculator: {fileID: -5248857137281039667}
-  mover: {fileID: 7822076601034369566}
+  mover: {fileID: 5026880161083544580}
   healthBar: {fileID: 6798005811620329145}
   redSwordmanHealth: 200
---- !u!114 &8194404066074026006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269163781473836878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a16e9e826b537438bb1dc13e11b807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMover: {fileID: 7822076601034369566}
---- !u!114 &7822076601034369566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6269163781473836878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f97130039c0284c948abdbc8d062bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyCalculator: {fileID: -5248857137281039667}
-  speed: 5
 --- !u!114 &-5248857137281039667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +327,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5167920047646286654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269163781473836878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c65d277dc64f354282edeaafa45a27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5026880161083544580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269163781473836878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3258a79bfc86d4469fe14f5feff027e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyCalculator: {fileID: -5248857137281039667}
+  redSwordman: {fileID: 5167920047646286654}
+  target: {fileID: 0}
+  speed: 5
 --- !u!1 &6653391221278854659
 GameObject:
   m_ObjectHideFlags: 0

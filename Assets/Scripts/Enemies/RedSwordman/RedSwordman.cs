@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class RedEnemy : MonoBehaviour
+public class RedSwordman : MonoBehaviour
 {
-    RedSpearmanPool objectPool;
+    RedSwordmanPool objectPool;
 
     public float EnterTime { get; set; }
 
-    public void Initialize(RedSpearmanPool pool)
+    public void InitializeSwordman(RedSwordmanPool pool)
     {
         objectPool = pool;
     }

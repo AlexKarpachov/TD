@@ -59,7 +59,7 @@ public class MageShootingLVL2 : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redEnemyTarget = closestTarget;
-            redEnemyTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
+            redEnemyTarget.GetComponent<RedSpearman>().EnterTime = Time.time;
         }
         else
         {
@@ -86,7 +86,7 @@ public class MageShootingLVL2 : MonoBehaviour
         if (closestTarget != null && closestDistance <= range)
         {
             redSwordmanTarget = closestTarget;
-            redSwordmanTarget.GetComponent<RedEnemy>().EnterTime = Time.time;
+            redSwordmanTarget.GetComponent<RedSwordman>().EnterTime = Time.time;
         }
         else
         {
@@ -141,7 +141,7 @@ public class MageShootingLVL2 : MonoBehaviour
         if (closestBlueTarget != null && closestDistance <= range)
         {
             blueSwordmanTarget = closestBlueTarget;
-            blueSwordmanTarget.GetComponent<BlueEnemy>().EnterTime = Time.time;
+            blueSwordmanTarget.GetComponent<BlueSwordman>().EnterTime = Time.time;
         }
         else
         {

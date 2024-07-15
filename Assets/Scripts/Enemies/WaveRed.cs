@@ -3,22 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class WaveRed
 {
-    public GameObject redEnemyPrefab;
-    public int redEnemiesAmountInWave;
+    public GameObject redSpearmanPrefab;
+    public int redSpearmenAmountInWave;
+    public GameObject redSwordmanPrefab;
+    public int redSwordmenAmountInWave;
     public float timeBetweenRedEnemies;
 
-  /*  public GameObject blueEnemyPrefab;
-    public int blueEnemiesAmountInWave;
-    public float timeBetweenBlueEnemies;*/
-
-    public RedSpearmanPool redEnemyPool;
-   // public RedSpearmanPool blueEnemyPool;
-
-    /*public GameObject redEnemyPrefab;
-    public int redEnemiesAmountInWave;
-    public float timeBetweenRedEnemies;
-
-    public GameObject blueEnemyPrefab;
-    public int blueEnemiesAmountInWave;
-    public float timeBetweenBlueEnemies;*/
+    public RedSpearmanPool redSpearmanPool;
+    public RedSwordmanPool redSwordmanPool;
 }

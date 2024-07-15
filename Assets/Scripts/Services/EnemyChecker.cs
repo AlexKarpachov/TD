@@ -1,20 +1,27 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyChecker : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    private string[] enemyTags = { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
+    [SerializeField] RedEnemySpawner redSpawner;
+
+    public static int enemiesAlive = 0;
+    string[] enemyTags = { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
 
     public void CheckForRemainingEnemies()
     {
-        StartCoroutine(CheckForRemainingEnemiesCoroutine());
+        enemiesAlive--;
+
+        if (redSpawner.RedWaveIndex == redSpawner.waves.Length && enemiesAlive <= 1)
+        {
+            StartCoroutine(CheckForRemainingEnemiesCoroutine());
+        }
     }
     IEnumerator CheckForRemainingEnemiesCoroutine()
     {
         yield return null;
-
         bool enemiesRemaining = false;
 
         foreach (string tag in enemyTags)

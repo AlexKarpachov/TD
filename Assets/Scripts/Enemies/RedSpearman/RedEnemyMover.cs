@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueEnemyMover : MonoBehaviour
+public class RedEnemyMover : MonoBehaviour
 {
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
+    [SerializeField] RedSpearman redSpearman;
+
     PlayerLives playerLivesScript;
-    EnemySpawner enemySpawner;
+    EnemyChecker enemyChecker;
+
     public Transform target;
 
     public float speed = 8f;
@@ -15,14 +16,14 @@ public class BlueEnemyMover : MonoBehaviour
     private void Start()
     {
         playerLivesScript = FindObjectOfType<PlayerLives>();
-        enemySpawner = FindObjectOfType<EnemySpawner>();
-        target = WaypointBlue.routeBlue[0];
+        enemyChecker = FindObjectOfType<EnemyChecker>();
+        target = WaypointRed.routeRed[0];
     }
     private void Update()
     {
-        MoveBlueEnemy();
+        MoveRedEnemy();
     }
-    void MoveBlueEnemy()
+    void MoveRedEnemy()
     {
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
@@ -35,22 +36,23 @@ public class BlueEnemyMover : MonoBehaviour
     }
     void GetNextPoint()
     {
-        if (wavePointIndex >= WaypointBlue.routeBlue.Length - 1)
+        if (wavePointIndex >= WaypointRed.routeRed.Length - 1)
         {
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
-            enemySpawner.OnEnemyDestroyed(gameObject);
+            enemyChecker.CheckForRemainingEnemies();
+            redSpearman.Die();
             return;
         }
         wavePointIndex++;
-        target = WaypointBlue.routeBlue[wavePointIndex];
+        target = WaypointRed.routeRed[wavePointIndex];
     }
     public void ResetMover()
     {
         wavePointIndex = 0;
-        if (WaypointBlue.routeBlue.Length > 0)
+        if (WaypointRed.routeRed.Length > 0)
         {
-            target = WaypointBlue.routeBlue[0];
+            target = WaypointRed.routeRed[0];
         }
     }
 }

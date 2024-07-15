@@ -5,7 +5,7 @@ public class PlayerLives : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI playerHPText;
     [SerializeField] int startLives = 3;
-    [SerializeField] EnemySpawner enemySpawner;
+    [SerializeField] RedEnemySpawner enemySpawner;
     [SerializeField] GameManager gameManager;
 
     public static int Lives;

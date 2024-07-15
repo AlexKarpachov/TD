@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -13,11 +12,6 @@ public class RedEnemySpawner : MonoBehaviour
     bool isRedWaveSpawning = false;
     public bool IsRedWaveSpawning { get { return isRedWaveSpawning; } }
 
-    /* [Header("Blue enemies info")]
-     [SerializeField] int blueWaveIndex;
-     [SerializeField] Transform blueSpawnPoint;
-     bool isBlueWaveSpawning = false;*/
-
     [Header("General info")]
     [SerializeField] TextMeshProUGUI wavesAmount;
     [SerializeField] GameManager gameManager;
@@ -25,17 +19,16 @@ public class RedEnemySpawner : MonoBehaviour
     [SerializeField] GameObject blueSpawnerCountdown;
     [SerializeField] WavesCountdown wavesCountdown;
     [SerializeField] BlueEnemySpawner blueSpawner;
+    [SerializeField] float timeBetweenWaves = 5.9f;
+    [SerializeField] TextMeshProUGUI countdownText;
 
-    private int enemiesAlive = 0;
     private float currentCountdownTime;
 
     WaitForSeconds redWFS;
-    // WaitForSeconds blueWFS;
 
     private void Awake()
     {
         redWFS = new WaitForSeconds(1);
-        //  blueWFS = new WaitForSeconds(1);
     }
 
     public void StartRedWaves()
@@ -57,65 +50,77 @@ public class RedEnemySpawner : MonoBehaviour
                 blueSpawnerCountdown.SetActive(true);
             }
             WaveRed wave = waves[redWaveIndex];
+
             isRedWaveSpawning = true;
-            for (int i = 0; i < wave.redEnemiesAmountInWave; i++)
+            // Spawn spearmen
+            for (int i = 0; i < wave.redSpearmenAmountInWave; i++)
             {
                 if (gameManager.GameOver)
                 {
                     yield break;
                 }
-                GameObject tempRedEnemy = wave.redEnemyPool.GetObject();
-                tempRedEnemy.GetComponent<RedEnemy>().Initialize(wave.redEnemyPool);
+
+                GameObject tempRedEnemy = wave.redSpearmanPool.GetObject();
+                tempRedEnemy.GetComponent<RedSpearman>().Initialize(wave.redSpearmanPool);
                 tempRedEnemy.transform.position = redSpawnPoint.position;
-                enemiesAlive++;
+                EnemyChecker.enemiesAlive++;
                 yield return redWFS;
             }
+
+            // Spawn swordmen
+            for (int i = 0; i < wave.redSwordmenAmountInWave; i++)
+            {
+                if (gameManager.GameOver)
+                {
+                    yield break;
+                }
+
+                GameObject tempRedEnemy = wave.redSwordmanPool.GetObject();
+                tempRedEnemy.GetComponent<RedSwordman>().InitializeSwordman(wave.redSwordmanPool);
+                tempRedEnemy.transform.position = redSpawnPoint.position;
+                EnemyChecker.enemiesAlive++;
+                yield return redWFS;
+            }
+
             isRedWaveSpawning = false;
             while (blueSpawner.IsBlueWaveSpawning)
             {
                 yield return null;
             }
-            yield return StartCoroutine(wavesCountdown.Countdown());
+            yield return StartCoroutine(Countdown(timeBetweenWaves));
             redWaveIndex++;
             wavesAmount.text = $"Wave {redWaveIndex}/10";
         }
     }
-    /*IEnumerator BlueEnemySpawner()
+    IEnumerator Countdown(float time)
     {
-        while (blueWaveIndex < waves.Length && !gameManager.GameOver)
+        if (redWaveIndex < waves.Length - 1)
         {
-            Wave wave = waves[blueWaveIndex];
-            isBlueWaveSpawning = true;
-            for (int i = 0; i < wave.blueEnemiesAmountInWave; i++)
+            countdownText.text = Mathf.Round(time).ToString();
+            while (time > 0 && !gameManager.GameOver)
             {
-                if (gameManager.GameOver)
-                {
-                    yield break;
-                }
-
-                GameObject tempBlueEnemy = wave.blueEnemyPool.GetObject();
-                tempBlueEnemy.GetComponent<BlueEnemy>().Initialize(wave.blueEnemyPool);
-                tempBlueEnemy.transform.position = blueSpawnPoint.position;
-                enemiesAlive++;
-                yield return blueWFS;
-            }
-            isBlueWaveSpawning = false;
-            while (isRedWaveSpawning)
-            {
+                time -= Time.deltaTime;
+                currentCountdownTime = time;
+                countdownText.text = "Next wave in " + Mathf.Round(time).ToString() + " sec";
                 yield return null;
             }
-            yield return StartCoroutine(Countdown(timeBetweenWaves));
-            blueWaveIndex++;
         }
-    }*/
-
-    public void OnEnemyDestroyed(GameObject enemy)
-    {
-        enemiesAlive--;
-        enemy.GetComponent<RedEnemy>().Die();
-        if (redWaveIndex == waves.Length - 10 && enemiesAlive <= 2)
+        else if (redWaveIndex == waves.Length - 1)
         {
-            enemyChecker.CheckForRemainingEnemies();
+            countdownText.text = "This is the last wave";
         }
+    }
+    public float RemainingCountdownTime()
+    {
+        return currentCountdownTime;
+    }
+    public float InitialCountdownTime()
+    {
+        return timeBetweenWaves;
+    }
+
+    public IEnumerator StartCountdown()
+    {
+        yield return Countdown(timeBetweenWaves);
     }
 }

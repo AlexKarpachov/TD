@@ -314,10 +314,10 @@ GameObject:
   - component: {fileID: 5759926883445301585}
   - component: {fileID: -5000300986036201817}
   - component: {fileID: 5565530539548044148}
-  - component: {fileID: 3779226764532339543}
   - component: {fileID: 2241915993394681977}
   - component: {fileID: 4584202606332537281}
-  - component: {fileID: -4389592782569380559}
+  - component: {fileID: 6468965525362326222}
+  - component: {fileID: 1511434458539659888}
   m_Layer: 0
   m_Name: RedEnemySoldier
   m_TagString: red enemy
@@ -486,19 +486,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3779226764532339543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8318631939242837006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a16e9e826b537438bb1dc13e11b807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMover: {fileID: 2241915993394681977}
 --- !u!114 &2241915993394681977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyCalculator: {fileID: 4584202606332537281}
+  redSpearman: {fileID: 6468965525362326222}
+  target: {fileID: 0}
   speed: 8
 --- !u!114 &4584202606332537281
 MonoBehaviour:
@@ -527,7 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyReward: 10
   moneyPenaly: 50
---- !u!114 &-4389592782569380559
+--- !u!114 &6468965525362326222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -536,7 +525,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8318631939242837006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae7a5dc3172bce43b0ff28e7bd87930, type: 3}
+  m_Script: {fileID: 11500000, guid: bdd24b3e68d51a84fac5a230c7fdb039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1511434458539659888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318631939242837006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2855c4e29a1d4e343a0c3d9987b15fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   arrowDamage: 30
@@ -547,7 +548,7 @@ MonoBehaviour:
   moneyCalculator: {fileID: 4584202606332537281}
   mover: {fileID: 2241915993394681977}
   healthBar: {fileID: 1074918242361046677}
-  redEnemyHealth: 150
+  redEnemyHealth: 100
 --- !u!1001 &7737473500361549621
 PrefabInstance:
   m_ObjectHideFlags: 0

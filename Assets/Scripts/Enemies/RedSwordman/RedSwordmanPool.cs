@@ -1,15 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedSpearmanPool : MonoBehaviour
+public class RedSwordmanPool : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
     [SerializeField] int poolSize = 10;
 
     Queue<GameObject> poolQueue;
-    Transform target;
-
-    int initialHealth;
 
     void Awake()
     {
@@ -17,7 +15,6 @@ public class RedSpearmanPool : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(prefab);
-            initialHealth = obj.GetComponent<RedEnemyHealth>().redEnemyHealth;
             obj.SetActive(false);
             poolQueue.Enqueue(obj);
         }
@@ -41,8 +38,8 @@ public class RedSpearmanPool : MonoBehaviour
     public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false);
-        RedEnemyHealth healthComponent = obj.GetComponent<RedEnemyHealth>();
-        RedEnemyMover moverComponent = obj.GetComponent<RedEnemyMover>();
+        RedSwordmanHealth healthComponent = obj.GetComponent<RedSwordmanHealth>();
+        RedSwordmanMover moverComponent = obj.GetComponent<RedSwordmanMover>();
         if (healthComponent != null)
         {
             healthComponent.ResetScale();
