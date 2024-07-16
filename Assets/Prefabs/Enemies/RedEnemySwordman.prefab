@@ -208,15 +208,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dccac9fab3d846b79440c7dcee025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowDamage: 20
-  sphere1Damage: 30
+  arrowDamage: 10
+  sphere1Damage: 15
   slowedSpeed: 3
-  slowingDuration: 3
+  slowingDuration: 300
   currentRedSwordmanHealth: 0
   moneyCalculator: {fileID: -5248857137281039667}
   mover: {fileID: 5026880161083544580}
   healthBar: {fileID: 6798005811620329145}
-  redSwordmanHealth: 200
+  redSwordmanHealth: 100
 --- !u!114 &-5248857137281039667
 MonoBehaviour:
   m_ObjectHideFlags: 0

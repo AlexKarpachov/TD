@@ -216,8 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphere2Speed: 30
   explosionRadius: 10
-  explosionDamage: 60
-  swordamnExplosionDamage: 45
+  spearmanDamage: 35
+  swordamnDamage: 20
   explosionParticlesPrrefab: {fileID: 8517075473342118974, guid: 9c89b12787a17f640a6f375f45d2baf7, type: 3}
   reHealth: {fileID: 0}
   beHealth: {fileID: 0}

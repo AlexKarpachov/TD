@@ -60,7 +60,6 @@ MonoBehaviour:
   arrowPrefab: {fileID: 3591548935351611462, guid: 21e03c36997bc324993503a42362afb5, type: 3}
   firePoint: {fileID: 5332708537746210923}
   archerRotationSpeed: 15
-  archerTilt: 100
 --- !u!65 &6911940711277207169
 BoxCollider:
   m_ObjectHideFlags: 0

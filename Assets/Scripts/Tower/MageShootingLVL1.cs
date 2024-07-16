@@ -159,9 +159,9 @@ public class MageShootingLVL1 : MonoBehaviour
         }
     }
 
-    /*private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
-    }*/
+    }
 }

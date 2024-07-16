@@ -95,7 +95,6 @@ MonoBehaviour:
   firePoint: {fileID: 5159804423103058316}
   firePoint2Archer: {fileID: 5061132099304112134}
   archerRotationSpeed: 15
-  archerTilt: -50
 --- !u!65 &6767784939813489022
 BoxCollider:
   m_ObjectHideFlags: 0
