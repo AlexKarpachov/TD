@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dfd3f2dd2d93947800c03892d3ccbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHB: {fileID: 7705368622213422813}
+  enemyHealthBar: {fileID: 7705368622213422813}
 --- !u!1 &3512067985290589271
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,8 +501,6 @@ MonoBehaviour:
   arrowDamage: 10
   sphere1Damage: 15
   slowedSpeed: 3
-  slowingDuration: 300
-  currentBlueSwordmanHealth: 0
   moneyCalculator: {fileID: -6537223424306668163}
   mover: {fileID: -8657535214346203337}
   healthBar: {fileID: 4984500092359061837}

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// responsible for making the mage sphere seek out the target. The description can be found in the ArcherShooting script
 public class MageShootingLVL1 : MonoBehaviour
 {
     [SerializeField] float fireRate = 0.5f;
@@ -159,9 +160,9 @@ public class MageShootingLVL1 : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    /*private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
-    }
+    }*/
 }

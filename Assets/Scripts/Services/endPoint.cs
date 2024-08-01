@@ -9,7 +9,6 @@ public class endPoint : MonoBehaviour
 
     List<string> enemyTags = new List<string> { "red enemy", "blue enemy", "RedSwordman", "BlueSwordman" };
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (enemyTags.Contains(other.gameObject.tag))

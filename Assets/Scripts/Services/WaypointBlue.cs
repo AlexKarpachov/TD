@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaypointBlue : MonoBehaviour
 {
+    // A static array of Transforms representing the route.
     public static Transform[] routeBlue;
 
+    // Initializes the routeBlue array with the child Transforms of this GameObject.
     private void Awake()
     {
         routeBlue = new Transform[transform.childCount];

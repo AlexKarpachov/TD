@@ -3,43 +3,47 @@ using UnityEngine;
 
 public class RedSpearmanPool : MonoBehaviour
 {
-    [SerializeField] GameObject spearmanPrefab;
+    [SerializeField] GameObject redSpearmanPrefab;
     [SerializeField] int poolSize = 10;
 
-    Queue<GameObject> spearmanQueue;
+    Queue<GameObject> redSpearmanQueue;
 
     void Awake()
     {
-        spearmanQueue = new Queue<GameObject>();
+        redSpearmanQueue = new Queue<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject spearman = Instantiate(spearmanPrefab);
-            spearman.SetActive(false);
-            spearmanQueue.Enqueue(spearman);
+            GameObject redSpearman = Instantiate(redSpearmanPrefab);
+            redSpearman.SetActive(false);
+            redSpearmanQueue.Enqueue(redSpearman);
         }
     }
 
-    public GameObject GetObject()
+        // Retrieves a red spearman game object from the pool.
+        // If the pool is empty, a new instance is created.
+    public GameObject GetSpearman()
     {
-        if (spearmanQueue.Count > 0)
+        if (redSpearmanQueue.Count > 0)
         {
-            GameObject obj = spearmanQueue.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            GameObject redSpearman = redSpearmanQueue.Dequeue();
+            redSpearman.SetActive(true);
+            return redSpearman;
         }
         else
         {
-            GameObject obj = Instantiate(spearmanPrefab);
-            return obj;
+            GameObject spearman = Instantiate(redSpearmanPrefab);
+            return spearman;
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    // Returns a red spearman game object to the pool.
+    // Resets the game object's health and mover components.
+    public void ReturnObject(GameObject redSpearman)
     {
-        obj.SetActive(false);
-        RedSpearmanHealth healthComponent = obj.GetComponent<RedSpearmanHealth>();
-        RedEnemyMover moverComponent = obj.GetComponent<RedEnemyMover>();
+        redSpearman.SetActive(false);
+        RedSpearmanHealth healthComponent = redSpearman.GetComponent<RedSpearmanHealth>();
+        RedEnemyMover moverComponent = redSpearman.GetComponent<RedEnemyMover>();
         if (healthComponent != null)
         {
             healthComponent.ResetScale();
@@ -49,6 +53,6 @@ public class RedSpearmanPool : MonoBehaviour
         {
             moverComponent.ResetMover();
         }
-        spearmanQueue.Enqueue(obj);
+        redSpearmanQueue.Enqueue(redSpearman);
     }
 }

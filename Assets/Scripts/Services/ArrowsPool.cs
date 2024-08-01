@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ArrowsPool : MonoBehaviour
 {
-    [SerializeField] GameObject prefab;
+    [SerializeField] GameObject arrowPrefab;
     [SerializeField] int poolSize = 10;
 
     Queue<GameObject> poolQueue;
@@ -13,9 +13,9 @@ public class ArrowsPool : MonoBehaviour
         poolQueue = new Queue<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(false);
-            poolQueue.Enqueue(obj);
+            GameObject arrow = Instantiate(arrowPrefab);
+            arrow.SetActive(false);
+            poolQueue.Enqueue(arrow);
         }
     }
 
@@ -23,20 +23,20 @@ public class ArrowsPool : MonoBehaviour
     {
         if (poolQueue.Count > 0)
         {
-            GameObject obj = poolQueue.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            GameObject arrow = poolQueue.Dequeue();
+            arrow.SetActive(true);
+            return arrow;
         }
         else
         {
-            GameObject obj = Instantiate(prefab);
-            return obj;
+            GameObject arrow = Instantiate(arrowPrefab);
+            return arrow;
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    public void ReturnObject(GameObject arrow)
     {
-        obj.SetActive(false);
-        poolQueue.Enqueue(obj);
+        arrow.SetActive(false);
+        poolQueue.Enqueue(arrow);
     }
 }

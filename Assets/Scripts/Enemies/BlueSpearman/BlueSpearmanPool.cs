@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BlueSpearmanPool : MonoBehaviour
 {
-    [SerializeField] GameObject prefab;
+    [SerializeField] GameObject blueSpearmanPrefab;
     [SerializeField] int poolSize = 10;
 
     Queue<GameObject> poolQueue;
@@ -13,32 +13,36 @@ public class BlueSpearmanPool : MonoBehaviour
         poolQueue = new Queue<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(false);
-            poolQueue.Enqueue(obj);
+            GameObject blueSpearman = Instantiate(blueSpearmanPrefab);
+            blueSpearman.SetActive(false);
+            poolQueue.Enqueue(blueSpearman);
         }
     }
 
+    // Retrieves a red spearman game object from the pool.
+    // If the pool is empty, a new instance is created.
     public GameObject GetObject()
     {
         if (poolQueue.Count > 0)
         {
-            GameObject obj = poolQueue.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            GameObject blueSpearman = poolQueue.Dequeue();
+            blueSpearman.SetActive(true);
+            return blueSpearman;
         }
         else
         {
-            GameObject obj = Instantiate(prefab);
-            return obj;
+            GameObject blueSpearman = Instantiate(blueSpearmanPrefab);
+            return blueSpearman;
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    // Returns a red spearman game object to the pool.
+    // Resets the game object's health and mover components.
+    public void ReturnObject(GameObject blueSpearman)
     {
-        obj.SetActive(false);
-        BlueEnemyHealth healthComponent = obj.GetComponent<BlueEnemyHealth>();
-        BlueEnemyMover moverComponent = obj.GetComponent<BlueEnemyMover>();
+        blueSpearman.SetActive(false);
+        BlueEnemyHealth healthComponent = blueSpearman.GetComponent<BlueEnemyHealth>();
+        BlueEnemyMover moverComponent = blueSpearman.GetComponent<BlueEnemyMover>();
         if (healthComponent != null)
         {
             healthComponent.ResetScale();
@@ -48,6 +52,6 @@ public class BlueSpearmanPool : MonoBehaviour
         {
             moverComponent.ResetMover();
         }
-        poolQueue.Enqueue(obj);
+        poolQueue.Enqueue(blueSpearman);
     }
 }

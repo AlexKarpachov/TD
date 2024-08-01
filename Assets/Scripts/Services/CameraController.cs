@@ -2,9 +2,10 @@
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    [SerializeField] float cameraMoveSpeed;
 
     private float initialHeight;
+    const float cameraHeightOffset = 0f;
 
     private void Start()
     {
@@ -20,10 +21,10 @@ public class CameraController : MonoBehaviour
         Vector3 localMoveDirection = transform.TransformDirection(new Vector3(horizontalInput, 0f, verticalInput)).normalized;
 
         // to apply initial camera high
-        localMoveDirection.y = 0f;
+        localMoveDirection.y = cameraHeightOffset;
 
         // to move the camera in the local coordinates
-        transform.localPosition += moveSpeed * Time.unscaledDeltaTime * localMoveDirection;
+        transform.localPosition += cameraMoveSpeed * Time.unscaledDeltaTime * localMoveDirection;
 
         // to save initial camera high after movement
         Vector3 newPosition = transform.position;

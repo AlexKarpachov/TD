@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  range: 20
+  towerShootingRange: 20
   redEnemyTarget: {fileID: 0}
   redSwordmanTarget: {fileID: 0}
   blueEnemyTarget: {fileID: 0}

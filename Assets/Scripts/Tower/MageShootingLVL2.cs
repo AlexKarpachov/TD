@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// responsible for making the mage sphere seek out the target. The description can be found in the ArcherShooting script
 public class MageShootingLVL2 : MonoBehaviour
 {
     [SerializeField] float fireRate = 0.5f;

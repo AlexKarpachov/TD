@@ -321,8 +321,6 @@ MonoBehaviour:
   arrowDamage: 20
   sphere1Damage: 30
   slowedSpeed: 5
-  slowingDuration: 300
-  currentBlueEnemyHealth: 0
   moneyCalculator: {fileID: -1116621053041558131}
   mover: {fileID: 2991414905854804460}
   healthBar: {fileID: 6373039516095262226}
@@ -548,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dfd3f2dd2d93947800c03892d3ccbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHB: {fileID: 8589791154227721055}
+  enemyHealthBar: {fileID: 8589791154227721055}
 --- !u!1001 &3533879020252808547
 PrefabInstance:
   m_ObjectHideFlags: 0

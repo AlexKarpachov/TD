@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// manages the store's UI, handles tower purchases, and manages the player's funds.
 public class Store : MonoBehaviour
 {
     [SerializeField] TowerBuilder towerBuilder;
@@ -18,13 +19,11 @@ public class Store : MonoBehaviour
     [SerializeField] int largeMageTowerCost = 70;
     public int LargeMageTowerCost { get { return largeMageTowerCost; } }
 
-    WaitForSeconds noMoneyMethod;
-
-    private void Awake()
-    {
-        noMoneyMethod = new WaitForSeconds(2);
-    }
-
+    /* called when the player selects a tower to build. 
+     * It takes two parameters: towerPrefab, which is the prefab of the tower to build, and cost, which is the cost of the tower. 
+     * The method sets the tower builder's towerToBuild property to the selected tower prefab, hides the store UI, and enables the game's time scale. 
+     * If the player has enough funds, it constructs the tower and deducts the cost from the player's balance.
+     * */
     public void SelectTowerToBuild(GameObject towerPrefab, int cost)
     {
         TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
@@ -39,55 +38,60 @@ public class Store : MonoBehaviour
         }
     }
 
+    /* Archer1TowerPurchase(), Archer2TowerPurchase(), Mage1TowerPurchase(), and Mage2TowerPurchase(): 
+     * these methods are called when the player clicks on a specific tower type in the store UI. 
+     * Each method checks if the player has enough funds using the HasSufficientFunds method. 
+     * If the player has enough funds, it calls the SelectTowerToBuild method to construct the tower. 
+     * */
     public void Archer1TowerPurchase()
     {
-        if (bank.CurrentBalance >= smallArcherTowerCost)
+        if (HasSufficientFunds(smallArcherTowerCost))
         {
             SelectTowerToBuild(towerBuilder.archerTowerPrefab, smallArcherTowerCost);
         }
-        else
-        {
-            StartCoroutine(NoMoney());
-        }
-
     }
     public void Archer2TowerPurchase()
     {
-        if (bank.CurrentBalance >= largeTowerArcherCost)
+        if (HasSufficientFunds(largeTowerArcherCost))
         {
             SelectTowerToBuild(towerBuilder.archer2TowerPrefab, largeTowerArcherCost);
-        }
-        else
-        {
-            StartCoroutine(NoMoney());
         }
     }
     public void Mage1TowerPurchase()
     {
-        if (bank.CurrentBalance >= smallMageTowerCost)
+        if (HasSufficientFunds(smallMageTowerCost))
         {
             SelectTowerToBuild(towerBuilder.mageTowerPrefab, smallMageTowerCost);
-        }
-        else
-        {
-            StartCoroutine(NoMoney());
         }
     }
     public void Mage2TowerPurchase()
     {
-        if (bank.CurrentBalance >= largeMageTowerCost)
+        if (HasSufficientFunds(largeMageTowerCost))
         {
             SelectTowerToBuild(towerBuilder.mage2TowerPrefab, largeMageTowerCost);
+        }
+    }
+
+    // checks if the player has enough funds to purchase a tower. 
+    // If the player has enough funds, it returns true.
+    // If the player doesn't have enough funds, it starts a coroutine to display a "no money" message and returns false.
+    private bool HasSufficientFunds(int cost)
+    {
+        if (bank.CurrentBalance >= cost)
+        {
+            return true;
         }
         else
         {
             StartCoroutine(NoMoney());
+            return false;
         }
     }
+
     IEnumerator NoMoney()
     {
         noMoneyText.SetActive(true);
-        yield return noMoneyMethod;
+        yield return new WaitForSecondsRealtime(2);
         noMoneyText.SetActive(false);
     }
 }

@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 
+// manages a player's bank balance
+// The current balance is displayed on the screen using a TextMeshProUGUI component.
 public class Bank : MonoBehaviour
 {
     [SerializeField] PlayerLives playerLives;
@@ -19,11 +21,13 @@ public class Bank : MonoBehaviour
         balanceText.text = "Balance: $" + currentBalance;
     }
 
+    // adds the specified amount to the currentBalance. The Mathf.Abs function ensures that the amount is always positive.
     public void Deposit(int amount)
     {
         currentBalance += Mathf.Abs(amount);
     }
 
+    // subtracts the specified amount from the currentBalance. The Mathf.Abs function ensures that the amount is always positive.
     public void FundsWithdrawals(int amount)
     {
         currentBalance -= Mathf.Abs(amount);

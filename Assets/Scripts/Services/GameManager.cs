@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject youWinMenu;
-    [SerializeField] RedEnemySpawner enemySpawner;
-    [SerializeField] TextMeshProUGUI wavesCounterTextGO;
+    [SerializeField] RedEnemySpawner redEnemySpawner;
+    [SerializeField] TextMeshProUGUI wavesCounterTextGameOver;
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
     [SerializeField] SceneFader sceneFader;
     [SerializeField] AudioSource cameraAudioSource;
@@ -18,15 +18,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip winSound;
 
     string mainMenuName = "MainMenu";
-    public int Rounds;
+   // public int Rounds;
+    const float reloadSceneDelay = 0.2f;
+    const float pauseGameDelay = 0.5f;
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
 
 
-    void Start()
+    /*void Start()
     {
-        Rounds = 0;
-    }
+      Rounds = 0;
+    }*/
 
     private void Update()
     {
@@ -34,23 +36,26 @@ public class GameManager : MonoBehaviour
         {
             PauseToggle();
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
             EndGame();
         }
     }
 
+    // Returns to the main menu.
     public void MainMenu()
     {
         Time.timeScale = 1f;
         sceneFader.FadeTo(mainMenuName);
     }
 
+    // Resumes the game from a paused state.
     public void ResumeGame()
     {
         Time.timeScale = 1;
     }
 
+    // Toggles the pause menu on and off.
     public void PauseToggle()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
@@ -64,10 +69,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // reloads the current scene, but with a delay. 
     public void ReloadScene()
     {
         Time.timeScale = 1f;
-        Invoke(nameof(ReloadSceneDelayed), 0.1f);
+        Invoke(nameof(ReloadSceneDelayed), reloadSceneDelay);
     }
     private void ReloadSceneDelayed()
     {
@@ -77,16 +83,16 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         gameOver = true;
-        enemySpawner.enabled = false;
+        redEnemySpawner.enabled = false;
         cameraAudioSource.Stop();
         endPoinAudioSource.PlayOneShot(gameOverSound);
-        wavesCounterTextGO.text = enemySpawner.RedWaveIndex.ToString();
+        wavesCounterTextGameOver.text = redEnemySpawner.RedWaveIndex.ToString();
         gameOverUI.SetActive(true);
         StartCoroutine(PauseGame());
     }
     private IEnumerator PauseGame()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(pauseGameDelay);
         Time.timeScale = 0f;
     }
 
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
         cameraAudioSource.Stop();
         endPoinAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);
-        wavesCounterTextWin.text = enemySpawner.RedWaveIndex.ToString();
+        wavesCounterTextWin.text = redEnemySpawner.RedWaveIndex.ToString();
     }
 
     public void QuitGame()

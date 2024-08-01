@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dfd3f2dd2d93947800c03892d3ccbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHB: {fileID: 5784457606418068273}
+  enemyHealthBar: {fileID: 5784457606418068273}
 --- !u!1 &7781778743160731052
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   moneyCalculator: {fileID: 4584202606332537281}
   redSpearman: {fileID: 6468965525362326222}
   target: {fileID: 0}
-  speed: 8
+  redSpearmanSpeed: 8
 --- !u!114 &4584202606332537281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,8 +543,6 @@ MonoBehaviour:
   arrowDamage: 20
   sphere1Damage: 30
   slowedSpeed: 5
-  slowingDuration: 300
-  currentRedEnemyHealth: 0
   moneyCalculator: {fileID: 4584202606332537281}
   mover: {fileID: 2241915993394681977}
   healthBar: {fileID: 1074918242361046677}

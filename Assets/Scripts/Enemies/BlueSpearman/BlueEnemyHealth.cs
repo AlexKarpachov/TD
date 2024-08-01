@@ -1,19 +1,17 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class BlueEnemyHealth : MonoBehaviour
 {
     [SerializeField] int arrowDamage = 25;
-    [SerializeField] int sphere1Damage = 50;
-    [SerializeField] float slowedSpeed = 5f;
-    [SerializeField] float slowingDuration = 2f;
-    [SerializeField] int currentBlueEnemyHealth;
+    [SerializeField] int sphere1Damage = 50; // The damage dealt by a sphere1 (Mage1 tower)
+    [SerializeField] float slowedSpeed = 5f; // The slowed speed of the enemy when hit by a sphere1.
     [SerializeField] EnemyMoneyCalculator moneyCalculator;
     [SerializeField] BlueEnemyMover mover;
 
     EnemyChecker enemyChecker;
+
+    int currentBlueEnemyHealth; // health of blue spearman
     public int CurrentBlueEnemyHealth
     {
         get { return currentBlueEnemyHealth; }
@@ -29,7 +27,7 @@ public class BlueEnemyHealth : MonoBehaviour
             }
         }
     }
-    public Image healthBar;
+    public Image healthBar; // The health bar UI image.
     public int blueEnemyHealth = 100;
     float originalSpeed;
     private BlueEnemySpawner enemySpawner;
@@ -37,21 +35,14 @@ public class BlueEnemyHealth : MonoBehaviour
     private void OnEnable()
     {
         currentBlueEnemyHealth = blueEnemyHealth;
-        enemyChecker = FindObjectOfType<EnemyChecker>();
     }
 
-    void Start()
+    private void Start()
     {
+        enemyChecker = FindObjectOfType<EnemyChecker>();
         enemySpawner = FindObjectOfType<BlueEnemySpawner>();
     }
-    private void Update()
-    {
-        if (currentBlueEnemyHealth < 1)
-        {
-            Destroy(gameObject);
-            moneyCalculator.MoneyDeposit();
-        }
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -66,9 +57,12 @@ public class BlueEnemyHealth : MonoBehaviour
     }
     void HitByArrow()
     {
+        // Called when the enemy is hit by an arrow
+        // Reduce the enemy's health by 20
+        // if the health is less than 0, destroys the enemy and pays $10 reward to the player
         currentBlueEnemyHealth -= arrowDamage;
         healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
-        if (currentBlueEnemyHealth < 1)
+        if (currentBlueEnemyHealth <= 0)
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<BlueEnemy>().Die();
@@ -78,28 +72,23 @@ public class BlueEnemyHealth : MonoBehaviour
 
     void HitBySmallMage()
     {
-        originalSpeed = mover.speed;
+        // Called when the enemy is hit by sphere1 (Mage1)
+        // Reduce the enemy's health by 30
+        // if the health is less than 0, destroys the enemy and pays $10 reward to the player
         mover.speed = slowedSpeed;
         currentBlueEnemyHealth -= sphere1Damage;
         healthBar.fillAmount = (float)currentBlueEnemyHealth / blueEnemyHealth;
-        if (currentBlueEnemyHealth < 1)
+        if (currentBlueEnemyHealth <= 0)
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<BlueEnemy>().Die();
             enemyChecker.CheckForRemainingEnemies();
         }
-        else
-        {
-            StartCoroutine(SlowDownEnemy());
-        }
     }
-    IEnumerator SlowDownEnemy()
-    {
-        yield return new WaitForSeconds(slowingDuration);
-        mover.speed = originalSpeed;
-    }
+
     public void ResetScale()
     {
+        // Resets the health bar to full.
         healthBar.fillAmount = 1;
     }
 }

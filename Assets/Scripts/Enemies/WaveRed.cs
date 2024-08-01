@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/* manages the spawning of red enemies in a game. 
+ * It stores the necessary data for a wave of red enemies, including the prefabs, amounts, and timing.
+ * */
 [System.Serializable]
 public class WaveRed
 {

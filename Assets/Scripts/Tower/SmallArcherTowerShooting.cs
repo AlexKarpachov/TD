@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// responsible for making the arrow seek out the target. The description can be found in the ArcherShooting script
 public class SmallArcherTowerShooting : MonoBehaviour
 {
     [SerializeField] float fireRate = 1f;
@@ -220,11 +221,9 @@ public class SmallArcherTowerShooting : MonoBehaviour
     {
         ArrowsPool arrowsPool = FindObjectOfType<ArrowsPool>();
         GameObject tempArrow = arrowsPool.GetObject();
-        Arrow arrowScript = tempArrow.GetComponent<Arrow>();
         ArrowShooting shootingScript = tempArrow.GetComponent<ArrowShooting>();
-        if (arrowScript != null && shootingScript != null)
+        if (shootingScript != null)
         {
-            arrowScript.Initialize(arrowsPool);
             shootingScript.Initialize(arrowsPool);
             shootingScript.SeekEnemy(FindClosestTarget());
             tempArrow.transform.position = firePoint.position;

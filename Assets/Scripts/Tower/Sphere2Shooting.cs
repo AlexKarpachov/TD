@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// controls a sphere that moves towards a target enemy and deals damage to enemies within an explosion radius when it reaches the target. 
+// It also uses references to health scripts for different enemy types to apply damage and update the enemy's health.
 public class Sphere2Shooting : MonoBehaviour
 {
     [SerializeField] float sphere2Speed = 10f;
@@ -7,6 +9,8 @@ public class Sphere2Shooting : MonoBehaviour
     [SerializeField] int spearmanDamage = 60;
     [SerializeField] int swordamnDamage = 45;
     [SerializeField] GameObject explosionParticlesPrrefab;
+
+    // references to health scripts for different enemy types
     [SerializeField] RedSpearmanHealth reHealth;
     [SerializeField] BlueEnemyHealth beHealth;
     [SerializeField] BlueSwordmanHealth bsHealth;
@@ -29,11 +33,13 @@ public class Sphere2Shooting : MonoBehaviour
         enemyChecker = FindObjectOfType<EnemyChecker>();
     }
 
+    // This method sets the target variable to the provided Transform object.
     public void SeekEnemy(Transform _target)
     {
         target = _target;
     }
 
+    // checks if the target variable is null, and if so, destroys the GameObject. Otherwise, it calls the MoveToEnemy method.
     void Update()
     {
         if (target == null)
@@ -44,6 +50,9 @@ public class Sphere2Shooting : MonoBehaviour
         MoveToEnemy();
     }
 
+    /* calculates the direction from the sphere to the target and moves the sphere towards the target at a rate of sphere2Speed per frame. 
+     * If the sphere reaches the target, it calls the HitTarget method.
+     */
     void MoveToEnemy()
     {
         Vector3 direction = target.position - transform.position;
@@ -54,6 +63,9 @@ public class Sphere2Shooting : MonoBehaviour
         }
         transform.Translate(direction.normalized * distancePerFrame, Space.World);
     }
+
+    // This method instantiates the explosion particles prefab at the sphere's position and rotation,
+    // destroys it after destroyVFXTime seconds, calls the HitSeveralEnemies method, and destroys the sphere GameObject.
     void HitTarget()
     {
         GameObject exposionVFX = Instantiate(explosionParticlesPrrefab, transform.position, transform.rotation);
@@ -62,9 +74,24 @@ public class Sphere2Shooting : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // This method uses a physics overlap sphere to detect colliders within the explosion radius
+    // and applies damage to the enemies within the colliders.
     public void HitSeveralEnemies()
     {
+        // This line uses the Physics.OverlapSphere() function to retrieve an array of colliders
+        // that are within the specified explosionRadius from the sphere's current position.
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        /*  checks the tag of each collider to determine the type of enemy it has hit.
+         *  For each tag, the script performs the following actions:
+            - gets the health component associated with the enemy type;
+            - If the health component is found, the script applies the specified damage to the enemy's health.
+            - updates the enemy's health bar to reflect the new health value.
+            If the enemy's health falls below 1, the script performs additional actions:
+            - calls the Die() method on the enemy script to handle death-related logic;
+            - notifies the EnemyChecker script to check for remaining enemies;
+            - deposits money as a reward for killing the enemy.
+         */
         foreach (Collider collider in colliders)
         {
             if (collider.CompareTag("red enemy"))

@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthBarRotation : MonoBehaviour
 {
     Camera mainCamera;
-    [SerializeField] Transform enemyHB;
+    [SerializeField] Transform enemyHealthBar;
     float rotationSpeed = 10f;
 
     private void Start()
@@ -14,7 +14,7 @@ public class HealthBarRotation : MonoBehaviour
     {
         Vector3 directionToCamera = mainCamera.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(directionToCamera);
-        Vector3 rotation = Quaternion.Lerp(enemyHB.rotation, lookRotation, Time.unscaledDeltaTime * rotationSpeed).eulerAngles;
-        enemyHB.rotation = Quaternion.Euler(rotation);
+        Vector3 rotation = Quaternion.Lerp(enemyHealthBar.rotation, lookRotation, Time.unscaledDeltaTime * rotationSpeed).eulerAngles;
+        enemyHealthBar.rotation = Quaternion.Euler(rotation);
     }
 }

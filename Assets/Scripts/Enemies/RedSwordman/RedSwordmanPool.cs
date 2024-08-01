@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RedSwordmanPool : MonoBehaviour
 {
-    [SerializeField] GameObject prefab;
+    [SerializeField] GameObject redSwordmanPrefab;
     [SerializeField] int poolSize = 10;
 
     Queue<GameObject> poolQueue;
@@ -14,32 +13,36 @@ public class RedSwordmanPool : MonoBehaviour
         poolQueue = new Queue<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(false);
-            poolQueue.Enqueue(obj);
+            GameObject redSwordman = Instantiate(redSwordmanPrefab);
+            redSwordman.SetActive(false);
+            poolQueue.Enqueue(redSwordman);
         }
     }
 
+    // Retrieves a red spearman game object from the pool.
+    // If the pool is empty, a new instance is created.
     public GameObject GetObject()
     {
         if (poolQueue.Count > 0)
         {
-            GameObject obj = poolQueue.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            GameObject redSwordman = poolQueue.Dequeue();
+            redSwordman.SetActive(true);
+            return redSwordman;
         }
         else
         {
-            GameObject obj = Instantiate(prefab);
-            return obj;
+            GameObject redSwordman = Instantiate(redSwordmanPrefab);
+            return redSwordman;
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    // Returns a red spearman game object to the pool.
+    // Resets the game object's health and mover components.
+    public void ReturnObject(GameObject redSwordman)
     {
-        obj.SetActive(false);
-        RedSwordmanHealth healthComponent = obj.GetComponent<RedSwordmanHealth>();
-        RedSwordmanMover moverComponent = obj.GetComponent<RedSwordmanMover>();
+        redSwordman.SetActive(false);
+        RedSwordmanHealth healthComponent = redSwordman.GetComponent<RedSwordmanHealth>();
+        RedSwordmanMover moverComponent = redSwordman.GetComponent<RedSwordmanMover>();
         if (healthComponent != null)
         {
             healthComponent.ResetScale();
@@ -49,6 +52,6 @@ public class RedSwordmanPool : MonoBehaviour
         {
             moverComponent.ResetMover();
         }
-        poolQueue.Enqueue(obj);
+        poolQueue.Enqueue(redSwordman);
     }
 }

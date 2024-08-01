@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
 
+// responsible for making the arrow seek out the target.
 public class ArcherShooting : MonoBehaviour
 {
+    // The rate at which the archer tower fires arrows.
     [SerializeField] float fireRate = 1f;
-    [SerializeField] float range = 3f;
+    // The maximum distance from the archer tower that an enemy can be and still be targeted.
+    [SerializeField] float towerShootingRange = 3f;
+
+    // These variables store the current target for each type of enemy.
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform redSwordmanTarget;
     [SerializeField] Transform blueEnemyTarget;
     [SerializeField] Transform blueSwordmanTarget;
+
+    // These are the transforms of the two archers at the tower.
     [SerializeField] Transform archerAtTheTower;
     [SerializeField] Transform archer2AtTheTower;
+
     [SerializeField] GameObject arrowPrefab;
+
+    // The points from which the arrows will be shot.
     [SerializeField] Transform firePoint;
     [SerializeField] Transform firePoint2Archer;
     [SerializeField] float archerRotationSpeed = 10f;
@@ -19,6 +29,7 @@ public class ArcherShooting : MonoBehaviour
     float time;
     float repeating;
 
+    // These variables are used to control the frequency at which the script searches for new targets.
     private void Awake()
     {
         time = 0f; repeating = 0.5f;
@@ -31,6 +42,9 @@ public class ArcherShooting : MonoBehaviour
         InvokeRepeating("FindClosestRedSwordman", time, repeating);
         InvokeRepeating("FindClosestBlueSwordman", time, repeating);
     }
+
+    // checks if there is a target and if the fire countdown has reached zero.
+    // If both conditions are true, it calls the ShootArrow() and ShootArrow2Archer() methods.
     private void Update()
     {
         if (redEnemyTarget == null && blueEnemyTarget == null && redSwordmanTarget == null && blueSwordmanTarget == null) { return; }
@@ -45,6 +59,13 @@ public class ArcherShooting : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    /* FindClosestRedEnemy(), FindClosestRedSwordman(), FindClosestBlueEnemy(), and FindClosestBlueSwordman() 
+     * methods search for the closest enemy of each type within the towerShootingRange and update the corresponding target variable.
+     * Each of these methods uses a similar approach:
+        - It finds all game objects with a specific tag (e.g., "red enemy").
+        - It iterates over these game objects, calculating the distance from the archer tower to each object.
+        - It keeps track of the closest object and updates the target variable if a closer object is found.
+     */
     void FindClosestRedEnemy()
     {
         GameObject[] redEnemies = GameObject.FindGameObjectsWithTag("red enemy");
@@ -62,7 +83,7 @@ public class ArcherShooting : MonoBehaviour
             }
         }
 
-        if (closestTarget != null && closestDistance <= range)
+        if (closestTarget != null && closestDistance <= towerShootingRange)
         {
             redEnemyTarget = closestTarget;
             redEnemyTarget.GetComponent<RedSpearman>().EnterTime = Time.time;
@@ -90,7 +111,7 @@ public class ArcherShooting : MonoBehaviour
             }
         }
 
-        if (closestTarget != null && closestDistance <= range)
+        if (closestTarget != null && closestDistance <= towerShootingRange)
         {
             redSwordmanTarget = closestTarget;
             redSwordmanTarget.GetComponent<RedSwordman>().EnterTime = Time.time;
@@ -118,7 +139,7 @@ public class ArcherShooting : MonoBehaviour
             }
         }
 
-        if (closestBlueTarget != null && closestDistance <= range)
+        if (closestBlueTarget != null && closestDistance <= towerShootingRange)
         {
             blueEnemyTarget = closestBlueTarget;
             blueEnemyTarget.GetComponent<BlueEnemy>().EnterTime = Time.time;
@@ -145,7 +166,7 @@ public class ArcherShooting : MonoBehaviour
             }
         }
 
-        if (closestBlueTarget != null && closestDistance <= range)
+        if (closestBlueTarget != null && closestDistance <= towerShootingRange)
         {
             blueSwordmanTarget = closestBlueTarget;
             blueSwordmanTarget.GetComponent<BlueSwordman>().EnterTime = Time.time;
@@ -156,6 +177,9 @@ public class ArcherShooting : MonoBehaviour
         }
     }
 
+    // The ArcherRotation() method is called to rotate the archer tower to face the closest target.
+    // This method uses the FindClosestTarget() method to determine the closest target
+    // and then calls the LookAtTarget() and LookAtTarget2Archer() methods to rotate the archer tower.
     private void ArcherRotation()
     {
         Transform closestTarget = FindClosestTarget();
@@ -215,6 +239,9 @@ public class ArcherShooting : MonoBehaviour
         return closestTarget;
     }
 
+    // The LookAtTarget() and LookAtTarget2Archer() methods use the Quaternion.LookRotation() method
+    // to calculate the rotation needed to face the target.
+    // They then use Quaternion.Lerp() to smoothly rotate the archer tower over time.
     void LookAtTarget(Transform target)
     {
         if (target == null)
@@ -241,15 +268,22 @@ public class ArcherShooting : MonoBehaviour
         archer2AtTheTower.rotation = Quaternion.Euler(rotation);
     }
 
+    /*The ShootArrow() and ShootArrow2Archer() methods are responsible for shooting arrows at the target.
+     * They use an ArrowsPool to manage the arrows and ensure that arrows are reused instead of created and destroyed repeatedly.
+     * These methods:
+        - Get an arrow from the pool.
+        - Initialize the arrow's script components.
+        - Set the arrow's position and rotation to match the fire point.
+        - Activate the arrow.
+    */
+
     void ShootArrow()
     {
         ArrowsPool arrowsPool = FindObjectOfType<ArrowsPool>();
         GameObject tempArrow = arrowsPool.GetObject();
-        Arrow arrowScript = tempArrow.GetComponent<Arrow>();
         ArrowShooting shootingScript = tempArrow.GetComponent<ArrowShooting>();
-        if (arrowScript != null && shootingScript != null)
+        if (shootingScript != null)
         {
-            arrowScript.Initialize(arrowsPool);
             shootingScript.Initialize(arrowsPool);
             shootingScript.SeekEnemy(FindClosestTarget());
             tempArrow.transform.position = firePoint.position;
@@ -262,11 +296,9 @@ public class ArcherShooting : MonoBehaviour
     {
         ArrowsPool arrowsPool = FindObjectOfType<ArrowsPool>();
         GameObject tempArrow = arrowsPool.GetObject();
-        Arrow arrowScript = tempArrow.GetComponent<Arrow>();
         ArrowShooting shootingScript = tempArrow.GetComponent<ArrowShooting>();
-        if (arrowScript != null && shootingScript != null)
+        if (shootingScript != null)
         {
-            arrowScript.Initialize(arrowsPool);
             shootingScript.Initialize(arrowsPool);
             shootingScript.SeekEnemy(FindClosestTarget());
             tempArrow.transform.position = firePoint2Archer.position;
