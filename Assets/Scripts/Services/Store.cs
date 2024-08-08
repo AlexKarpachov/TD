@@ -19,6 +19,21 @@ public class Store : MonoBehaviour
     [SerializeField] int largeMageTowerCost = 70;
     public int LargeMageTowerCost { get { return largeMageTowerCost; } }
 
+    BoxCollider[] buildPointColliders;
+
+    // In start we collect all BuildPoint box colliders to enable them later.
+    // We do so to exclude the possibility when the raycast goes through the Store UI to the BuildPoint, different from the chosen one.
+    private void Start()
+    {
+        GameObject[] buildPoints = GameObject.FindGameObjectsWithTag("BuildPoint");
+        buildPointColliders = new BoxCollider[buildPoints.Length];
+
+        for (int i = 0; i < buildPoints.Length; i++)
+        {
+            buildPointColliders[i] = buildPoints[i].GetComponent<BoxCollider>();
+        }
+    }
+
     /* called when the player selects a tower to build. 
      * It takes two parameters: towerPrefab, which is the prefab of the tower to build, and cost, which is the cost of the tower. 
      * The method sets the tower builder's towerToBuild property to the selected tower prefab, hides the store UI, and enables the game's time scale. 
@@ -27,8 +42,9 @@ public class Store : MonoBehaviour
     public void SelectTowerToBuild(GameObject towerPrefab, int cost)
     {
         TowerBuildPoint towerBuildPointScript = raycast.GetTowerBuildPointScript();
+        ColliderEnabled();
         storeUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = GameSpeed.isSpeedOn ? 2f : 1f;
         towerBuilder.SetTowerToBuild(towerPrefab);
 
         if (towerBuilder.Construct(towerBuildPointScript))
@@ -93,5 +109,13 @@ public class Store : MonoBehaviour
         noMoneyText.SetActive(true);
         yield return new WaitForSecondsRealtime(2);
         noMoneyText.SetActive(false);
+    }
+
+    public void ColliderEnabled()
+    {
+        foreach(BoxCollider collider in buildPointColliders)
+        {
+            collider.enabled = true;
+        }
     }
 }

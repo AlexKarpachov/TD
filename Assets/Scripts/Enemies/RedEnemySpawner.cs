@@ -13,7 +13,6 @@ public class RedEnemySpawner : MonoBehaviour
     public bool IsRedWaveSpawning { get { return isRedWaveSpawning; } }
 
     [Header("General info")]
-    [SerializeField] TextMeshProUGUI wavesAmount;
     [SerializeField] GameManager gameManager;
     [SerializeField] EnemyChecker enemyChecker;
     [SerializeField] GameObject blueSpawnerCountdown;
@@ -21,6 +20,7 @@ public class RedEnemySpawner : MonoBehaviour
     [SerializeField] BlueEnemySpawner blueSpawner;
     [SerializeField] float timeBetweenWaves = 5.9f;
     [SerializeField] TextMeshProUGUI countdownText;
+    [SerializeField] ScoreCounter scoreCounter;
 
     float currentCountdownTime;
 
@@ -42,7 +42,7 @@ public class RedEnemySpawner : MonoBehaviour
         while (redWaveIndex < waves.Length && !gameManager.GameOver)
         {
             // sets the wavesAmount text to display the current wave number
-            wavesAmount.text = $"Wave {redWaveIndex + 1}/10";
+            scoreCounter.WaveNumber(redWaveIndex + 1);
             if (redWaveIndex == 2)
             {
                 blueSpawner.StartBlueWaves();
@@ -102,7 +102,6 @@ public class RedEnemySpawner : MonoBehaviour
             // starts a countdown (using StartCoroutine(Countdown(timeBetweenWaves))) before the next wave
             yield return StartCoroutine(Countdown(timeBetweenWaves));
             redWaveIndex++;
-            wavesAmount.text = $"Wave {redWaveIndex}/10";
         }
     }
     // displays a countdown timer until the next wave.

@@ -21,7 +21,7 @@ public class EnemyChecker : MonoBehaviour
     {
         enemiesAlive--;
 
-        if (redSpawner.RedWaveIndex == redSpawner.waves.Length && enemiesAlive <= 1)
+        if (redSpawner.RedWaveIndex == redSpawner.waves.Length && enemiesAlive <= 0)
         {
             StartCoroutine(CheckForRemainingEnemiesCoroutine());
         }
@@ -34,20 +34,26 @@ public class EnemyChecker : MonoBehaviour
         yield return null;
         bool enemiesRemaining = false;
 
-        foreach (string tag in enemyTags)
+        while (true)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(tag);
-            enemies = enemies.Where(e => e.activeInHierarchy).ToArray();
-            if (enemies.Length > 0)
+            foreach (string tag in enemyTags)
             {
-                enemiesRemaining = true;
-                break;
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag(tag);
+                enemies = enemies.Where(e => e.activeInHierarchy).ToArray();
+                if (enemies.Length > 0)
+                {
+                    enemiesRemaining = true;
+                    break;
+                }
             }
-        }
 
-        if (!enemiesRemaining)
-        {
-            gameManager.YouWin();
+            if (!enemiesRemaining)
+            {
+                gameManager.YouWin();
+                yield break;
+            }
+            yield return null;
         }
+        
     }
 }

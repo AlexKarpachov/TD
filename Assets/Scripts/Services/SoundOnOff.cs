@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class SoundOnOff : MonoBehaviour
 {
-    [SerializeField] private AudioSource cameraAudioSource;
-    [SerializeField] private Button toggleButton;
-    [SerializeField] private Sprite soundOnIcon;
-    [SerializeField] private Sprite soundOffIcon;
+    [SerializeField] AudioSource cameraAudioSource;
+    [SerializeField] Button toggleButton;
+    [SerializeField] Sprite soundOnIcon;
+    [SerializeField] Sprite soundOffIcon;
 
-    private bool isSoundOn = true;
+    bool isSoundOn = true;
 
     void Start()
     {
@@ -25,13 +25,6 @@ public class SoundOnOff : MonoBehaviour
 
     void UpdateButtonIcon()
     {
-        if (isSoundOn)
-        {
-            toggleButton.image.sprite = soundOnIcon;
-        }
-        else
-        {
-            toggleButton.image.sprite = soundOffIcon;
-        }
+        toggleButton.image.sprite = isSoundOn ? soundOnIcon : soundOffIcon;
     }
 }

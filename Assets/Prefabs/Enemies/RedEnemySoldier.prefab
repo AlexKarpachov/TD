@@ -501,7 +501,7 @@ MonoBehaviour:
   moneyCalculator: {fileID: 4584202606332537281}
   redSpearman: {fileID: 6468965525362326222}
   target: {fileID: 0}
-  redSpearmanSpeed: 8
+  redSpearmanSpeed: 9
 --- !u!114 &4584202606332537281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyReward: 10
-  moneyPenaly: 75
+  moneyPenaly: 100
 --- !u!114 &6468965525362326222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,9 +540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2855c4e29a1d4e343a0c3d9987b15fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowDamage: 20
-  sphere1Damage: 30
-  slowedSpeed: 5
+  arrowDamage: 25
+  sphere1Damage: 40
+  slowedSpeed: 6
   moneyCalculator: {fileID: 4584202606332537281}
   mover: {fileID: 2241915993394681977}
   healthBar: {fileID: 1074918242361046677}

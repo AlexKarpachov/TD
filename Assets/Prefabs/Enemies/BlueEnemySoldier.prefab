@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyReward: 10
-  moneyPenaly: 75
+  moneyPenaly: 100
 --- !u!114 &-5208612603774785913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,9 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6e7592b5eacfb41a60e621e4147a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowDamage: 20
-  sphere1Damage: 30
-  slowedSpeed: 5
+  arrowDamage: 25
+  sphere1Damage: 40
+  slowedSpeed: 6
   moneyCalculator: {fileID: -1116621053041558131}
   mover: {fileID: 2991414905854804460}
   healthBar: {fileID: 6373039516095262226}
@@ -340,7 +340,7 @@ MonoBehaviour:
   moneyCalculator: {fileID: -1116621053041558131}
   blueEnemy: {fileID: 394756614252343415}
   target: {fileID: 0}
-  speed: 8
+  speed: 9
 --- !u!114 &394756614252343415
 MonoBehaviour:
   m_ObjectHideFlags: 0

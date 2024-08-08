@@ -9,6 +9,7 @@ public class TowerSell : MonoBehaviour
     [SerializeField] Bank bank; // A reference to the Bank script, which manages the player's funds.
     [SerializeField] Store store; // A reference to the Store script, which contains the costs of different towers.
     [SerializeField] TowerBuildPoint towerBuildPoint;
+    [SerializeField] GameSpeed gameSpeed;
 
     GameObject towerPrefabOnPoint; // the prefab of the tower that was previously built on the build point.
 
@@ -70,8 +71,8 @@ public class TowerSell : MonoBehaviour
     }
     public void CloseSellMenu()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = GameSpeed.isSpeedOn ? 2f : 1f;
+        gameSpeed.UpdateButtonIcon();
         sellUI.SetActive(false);
     }
-
 }

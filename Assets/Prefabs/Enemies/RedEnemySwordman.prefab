@@ -208,9 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dccac9fab3d846b79440c7dcee025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowDamage: 10
-  sphere1Damage: 15
-  slowedSpeed: 3
+  arrowDamage: 15
+  sphere1Damage: 35
+  slowedSpeed: 4
   moneyCalculator: {fileID: -5248857137281039667}
   mover: {fileID: 5026880161083544580}
   healthBar: {fileID: 6798005811620329145}
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyReward: 15
-  moneyPenaly: 75
+  moneyPenaly: 150
 --- !u!82 &4172414781538918085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   moneyCalculator: {fileID: -5248857137281039667}
   redSwordman: {fileID: 5167920047646286654}
   target: {fileID: 0}
-  speed: 5
+  speed: 6
 --- !u!1 &6653391221278854659
 GameObject:
   m_ObjectHideFlags: 0

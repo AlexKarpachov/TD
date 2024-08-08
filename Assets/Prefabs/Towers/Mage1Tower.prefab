@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243ec2dc47239dc488d6d305762f8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.5
+  fireRate: 0.8
   range: 15
   redEnemyTarget: {fileID: 0}
   redSwordmanTarget: {fileID: 0}

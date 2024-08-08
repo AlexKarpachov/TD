@@ -14,7 +14,6 @@ public class BlueEnemySpawner : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] EnemyChecker enemyChecker;
     [SerializeField] RedEnemySpawner redSpawner;
-    [SerializeField] RedEnemySpawner wavesCountdown;
 
     WaitForSeconds blueWFS;
 
@@ -80,7 +79,7 @@ public class BlueEnemySpawner : MonoBehaviour
             {
                 yield return null;
             }
-            yield return wavesCountdown.StartCountdown();
+            yield return redSpawner.StartCountdown();
             blueWaveIndex++;
         }
     }

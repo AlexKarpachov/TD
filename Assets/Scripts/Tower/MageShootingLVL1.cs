@@ -3,7 +3,7 @@ using UnityEngine;
 // responsible for making the mage sphere seek out the target. The description can be found in the ArcherShooting script
 public class MageShootingLVL1 : MonoBehaviour
 {
-    [SerializeField] float fireRate = 0.5f;
+    [SerializeField] float fireRate = 1f; // 1f = shoots every sec; 0.5f = makes 1 shot per 2 sec.
     [SerializeField] float range = 3f;
     [SerializeField] Transform redEnemyTarget;
     [SerializeField] Transform redSwordmanTarget;

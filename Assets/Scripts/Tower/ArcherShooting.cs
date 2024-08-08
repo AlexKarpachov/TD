@@ -4,7 +4,7 @@
 public class ArcherShooting : MonoBehaviour
 {
     // The rate at which the archer tower fires arrows.
-    [SerializeField] float fireRate = 1f;
+    [SerializeField] float fireRate = 1f; // 1f = shoots every sec; 0.5f = makes 1 shot per 2 sec.
     // The maximum distance from the archer tower that an enemy can be and still be targeted.
     [SerializeField] float towerShootingRange = 3f;
 

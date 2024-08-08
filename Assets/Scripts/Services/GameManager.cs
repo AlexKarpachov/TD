@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverUI;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject youWinMenu;
+    [SerializeField] GameObject storeUI;
+    [SerializeField] Store store;
     [SerializeField] RedEnemySpawner redEnemySpawner;
     [SerializeField] TextMeshProUGUI wavesCounterTextGameOver;
     [SerializeField] TextMeshProUGUI wavesCounterTextWin;
@@ -16,25 +18,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource endPoinAudioSource;
     [SerializeField] AudioClip gameOverSound;
     [SerializeField] AudioClip winSound;
+    [SerializeField] GameSpeed gameSpeed;
 
     string mainMenuName = "MainMenu";
-   // public int Rounds;
     const float reloadSceneDelay = 0.2f;
     const float pauseGameDelay = 0.5f;
     bool gameOver = false;
     public bool GameOver { get { return gameOver; } }
 
 
-    /*void Start()
-    {
-      Rounds = 0;
-    }*/
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseToggle();
+            storeUI.SetActive(false);
+            store.ColliderEnabled();
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
@@ -47,25 +46,34 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         sceneFader.FadeTo(mainMenuName);
+        GameSpeed.isSpeedOn = false;
+        gameSpeed.UpdateButtonIcon();
     }
 
     // Resumes the game from a paused state.
     public void ResumeGame()
     {
-        Time.timeScale = 1;
+        GameSpeed.isSpeedOn = false;
+        gameSpeed.UpdateButtonIcon();
+        Time.timeScale = 1f;
     }
 
     // Toggles the pause menu on and off.
     public void PauseToggle()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
-        if (pauseMenu.activeSelf)
+        if (!gameOver)
         {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            if (pauseMenu.activeSelf)
+            {
+                GameSpeed.isSpeedOn = false;
+                gameSpeed.UpdateButtonIcon();
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
     }
 
@@ -98,11 +106,11 @@ public class GameManager : MonoBehaviour
 
     public void YouWin()
     {
-        gameOver = true;
         cameraAudioSource.Stop();
-        endPoinAudioSource.PlayOneShot(winSound);
         youWinMenu.SetActive(true);
         wavesCounterTextWin.text = redEnemySpawner.RedWaveIndex.ToString();
+        endPoinAudioSource.PlayOneShot(winSound);
+        gameOver = true;
     }
 
     public void QuitGame()
