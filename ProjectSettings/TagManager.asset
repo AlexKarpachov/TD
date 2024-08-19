@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - red enemy
+  - blue enemy
+  - BuildPoint
+  - Balista
+  - Path
+  - Arrow
+  - Store menu
+  - sphere1
+  - sphere2
+  - SmallArcherTower
+  - LargeArcherTower
+  - SmallMageTower
+  - LargeMageTower
+  - BlueSwordman
+  - RedSwordman
   layers:
   - Default
   - TransparentFX
