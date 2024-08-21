@@ -50,7 +50,7 @@ public class BlueSwordmanMover : MonoBehaviour
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
             blueSwordman.Die();
-            enemyChecker.CheckForRemainingEnemies();
+            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
             return;
         }
         wavePointIndex++;

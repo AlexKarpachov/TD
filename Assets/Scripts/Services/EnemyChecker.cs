@@ -19,12 +19,13 @@ public class EnemyChecker : MonoBehaviour
      * */
     public void CheckForRemainingEnemies()
     {
-        enemiesAlive--;
+        //enemiesAlive--;
+        StartCoroutine(CheckForRemainingEnemiesCoroutine());
 
-        if (redSpawner.RedWaveIndex == redSpawner.waves.Length && enemiesAlive <= 0)
+        /*if (redSpawner.RedWaveIndex == redSpawner.waves.Length && enemiesAlive <= 1)
         {
-            StartCoroutine(CheckForRemainingEnemiesCoroutine());
-        }
+        StartCoroutine(CheckForRemainingEnemiesCoroutine());
+        }*/
     }
 
     // checks for remaining enemies
@@ -54,6 +55,6 @@ public class EnemyChecker : MonoBehaviour
             }
             yield return null;
         }
-        
+
     }
 }

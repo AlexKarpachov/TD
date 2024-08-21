@@ -23,6 +23,7 @@ public class RedEnemySpawner : MonoBehaviour
     [SerializeField] ScoreCounter scoreCounter;
 
     float currentCountdownTime;
+    public static bool lastwave = false;
 
     WaitForSeconds redWFS;
 
@@ -120,6 +121,7 @@ public class RedEnemySpawner : MonoBehaviour
         }
         else if (redWaveIndex == waves.Length - 1)
         {
+            lastwave = true;
             countdownText.text = "This is the last wave";
         }
     }
