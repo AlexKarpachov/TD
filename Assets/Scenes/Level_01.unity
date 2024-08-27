@@ -6381,7 +6381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Damage: spearman 25, swordman 15'
+  m_text: 'Damage: spearman 20, swordman 10'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b0f53e5ca01a304aa7e25dc05f0b784, type: 2}
   m_sharedMaterial: {fileID: 8621041709338653879, guid: 3b0f53e5ca01a304aa7e25dc05f0b784, type: 2}
@@ -17772,7 +17772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLives: {fileID: 1941917651}
-  startingBalance: 60
+  startingBalance: 80
   currentBalance: 0
   balanceText: {fileID: 595877142}
 --- !u!1 &963194225
@@ -26900,7 +26900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Damage: spearman 50, swordman 30'
+  m_text: 'Damage: spearman 40, swordman 20'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3b0f53e5ca01a304aa7e25dc05f0b784, type: 2}
   m_sharedMaterial: {fileID: 8621041709338653879, guid: 3b0f53e5ca01a304aa7e25dc05f0b784, type: 2}

@@ -105,7 +105,7 @@ public class Sphere2Shooting : MonoBehaviour
                     if (reHealth.CurrentRedEnemyHealth < 1)
                     {
                         reHealth.GetComponent<RedSpearman>().Die();
-                        if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+                        enemyChecker.CheckForRemainingEnemies();
                         redEnemyMC.MoneyDeposit();
                     }
                 }
@@ -121,7 +121,7 @@ public class Sphere2Shooting : MonoBehaviour
                     if (beHealth.CurrentBlueEnemyHealth < 1)
                     {
                         beHealth.GetComponent<BlueEnemy>().Die();
-                        if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+                        enemyChecker.CheckForRemainingEnemies(); 
                         blueEnemyMC.MoneyDeposit();
                     }
                 }
@@ -137,7 +137,7 @@ public class Sphere2Shooting : MonoBehaviour
                     if (rsHealth.CurrentRedSwordmanHealth < 1)
                     {
                         rsHealth.GetComponent<RedSwordman>().Die();
-                        if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+                        enemyChecker.CheckForRemainingEnemies();
                         rsMoneyCalculator.MoneyDeposit();
                     }
                 }
@@ -153,7 +153,7 @@ public class Sphere2Shooting : MonoBehaviour
                     if (rsHealth.CurrentBlueSwordmanHealth < 1)
                     {
                         rsHealth.GetComponent<BlueSwordman>().Die();
-                        if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+                        enemyChecker.CheckForRemainingEnemies();
                         bsMoneyCalculator.MoneyDeposit();
                     }
                 }

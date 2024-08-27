@@ -55,7 +55,7 @@ public class RedSpearmanHealth : MonoBehaviour
         }
     }
 
-    void HitByArrow() 
+    void HitByArrow()
     {
         // Called when the enemy is hit by an arrow
         // Reduce the enemy's health by 20
@@ -66,7 +66,7 @@ public class RedSpearmanHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<RedSpearman>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
         }
     }
 
@@ -82,7 +82,7 @@ public class RedSpearmanHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<RedSpearman>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
         }
 
     }

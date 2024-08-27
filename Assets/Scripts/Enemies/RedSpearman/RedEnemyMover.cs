@@ -48,7 +48,7 @@ public class RedEnemyMover : MonoBehaviour
         {
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
             redSpearman.Die();
             return;
         }

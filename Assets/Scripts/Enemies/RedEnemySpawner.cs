@@ -73,6 +73,7 @@ public class RedEnemySpawner : MonoBehaviour
                 tempRedEnemy.GetComponent<RedSpearman>().Initialize(wave.redSpearmanPool);
                 tempRedEnemy.transform.position = redSpawnPoint.position;
                 EnemyChecker.enemiesAlive++;
+                Debug.Log("enemies number is " + EnemyChecker.enemiesAlive);
                 yield return redWFS;
             }
 
@@ -90,6 +91,7 @@ public class RedEnemySpawner : MonoBehaviour
                 tempRedEnemy.GetComponent<RedSwordman>().InitializeSwordman(wave.redSwordmanPool);
                 tempRedEnemy.transform.position = redSpawnPoint.position;
                 EnemyChecker.enemiesAlive++;
+                Debug.Log("enemies number is " + EnemyChecker.enemiesAlive);
                 yield return redWFS;
             }
 

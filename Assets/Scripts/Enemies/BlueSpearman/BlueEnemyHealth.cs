@@ -66,7 +66,7 @@ public class BlueEnemyHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<BlueEnemy>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies(); 
         }
     }
 
@@ -82,10 +82,9 @@ public class BlueEnemyHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<BlueEnemy>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
         }
     }
-
     public void ResetScale()
     {
         // Resets the health bar to full.

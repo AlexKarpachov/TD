@@ -52,6 +52,7 @@ public class BlueEnemySpawner : MonoBehaviour
                 tempBlueEnemy.GetComponent<BlueEnemy>().Initialize(wave.blueSpearmanPool);
                 tempBlueEnemy.transform.position = blueSpawnPoint.position;
                 EnemyChecker.enemiesAlive++;
+                Debug.Log("enemies number is " + EnemyChecker.enemiesAlive);
                 yield return blueWFS;
             }
 
@@ -69,6 +70,7 @@ public class BlueEnemySpawner : MonoBehaviour
                 tempBlueEnemy.GetComponent<BlueSwordman>().Initialize(wave.blueSwordmanPool);
                 tempBlueEnemy.transform.position = blueSpawnPoint.position;
                 EnemyChecker.enemiesAlive++;
+                Debug.Log("enemies number is " + EnemyChecker.enemiesAlive);
                 yield return blueWFS;
             }
 

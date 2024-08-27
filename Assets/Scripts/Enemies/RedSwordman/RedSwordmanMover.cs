@@ -48,7 +48,7 @@ public class RedSwordmanMover : MonoBehaviour
         {
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies(); 
             redSwordman.Die();
             return;
         }

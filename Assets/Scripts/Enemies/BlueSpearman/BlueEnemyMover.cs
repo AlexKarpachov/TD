@@ -49,7 +49,7 @@ public class BlueEnemyMover : MonoBehaviour
             playerLivesScript.OutOfLives();
             moneyCalculator.MoneyWithdraw();
             blueEnemy.Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
             return;
         }
         wavePointIndex++;

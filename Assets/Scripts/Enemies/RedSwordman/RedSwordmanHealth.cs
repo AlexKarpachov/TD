@@ -66,7 +66,7 @@ public class RedSwordmanHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<RedSwordman>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
         }
     }
 
@@ -82,7 +82,7 @@ public class RedSwordmanHealth : MonoBehaviour
         {
             moneyCalculator.MoneyDeposit();
             gameObject.GetComponent<RedSwordman>().Die();
-            if (RedEnemySpawner.lastwave == true) { enemyChecker.CheckForRemainingEnemies(); }
+            enemyChecker.CheckForRemainingEnemies();
         }
 
     }
