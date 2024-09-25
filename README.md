@@ -9,7 +9,7 @@ The game involves strategically placing towers along a path to stop waves of ene
 The longer development timeline was primarily due to my limited experience with **UI**, **shaders**, and handling more complex game logic, which required learning and experimentation throughout the process. The creation of this game served as a valuable learning experience, allowing me to sharpen my skills in several areas of game development.
 
 ## Key Features
-- **3D Environment**: A fully navigable 3D world with custom maps and objects.
+- **3D Environment**: A fully navigable 3D world with custom map and objects.
 - **Tower Placement**: Players can place different types of towers along the enemy’s path, each with unique abilities and stats.
 - **Enemy Waves**: Enemies follow a pre-defined route toward the player's base, and the challenge increases with each wave.
 - **Basic UI**: Simple, intuitive interface allowing the player to manage resources and place towers.
